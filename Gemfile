@@ -20,10 +20,15 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
 
-  gem 'dotenv-rails'
   gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
+
+  gem 'capistrano', '3.6.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
 end
 
 group :development do
@@ -45,3 +50,5 @@ gem 'mini_magick'
 gem 'payjp'
 gem 'stripe'
 gem 'dotenv-rails'
+gem 'unicorn'
+gem 'therubyracer', platforms: :ruby
