@@ -202,6 +202,18 @@ $(function(){
     const id = $('#idParams').val();
     const action = $('#action').val();
 
+    $.ajaxPrefilter(function(options, originalOptions, jqXHR){
+      debugger
+      var token;
+      if (!options.crossDomain){
+        token = $('meta[name="csrf-token"]').attr('content');
+
+        if (token){
+          return jqXHR.setRequestHeader('X-CSRF-Token', token);
+        };
+      };
+    });
+
     if (route == "users"){
       usersVal(formData);
     }else if (route == "advertisements"){
@@ -211,6 +223,7 @@ $(function(){
     if (action == "new"){
       $.ajax({
         url: '/' + route,
+        datatype: 'json',
         type: 'post',
         data: formData,
         processData: false,
@@ -219,6 +232,7 @@ $(function(){
     }else if (action == "edit"){
       $.ajax({
         url: '/' + route + '/' + id,
+        datatype: 'json',
         type: 'patch',
         data: formData,
         processData: false,
