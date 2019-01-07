@@ -1,0 +1,90 @@
+<%= render 'layouts/header' %>
+<section id="users_show_sec01">
+  <h2 class="page_title">マイページ</h2>
+  <div class="left_side">
+    <ul>
+      <% if @user.icon.url.present? %>
+        <li class="user_icon"><%= image_tag(@user.icon.url) %></li>
+      <% else %>
+        <li class="user_icon"><%= image_tag('user_default_icon.jpg') %></li>
+      <% end %>
+      <div class="user_content">
+        <li class="name"><%= @user.name %></li>
+        <div class="user_val">
+          <% if @user.want_to_be_advertised == true %>
+            <li class="be_advertised">広告してほしい！</li>
+          <% end %>
+          <% if @user.want_to_advertise == true %>
+            <li class="advertise">広告したい！</li>
+          <% end %>
+        </div>
+        <% if @user.twitter.present? %>
+          <li class="twitter"><%= link_to @user.twitter do %>
+            <i class="fab fa-twitter"></i> Twitter
+          <% end %></li>
+        <% end %>
+        <% if @user.facebook.present? %>
+          <li class="facebook"><%= link_to @user.facebook do %>
+            <i class="fab fa-facebook-square"></i> Facebook
+          <% end %></li>
+        <% end %>
+        <div class="count_box">
+          <div class="posted">
+            <li class="column">投稿アプリ</li>
+            <li class="num"><%= @user.advertisements.count %></li>
+          </div>
+          <div class="following">
+            <li class="column">フォロー中</li>
+            <li class="num"><%= @user.active_relationships.count %></li>
+          </div>
+          <div class="followed">
+            <li class="column">フォロワー</li>
+            <li class="num"><%= @user.passive_relationships.count %></li>
+          </div>
+        </div>
+        <li class="comment"><%= @user.content %></li>
+        <% unless @user == current_user %>
+          <%= render 'follow_form', user: @user %>
+        <% end %>
+        <li class="dm"><%= link_to 'メッセージ確認', conversations_path, class: "dm_index_btn" if @user.id == current_user.id %></li>
+        <li class="date"><%= start_time(@user.created_at) %>より利用開始</li>
+      </div>
+    </ul>
+    <div class="search_wrap">
+      <div class="div_title"><i class="fas fa-search"></i>アプリを探す</div>
+      <div class="category">
+        <p class="title">カテゴリーから探す</p>
+        <% category_list.each do |category| %>
+          <%= link_to "#{category}", advertisements_path(app_category: category), class: "search_link" %>
+        <% end %>
+      </div>
+      <div class="target">
+        <p class="title">ターゲット属性から探す</p>
+        <% target_sex_list.each do |target| %>
+          <%= link_to "#{target}", advertisements_path(target_sex: target), class: "search_link" %>
+        <% end %>
+        <% target_age_list.each do |target| %>
+          <%= link_to "#{target}", advertisements_path(target_age: target), class: "search_link" %>
+        <% end %>
+      </div>
+      <div class="request">
+        <p class="title">Twitterフォロワー数から探す</p>
+        <% request_follower_list.each do |request| %>
+          <%= link_to "#{request}", advertisements_path(request_follower: request), class: "search_link" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="right_side">
+    <ul class="tab_list">
+      <li class="ad open"><%= link_to '投稿したアプリ', tabs_index_path(user: @user, type: "ad"), remote: true %></li>
+      <li class="liked"><%= link_to 'ストックしたアプリ', tabs_index_path(user: @user, type: "liked"), remote: true %></li>
+      <li class="following"><%= link_to 'フォロー中', tabs_index_path(user: @user, type: "following"), remote: true %></li>
+      <li class="followed"><%= link_to 'フォロワー', tabs_index_path(user: @user, type: "followed"), remote: true %></li>
+    </ul>
+    <div id="tab_content">
+      <%= render partial: 'users/posted_ad', locals: { user: @user, advertisements: @advertisements } %>
+    </div>
+  </div>
+</section>

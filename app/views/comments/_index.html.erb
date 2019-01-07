@@ -1,0 +1,35 @@
+<% comments.each do |comment| %>
+  <% if comment.id.present? %>
+    <% if comment.user.id == current_user.id %>
+      <div class="comment_div current_user">
+        <p class="name"><%= comment.user.name %></p>
+        <div class="fukidashi">
+          <p class="content"><%= comment.content %></p>
+          <p class="date"><%= comment.created_at %></p>
+        </div>
+        <p class="icon">
+          <% if comment.user.icon.url.present? %>
+            <%= image_tag(comment.user.icon.url) %>
+          <% else %>
+            <%= image_tag('user_default_icon.jpg') %>
+          <% end %>
+        </p>
+      </div>
+    <% else %>
+      <div class="comment_div others">
+        <p class="name"><%= comment.user.name %></p>
+        <div class="fukidashi">
+          <p class="content"><%= comment.content %></p>
+        </div>
+        <p class="icon">
+          <% if comment.user.icon.url.present? %>
+            <%= image_tag(comment.user.icon.url) %>
+          <% else %>
+            <%= image_tag('user_default_icon.jpg') %>
+          <% end %>
+        </p>
+        <p class="date"><%= comment.created_at %></p>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

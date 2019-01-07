@@ -1,0 +1,20 @@
+<div class="comment_input_div">
+  <%= form_with(model: [advertisement, comment]) do |form| %>
+    <% if comment.errors.any? %>
+      <div id="error_explanation">
+        <h3><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h3>
+        <ul>
+          <%= comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field content">
+      <h3><%= form.label 'コメント入力' %></h3>
+      <%= form.text_area :content, class: "content" %>
+      <%= form.submit '送信', class: "submit_btn" %>
+    </div>
+  <% end %>
+</div>

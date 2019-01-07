@@ -1,0 +1,22 @@
+<%= render 'layouts/header' %>
+<section id="messages_index_sec01">
+  <h2 class="page_title">メッセージ</h2>
+  <div class="top_comment_area">
+    <%= render 'top_comment' %>
+  </div>
+  <div id="conversion_form">
+    <%= render 'conversion' %>
+  </div>
+  <div class="message_input_div">
+    <%= form_with(model: [@conversation, @message]) do |f| %>
+      <div class="field content">
+        <%= f.text_area :body, class: "content" %>
+        <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+        <%= f.submit '送信', class: "submit_btn" %>
+      </div>
+    <% end %>
+  </div>
+  <div id="message_area">
+    <%= render partial: 'messages/index' %>
+  </div>
+</section>

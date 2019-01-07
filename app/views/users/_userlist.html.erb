@@ -1,0 +1,50 @@
+<% if users.count == 0 %>
+  <p class="nothing">表示できるユーザーがいません。</p>
+<% else %>
+  <div class="user_list">
+    <% users.each do |user| %>
+    <ul>
+      <%= link_to user_path(user.id) do %>
+      <% if user.icon.url.present? %>
+        <div class="icon_div">
+          <li><%= image_tag(user.icon.url) %></li>
+        </div>
+      <% else %>
+        <div class="icon_div">
+          <li><%= image_tag('user_default_icon.jpg') %></li>
+        </div>
+      <% end %>
+      <div class="content_div">
+        <li class="name"><%= user.name %></li>
+        <div class="user_val">
+          <% if user.want_to_be_advertised == true %>
+            <li class="be_advertised">広告してほしい！</li>
+          <% end %>
+          <% if user.want_to_advertise == true %>
+            <li class="advertise">広告したい！</li>
+          <% end %>
+        </div>
+        <li class="content"><%= user.content %></li>
+        <div class="count_box">
+          <div class="posted">
+            <li class="column">投稿数</li>
+            <li class="num"><%= user.advertisements.count %></li>
+          </div>
+          <div class="following">
+            <li class="column">フォロー中</li>
+            <li class="num"><%= user.active_relationships.count %></li>
+          </div>
+          <div class="followed">
+            <li class="column">フォロワー</li>
+            <li class="num"><%= user.passive_relationships.count %></li>
+          </div>
+        </div>
+        <% unless user == current_user %>
+          <%= render 'users/follow_form', user: user %>
+        <% end %>
+      </div>
+      <% end %>
+    </ul>
+    <% end %>
+  </div>
+<% end %>

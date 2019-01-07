@@ -1,0 +1,134 @@
+<div class="left_side">
+  <%= form_with(url: advertisements_path, method: 'get', local: true) do |form| %>
+    <div class="ad_search">
+      <div id="search_more_opened"><i class="fas fa-caret-up"></i> 絞り込み検索</div>
+      <%= form.text_field :keyword, placeholder: "依頼をさがす（フリーワード検索）", class: "top_search_field" %>
+      <div id="search_more_open"><i class="fas fa-caret-down"></i> 絞り込み検索</div>
+      <%= button_tag type: 'submit', class: "top_search_btn" do %>
+        <i class="fas fa-search"></i>
+      <% end %>
+      <div class="search_more">
+        <%= form_with(url: advertisements_path, method: 'get', remote: true) do |form| %>
+        <p class="title"><i class="fas fa-check"></i> カテゴリーで検索</p>
+          <ul>
+            <% category_list.each do |category| %>
+              <%= form.check_box :app_category, {id: "#{category}", class: "check_box", multiple: true}, "#{category}", false %>
+              <%= form.label "#{category}", for: "#{category}" %>
+            <% end %>
+          </ul>
+          <p class="title"><i class="fas fa-check"></i> ターゲット属性で検索</p>
+          <ul>
+            <% target_sex_list.each do |target| %>
+              <%= form.check_box :target_sex, {id: "#{target}", class: "check_box", multiple: true}, "#{target}", false %>
+              <%= form.label "#{target}", for: "#{target}" %>
+            <% end %>
+            <% target_age_list.each do |target| %>
+              <%= form.check_box :target_age, {id: "#{target}", class: "check_box", multiple: true}, "#{target}", false %>
+              <%= form.label "#{target}", for: "#{target}" %>
+            <% end %>
+          </ul>
+          <p class="title"><i class="fas fa-check"></i> 希望Twitterフォロワー数で検索</p>
+          <% request_follower_list.each do |request| %>
+            <%= form.check_box :request_follower, {id: "#{request}", class: "check_box", multiple: true}, "#{request}", false %>
+            <%= form.label "#{request}", for: "#{request}" %>
+          <% end %>
+          <div class="field radio">
+            <p class="title"><i class="fas fa-check"></i> 広告依頼について</p>
+            <%= form.radio_button :active, true, class: "radio_btn", id: "true", name: "active", checked: true %>
+            <%= form.label "広告依頼募集中のみ", for: "true" %>
+            <%= form.radio_button :active, false, class: "radio_btn", id: "false", name: "active" %>
+            <%= form.label "受付停止中のみ", for: "false" %>
+            <%= form.radio_button :active, "all", class: "radio_btn", id: "all_app", name: "active" %>
+            <%= form.label "募集中・停止中問わず全て", for: "all_app" %>
+          </div>
+          <p class="title"><i class="fas fa-check"></i> その他検索ワード</p>
+          <div class="wrap">
+            <%= form.text_field :keyword, class: "text_field", placeholder: "キーワード入力" %>
+            <%= button_tag type: 'submit', class: "submit_btn" do %>
+              <i class="fas fa-search"></i> 検索
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <ul class="sort_list">
+    <%= link_to '新着順', sort_advertisements_path(type: "sort_new", advertisements: advertisements.pluck(:id)), id: "sortNew", class: "new clicked", remote: true %>
+    <%= link_to '人気順', sort_advertisements_path(type: "sort_popular", advertisements: advertisements.pluck(:id)), id: "sortPopular", class: "popular", remote: true %>
+  </ul>
+  <div class="adlist_div">
+    <%= render 'adlist', advertisements: @advertisements %>
+  </div>
+</div>
+<div class="right_side">
+  <ul>
+    <% if current_user.present? %>
+      <%= link_to user_path(current_user) do %>
+        <div class="user_content">
+          <% if current_user.icon.url.present? %>
+            <li class="user_icon"><%= image_tag(current_user.icon.url) %></li>
+          <% else %>
+            <li class="user_icon"><%= image_tag('user_default_icon.jpg') %></li>
+          <% end %>
+          <li class="name"><%= current_user.name %></li>
+          <div class="count_box">
+            <div class="posted">
+              <li class="column">投稿アプリ</li>
+              <li class="num"><%= current_user.advertisements.count %></li>
+            </div>
+            <div class="following">
+              <li class="column">フォロー中</li>
+              <li class="num"><%= current_user.active_relationships.count %></li>
+            </div>
+            <div class="followed">
+              <li class="column">フォロワー</li>
+              <li class="num"><%= current_user.passive_relationships.count %></li>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="user_content">
+        <li class="user_icon"><%= image_tag('user_default_icon.jpg') %></li>
+        <li class="name">ゲストさん</li>
+        <div class="count_box">
+          <div class="posted">
+            <li class="column">投稿アプリ</li>
+            <li class="num">0</li>
+          </div>
+          <div class="following">
+            <li class="column">フォロー中</li>
+            <li class="num">0</li>
+          </div>
+          <div class="followed">
+            <li class="column">フォロワー</li>
+            <li class="num">0</li>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </ul>
+  <div class="search_wrap">
+    <div class="category">
+      <p class="title">カテゴリーから探す</p>
+      <% category_list.each do |category| %>
+        <%= link_to "#{category}", advertisements_path(app_category: category), class: "search_link" %>
+      <% end %>
+    </div>
+    <div class="target">
+      <p class="title">ターゲット属性から探す</p>
+      <% target_sex_list.each do |target| %>
+        <%= link_to "#{target}", advertisements_path(target_sex: target), class: "search_link" %>
+      <% end %>
+      <% target_age_list.each do |target| %>
+        <%= link_to "#{target}", advertisements_path(target_age: target), class: "search_link" %>
+      <% end %>
+    </div>
+    <div class="request">
+      <p class="title">Twitterフォロワー数から探す</p>
+      <% request_follower_list.each do |request| %>
+        <%= link_to "#{request}", advertisements_path(request_follower: request), class: "search_link" %>
+      <% end %>
+    </div>
+  </div>
+</div>

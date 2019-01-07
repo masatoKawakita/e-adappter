@@ -1,0 +1,39 @@
+<% @messages.each do |message| %>
+  <% if message.body.present? %>
+    <% if message.user.id == current_user.id %>
+      <div class="message_div current_user">
+        <p class="name"><%= message.user.name %></p>
+        <div class="fukidashi">
+          <p class="content"><%= message.body %></p>
+          <p class="date"><%= detail_time(message.created_at) %></p>
+        </div>
+        <p class="icon">
+          <% if message.user.icon.url.present? %>
+            <%= image_tag(message.user.icon.url) %>
+          <% else %>
+            <%= image_tag('user_default_icon.jpg') %>
+          <% end %>
+        </p>
+        <p class="read"><%= message.read ? '既読' : '未読' %></p>
+      </div>
+    <% else %>
+      <div class="message_div others">
+        <p class="name"><%= message.user.name %></p>
+        <div class="fukidashi">
+          <p class="content"><%= message.body %></p>
+          <p class="date"><%= detail_time(message.created_at) %></p>
+        </div>
+        <p class="icon">
+          <% if message.user.icon.url.present? %>
+            <%= image_tag(message.user.icon.url) %>
+          <% else %>
+            <%= image_tag('user_default_icon.jpg') %>
+          <% end %>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+<% if @over_ten %>
+  <%= link_to '以前のメッセージ', '?m=all' %>
+<% end %>

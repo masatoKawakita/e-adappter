@@ -1,0 +1,8 @@
+$("#comments_area").html("<%= j(render 'comments/index', {comments: @comment.advertisement.comments.order(created_at: :desc), advertisement: @comment.advertisement }) %>")
+$('.notice_area').html("<%= j(render 'layouts/notice') %>")
+$("textarea").val('')
+
+setTimeout(flashNotice, 3000);
+function flashNotice(){
+  $('.notice').fadeOut();
+}

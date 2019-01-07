@@ -1,0 +1,32 @@
+<% if @conversation.recipient_id == current_user.id %>
+  <h2 class="title">”<%= @conversation.advertisement.title %>”の広告依頼を見た、<%= @sender.name %>さんからメッセージが届きました！</h2>
+  <p class="comment"><%= @sender.name %>さんから、あなたの広告依頼を受けたいというオファーが来ております。メッセージを返しましょう。<br>
+    正式に依頼したい場合は「<%= @sender.name %>さんに依頼する！」を押してください。</p>
+<% elsif @conversation.sender_id == current_user.id %>
+  <h2 class="title"><%= @conversation.advertisement.title %>の広告依頼について、<br><%= @message.conversation.advertisement.user.name %>さんにメッセージを送ろう！</h2>
+  <p class="comment"><%= @conversation.advertisement.user.name %>さんに広告依頼を受けたいというオファーを出しましょう。</p>
+<% end%>
+<div class="image_div">
+  <div class="user_icon">
+    <% if @sender.icon.url.present? %>
+      <%= image_tag(@sender.icon.url) %>
+    <% else %>
+      <%= image_tag('user_default_icon.jpg') %>
+    <% end %>
+  </div>
+  <div class="arrow">
+    <i class="fas fa-caret-right"></i>
+    <i class="fas fa-caret-right"></i>
+    <i class="fas fa-caret-right"></i>
+    <i class="fas fa-caret-right"></i>
+    <i class="fas fa-caret-right"></i>
+    <i class="fas fa-caret-right"></i>
+  </div>
+  <div class="ad_image">
+    <% if @conversation.advertisement.image.url.present? %>
+      <%= image_tag(@conversation.advertisement.image.url) %>
+    <% else %>
+      <i class="fas fa-image"></i>
+    <% end %>
+  </div>
+</div>

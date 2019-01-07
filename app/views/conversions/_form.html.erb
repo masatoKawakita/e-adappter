@@ -1,0 +1,5 @@
+<%= form_with(model: @conversion) do |form| %>
+  <%= form.label '金額入力' %>
+  <%= form.text_area :fee, class: "fee" %>
+  <%= form.submit 'この金額で送信する', class: "submit_btn" %>
+<% end %>

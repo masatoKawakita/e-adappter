@@ -1,0 +1,47 @@
+<div class="left_side">
+  <%= form_with(url: users_path, method: 'get', local: true) do |form| %>
+    <div class="user_search">
+      <%= form.text_field :keyword, placeholder: "ユーザー検索", class: "search_field" %>
+      <%= button_tag type: 'submit', class: "search_btn" do %>
+        <i class="fas fa-search"></i>
+      <% end %>
+    </div>
+  <% end %>
+  <%= render 'users/userlist', users: @users %>
+</div>
+<div class="right_side">
+  <ul>
+    <div class="user_content">
+      <% if current_user.icon.url.present? %>
+        <li class="user_icon"><%= image_tag(current_user.icon.url) %></li>
+      <% else %>
+        <li class="user_icon"><%= image_tag('user_default_icon.jpg') %></li>
+      <% end %>
+      <li class="name"><%= current_user.name %></li>
+      <% if current_user.twitter.present? %>
+        <li class="twitter"><%= link_to current_user.twitter do %>
+          <i class="fab fa-twitter"></i> Twitter
+        <% end %></li>
+      <% end %>
+      <% if current_user.facebook.present? %>
+        <li class="facebook"><%= link_to current_user.facebook do %>
+          <i class="fab fa-facebook-square"></i> Facebook
+        <% end %></li>
+      <% end %>
+      <div class="count_box">
+        <div class="posted">
+          <li class="column">投稿アプリ</li>
+          <li class="num"><%= current_user.advertisements.count %></li>
+        </div>
+        <div class="following">
+          <li class="column">フォロー中</li>
+          <li class="num"><%= current_user.active_relationships.count %></li>
+        </div>
+        <div class="followed">
+          <li class="column">フォロワー</li>
+          <li class="num"><%= current_user.passive_relationships.count %></li>
+        </div>
+      </div>
+    </div>
+  </ul>
+</div>

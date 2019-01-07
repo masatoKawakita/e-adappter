@@ -1,0 +1,134 @@
+<%= render 'layouts/header' %>
+<section id="advertisements_show_sec01">
+  <h2 class="page_title">依頼詳細</h2>
+  <div class="about_advertisement_div">
+    <div class="left_side">
+      <ul>
+        <div class="ad_about">
+          <div class="wrap">
+            <h3 class="title"><%= @advertisement.title %></h3>
+            <li class="date">投稿日 <%= simple_time(@advertisement.created_at) %></li>
+            <% if @advertisement.active == true %>
+              <li class="welcome">広告してくれる人募集中！</li>
+            <% elsif @advertisement.active == false %>
+              <li class="non_welcome">現在広告を受け付けておりません</li>
+            <% end %>
+            <div class="num_div">
+              <div class="comment_num"><i class="far fa-comments"></i><%= @advertisement.comments.count %></div>
+              <div class="stock_num"><i class="far fa-thumbs-up"></i><%= @advertisement.favorites.count %></div>
+            </div>
+            <% unless @advertisement.app_category == nil %>
+              <li class="hash"><%= @advertisement.app_category %></li>
+            <% end %>
+            <% unless @advertisement.request_follower == nil %>
+              <li class="hash">希望フォロワー数 <%= @advertisement.request_follower %></li>
+            <% end %>
+            <% unless @advertisement.target_sex == nil %>
+              <li class="hash"><%= @advertisement.target_sex %></li>
+            <% end %>
+            <% unless @advertisement.target_age == nil %>
+              <li class="hash"><%= @advertisement.target_age %></li>
+            <% end %>
+            <% unless @advertisement.hash_01 == "" %>
+              <li class="hash"><%= @advertisement.hash_01 %></li>
+            <% end %>
+            <% unless @advertisement.hash_02 == "" %>
+              <li class="hash"><%= @advertisement.hash_02 %></li>
+            <% end %>
+            <% unless @advertisement.hash_03 == "" %>
+              <li class="hash"><%= @advertisement.hash_03 %></li>
+            <% end %>
+            <% unless @advertisement.hash_04 == "" %>
+              <li class="hash"><%= @advertisement.hash_04 %></li>
+            <% end %>
+            <li class="content"><%= @advertisement.content %></li>
+            <li class="app_url"><%= link_to "#{@advertisement.app_url}" %></li>
+          </div>
+          <div class="wrap">
+            <h3 class="label">アプリの機能詳細</h3>
+            <li class="about_function"><%= @advertisement.about_function %></li>
+          </div>
+          <div class="wrap">
+            <h3 class="label">広告したいターゲット</h3>
+            <li class="about_target"><%= @advertisement.about_target %></li>
+          </div>
+          <div class="wrap">
+            <h3 class="label">依頼事項</h3>
+            <li class="about_condition"><%= @advertisement.about_condition %></li>
+          </div>
+          <div class="wrap">
+            <h3 class="label">希望金額</h3>
+            <li class="about_fee"><%= @advertisement.about_fee %></li>
+          </div>
+        </div>
+        <li><%= render partial: 'comments/form', locals: { comment: @comment, advertisement: @advertisement } %></li>
+        <div id="comments_area">
+          <li><%= render partial: 'comments/index', locals: { comments: @comments, advertisement: @advertisement } %></li>
+        </div>
+      </ul>
+    </div>
+    <div class="right_side">
+      <ul>
+        <li class="image">
+          <% if @advertisement.image.url.present? %>
+            <%= image_tag(@advertisement.image.url) %>
+          <% else %>
+            <p>No image</p>
+            <i class="fas fa-image"></i>
+          <% end %>
+      </ul>
+      <ul>
+        <div class="user_content">
+          <% if @advertisement.user.icon.url.present? %>
+            <li class="user_icon"><%= image_tag(@advertisement.user.icon.url) %></li>
+          <% else %>
+            <li class="user_icon"><%= image_tag('user_default_icon.jpg') %></li>
+          <% end %>
+          <li class="name"><%= @advertisement.user.name %></li>
+          <% if @advertisement.user == current_user %>
+            <li class="adjustment"></li>
+          <% else %>
+            <li><%= render 'users/follow_form', user: @advertisement.user %></li>
+          <% end %>
+          <li class="comment"><%= @advertisement.user.content %></li>
+          <div class="count_box">
+            <div class="posted">
+              <li class="column">投稿数</li>
+              <li class="num"><%= @advertisement.user.advertisements.count %></li>
+            </div>
+            <div class="following">
+              <li class="column">フォロー中</li>
+              <li class="num"><%= @advertisement.user.active_relationships.count %></li>
+            </div>
+            <div class="followed">
+              <li class="column">フォロワー</li>
+              <li class="num"><%= @advertisement.user.passive_relationships.count %></li>
+            </div>
+          </div>
+          <% if @advertisement.user.twitter.present? %>
+            <li class="twitter"><%= link_to @advertisement.user.twitter do %>
+              <i class="fab fa-twitter"></i> Twitter
+            <% end %></li>
+          <% end %>
+          <% if @advertisement.user.facebook.present? %>
+            <li class="facebook"><%= link_to @advertisement.user.facebook do %>
+              <i class="fab fa-facebook-square"></i> Facebook
+            <% end %></li>
+          <% end %>
+        </div>
+        <% if @advertisement.user_id == current_user.id %>
+          <li class="request"><%= link_to '編集', edit_advertisement_path(@advertisement.id), class: "request_btn" %></li>
+        <% else %>
+          <% if @advertisement.active == true %>
+            <li class="request"><%= link_to 'この依頼を受けたい！', conversations_path(sender_id: current_user.id, recipient_id: @advertisement.user.id, advertisement_id: @advertisement.id), method: :post, class: "request_btn" %></li>
+          <% elsif @advertisement.active == false %>
+            <li class="request_out">現在受付を停止しております</li>
+          <% end %>
+        <% end %>
+        <div id="favorite_btn">
+          <%= render 'favorite_form', advertisement: @advertisement, favorite: @favorite %>
+        </div>
+      </ul>
+    </div>
+  </div>
+</section>

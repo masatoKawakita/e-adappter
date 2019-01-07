@@ -1,0 +1,7 @@
+$("#conversion_form").html("<%= escape_javascript(render partial: 'messages/conversion', locals: { conversion: @conversion }) %>")
+$('.notice_area').html("<%= j(render 'layouts/notice') %>")
+
+setTimeout(flashNotice, 5000);
+function flashNotice(){
+  $('.notice').fadeOut();
+}

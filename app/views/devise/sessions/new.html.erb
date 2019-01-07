@@ -1,0 +1,51 @@
+<%= render "layouts/others_header" %>
+<section id="sessions_new_sec01">
+  <div class="login_card">
+    <h2 class="title">e-AdAppter</h2>
+    <div class="error_msg">
+      <% if alert %>
+       <p><%= alert %></p>
+      <% end %>
+    </div>
+    <div class="login_form">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %>
+        </div>
+        <div class="field">
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード" %>
+        </div>
+        <% if devise_mapping.rememberable? -%>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+        <div class="btn_div">
+          <div class="actions">
+            <%= f.submit "ログイン", class: "submit_btn" %>
+          </div>
+          <div class="back">
+            <%= link_to '戻る', root_path, class: "back_btn" %>
+          </div>
+        </div>
+        <div class="oauth_login">
+          <div class="twitter">
+            <%= link_to user_twitter_omniauth_authorize_path do %>
+              <i class="fab fa-twitter"></i> Twitterでログイン
+            <% end %>
+          </div>
+        </div>
+        <div class="forget_pass">
+          <%= link_to '＞ パスワードを忘れてしまった方', new_user_password_path %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="signup_card">
+    <div class="sigh_up">
+      <p class="info">アカウントをお持ちでない方</p>
+      <%= link_to 'アカウントを作成する', new_user_registration_path %>
+    </div>
+  </div>
+</section>

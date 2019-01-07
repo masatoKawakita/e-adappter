@@ -1,0 +1,73 @@
+<%= render 'layouts/homes_header'%>
+<section id="home_sec01">
+  <div class="inner_div">
+    <h2 class="catch_copy">Webアプリを<br>SNSでカンタン広告</h2>
+    <p class="sub_catch_copy">開発者とインフルエンサーのマッチングスペース</p>
+    <ul class="sign_up_list">
+      <li class=""><%= link_to '新規登録', new_user_registration_path %></li>
+      <li class=""><%= link_to 'Twitterでログイン', user_twitter_omniauth_authorize_path %></li>
+    </ul>
+    <div class="top_image"><%=image_tag 'home_top.png' %></div>
+    <div class="under_line"></div>
+  </div>
+</section>
+<section id="home_sec02">
+  <div class="text_area">
+    <h2 class="title">e-AdAppter</h2>
+    <p class="sub_title">Webアプリ開発者とSNSインフルエンサーのマッチングスペース</p>
+    <p class="content">
+      e-AdAppterは、「Webアプリを広告したい人」と「SNSインフルエンサー」を<br>
+      つなぐサービスです。アプリを宣伝したい開発者と、広告に協力的なSNSオーナーが集まる<br>
+      マッチングスペースを提供します。
+    </p>
+  </div>
+  <div class="infographic_area">
+    <div class="developer">
+      <p class="text top">広告依頼の投稿</p>
+      <div class="round">
+        <i class="fas fa-laptop"></i>
+        <p>Webアプリ開発者</p>
+      </div>
+      <p class="text bottom">アプリ利用者拡大</p>
+    </div>
+    <div class="e-adappter">
+      <div class="round">
+        <p>e-AdAppter</p>
+      </div>
+    </div>
+    <div class="snsowner">
+      <p class="text top">SNSで宣伝</p>
+      <div class="round">
+        <i class="fas fa-comment"></i>
+        <i class="fas fa-user"></i>
+        <p>SNSオーナー</p>
+      </div>
+      <p class="text bottom">報酬の獲得</p>
+    </div>
+  </div>
+</section>
+<section id="home_sec03">
+</section>
+<script>
+$(function(){
+  nav = $('.pc');
+  offset = $('#home_sec01').offset();
+  $(window).scroll(function() {
+    if($(window).scrollTop() > offset.top + 550){
+      if(!nav.hasClass("fixed")){
+        nav.hide();
+      }
+      nav.addClass('fixed');
+      $('.site_title').addClass('fixed');
+      $('.e-adappter').addClass('fixed');
+      $('.nav_list').addClass('fixed');
+      nav.fadeIn();
+    } else {
+      nav.removeClass('fixed');
+      $('.site_title').removeClass('fixed');
+      $('.nav_list').removeClass('fixed');
+      $('.e-adappter').removeClass('fixed');
+    }
+  });
+});
+</script>
