@@ -61,6 +61,8 @@
           <li class="fee"><i class="fas fa-money-check"></i> 希望金額<br><%= ad.about_fee %></li>
           <% if ad.user.icon.url.present? %>
             <li class="icon"><%= image_tag(ad.user.icon.url) %></li>
+          <% else %>
+            <li class="icon"><%= image_tag('user_default_icon.jpg') %></li>
           <% end %>
           <li class="count">投稿 <%= ad.user.advertisements.count %><br>評価 4.2</li>
         </ul>
