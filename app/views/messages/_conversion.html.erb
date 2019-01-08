@@ -1,42 +1,42 @@
 <% if @conversation.recipient == current_user %>
-  <% if @conversation.advertisement.conversion.present? %>
-    <% if @conversation.advertisement.conversion.temporary_confirm == false %>
-      <%= link_to '申請をキャンセルする', conversion_path(@conversation.advertisement.conversion.id, conversation: @conversation.id), method: :delete, remote: true, class: "first_confirm_out_btn" %>
-    <% elsif @conversation.advertisement.conversion.temporary_confirm == true %>
-      <% if @conversation.advertisement.conversion.definitive_confirm == false %>
+  <% if @conversation.conversion.present? %>
+    <% if @conversation.conversion.temporary_confirm == false %>
+      <%= link_to '申請をキャンセルする', conversion_path(@conversation.conversion.id, conversation_id: @conversation.id), method: :delete, remote: true, class: "first_confirm_out_btn" %>
+    <% elsif @conversation.conversion.temporary_confirm == true %>
+      <% if @conversation.conversion.definitive_confirm == false %>
         <div class="confirm_msg"><%= @conversation.sender.name %>さんが返信がありました。<br>
-          金額：<%= @conversation.advertisement.conversion.fee %>円<br>
+          金額：<%= @conversation.conversion.fee %>円<br>
           こちらの金額でよろしければ、「依頼する」を押してください。
         </div>
-        <%= form_with(url: conversion_path(@conversation.advertisement.conversion.id, conversation: @conversation.id, definitive_confirm: true), method: :patch) do |form| %>
+        <%= form_with(url: conversion_path(@conversation.conversion.id, conversation_id: @conversation.id, definitive_confirm: true), method: :patch) do |form| %>
           <%= form.submit '依頼する', class: "final_confirm_btn" %>
         <% end %>
-      <% elsif @conversation.advertisement.conversion.definitive_confirm == true %>
-        <div class="confirm_msg">依頼が完了しました。<br>金額：<%= @conversation.advertisement.conversion.fee %>円</div>
+      <% elsif @conversation.conversion.definitive_confirm == true %>
+        <div class="conversion_msg"><%= @conversation.sender.name %>さんへの依頼が完了しました。<br>金額：<%= @conversation.conversion.fee %>円</div>
       <% end %>
     <% end %>
   <% else %>
-    <%= link_to "#{@conversation.sender.name}さんに依頼する！", conversions_path(conversation: @conversation.id, advertisement_id: @conversation.advertisement.id, diveloper_id: @conversation.recipient.id, advertiser_id: @conversation.sender.id), method: :post, remote: true, class: "first_confirm_in_btn" %>
+    <%= link_to "#{@conversation.sender.name}さんに依頼する！", conversions_path(conversation_id: @conversation.id, advertisement_id: @conversation.advertisement.id, diveloper_id: @conversation.recipient.id, advertiser_id: @conversation.sender.id), method: :post, remote: true, class: "first_confirm_in_btn" %>
   <% end %>
 <% elsif @conversation.sender == current_user %>
-  <% if @conversation.advertisement.conversion.present? %>
-    <% if @conversation.advertisement.conversion.temporary_confirm == false %>
+  <% if @conversation.conversion.present? %>
+    <% if @conversation.conversion.temporary_confirm == false %>
       <div class="confirm_msg"><%= @conversation.recipient.name %>さんから広告依頼の申請を受けました。受ける場合は金額を入力してください。</div>
       <div class="confirm_btn">金額を入力する</div>
-      <%= form_with(url: conversion_path(@conversation.advertisement.conversion.id, conversation: @conversation.id, temporary_confirm: true), method: :patch) do |form| %>
+      <%= form_with(url: conversion_path(@conversation.conversion.id, conversation_id: @conversation.id, temporary_confirm: true), method: :patch) do |form| %>
         <div class="input_fee_area">
           <%= form.text_field :fee, class: "fee_field" %> 円
           <%= form.submit 'この金額で送信する', class: "submit_btn" %>
         </div>
       <% end %>
-    <% elsif @conversation.advertisement.conversion.temporary_confirm == true %>
-      <% if @conversation.advertisement.conversion.definitive_confirm == false %>
-        <div class="confirm_msg"><%= @conversation.recipient.name %>さんに送信しました。お相手が確認するまでお待ちください。<br>金額：<%= @conversation.advertisement.conversion.fee %>円</div>
-        <%= form_with(url: conversion_path(@conversation.advertisement.conversion.id, conversation: @conversation.id, temporary_confirm: false, fee: "clear"), method: :patch) do |form| %>
+    <% elsif @conversation.conversion.temporary_confirm == true %>
+      <% if @conversation.conversion.definitive_confirm == false %>
+        <div class="confirm_msg"><%= @conversation.recipient.name %>さんに送信しました。お相手が確認するまでお待ちください。<br>金額：<%= @conversation.conversion.fee %>円</div>
+        <%= form_with(url: conversion_path(@conversation.conversion.id, conversation_id: @conversation.id, temporary_confirm: false, fee: "clear"), method: :patch) do |form| %>
           <%= form.submit '送信内容をキャンセルする', class: "cancel_fee_btn" %>
         <% end %>
-      <% elsif @conversation.advertisement.conversion.definitive_confirm == true %>
-        <div class="confirm_msg">依頼を受けました。<br>金額：<%= @conversation.advertisement.conversion.fee %>円</div>
+      <% elsif @conversation.conversion.definitive_confirm == true %>
+        <div class="conversion_msg"><%= @conversation.recipient.name %>さんから正式に依頼を受け付けました。<br>金額：<%= @conversation.conversion.fee %>円</div>
       <% end %>
     <% end %>
   <% end %>

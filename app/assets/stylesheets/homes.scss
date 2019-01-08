@@ -12,12 +12,17 @@ section#home_sec01 {
 }
 #home_sec01 .inner_div {
   position: relative;
-  width: 1360px;
+  width: 100%;
   height: 100vh;
   margin: auto;
 }
-@media screen and (max-width: 1360px){
-  
+@media screen and (min-width: 1360px){
+  #home_sec01 .inner_div {
+    position: relative;
+    width: 1360px;
+    height: 100vh;
+    margin: auto;
+  }
 }
 #home_sec01 .catch_copy {
   position: absolute;
@@ -43,6 +48,7 @@ section#home_sec01 {
   font-size: 13px;
   letter-spacing: -1em;
   z-index: 2;
+  font-size: 0;
 }
 #home_sec01 ul.sign_up_list li {
   width: 49%;
@@ -98,6 +104,15 @@ section#home_sec02 {
   height: 100vh;
   padding-top: 50px;
   position: relative;
+}
+@media screen and (min-width: 1360px){
+  section#home_sec02 {
+    width: 1360px;
+    height: 100vh;
+    padding-top: 50px;
+    position: relative;
+    margin: 0 auto;
+  }
 }
 #home_sec02 .text_area {
   position: absolute;

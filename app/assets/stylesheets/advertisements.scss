@@ -253,6 +253,7 @@
 #advertisements_show_sec01 .about_advertisement_div {
   margin-top: 80px;
   letter-spacing: -1em;
+  font-size: 0;
 }
 #advertisements_show_sec01 .about_advertisement_div .left_side {
   width: calc(100% - 315px);
@@ -563,6 +564,7 @@
   width: 100%;
   margin-bottom: 15px;
   background-color: #fff;
+  font-size: 0;
 }
 #advertisements_index_sec01 .left_side .ad_search .top_search_field {
   width: 67%;
@@ -721,6 +723,7 @@
   border-radius: 5px;
   margin-bottom: 10px;
   box-sizing: border-box;
+  position: relative;
 }
 #advertisements_index_sec01 .left_side .sort_list a {
   display: inline-block;
@@ -738,6 +741,13 @@
   background-color: #C84289;
   box-sizing: border-box;
 }
+#advertisements_index_sec01 .left_side .sort_list .ad_count {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  font-size: 14px;
+  color: #888;
+}
 
 /*------------------------------------------------------------
    advertisements/_adlist
@@ -754,6 +764,7 @@
   background-color: #fff;
   overflow: hidden;
   position: relative;
+  font-size: 0;
 }
 .ad_list .ad_left_side {
   width: 360px;
@@ -894,7 +905,6 @@
   height: 50px;
   border-radius: 50%;
   overflow: hidden;
-  border: solid 1px #ddd;
   box-sizing: border-box;
   display: inline-block;
   vertical-align: top;

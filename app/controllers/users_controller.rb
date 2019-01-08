@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.search(params[:keyword])
+    @users = @users.order(created_at: :desc)
 
     # if params[:keyword].present?
     #   render 'index.js.erb'

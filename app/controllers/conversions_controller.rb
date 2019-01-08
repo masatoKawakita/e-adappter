@@ -1,12 +1,12 @@
 class ConversionsController < ApplicationController
   before_action :authenticate_user!
   before_action do
-    @conversation = Conversation.find(params[:conversation])
+    @conversation = Conversation.find(params[:conversation_id])
   end
   def create
-    if Conversion.where(advertisement_id: params[:advertisement_id], advertiser_id: params[:advertiser_id], diveloper_id: params[:diveloper_id]).present?
+    if Conversion.where(conversation_id: params[:conversation_id], advertiser_id: params[:advertiser_id], diveloper_id: params[:diveloper_id]).present?
       conversions = Conversion.between(params[:diveloper_id], params[:advertiser_id])
-      @conversion = conversions.find_by(advertisement_id: params[:advertisement_id])
+      @conversion = conversions.find_by(conversation_id: params[:conversation_id])
     else
       @conversion = Conversion.create!(set_params)
     end
@@ -67,7 +67,7 @@ class ConversionsController < ApplicationController
   private
 
   def set_params
-    params.permit(:advertisement_id, :advertiser_id, :diveloper_id)
+    params.permit(:conversation_id, :advertisement_id, :advertiser_id, :diveloper_id)
   end
 
   def update_params

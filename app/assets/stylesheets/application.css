@@ -118,6 +118,7 @@ header nav.pc ul.nav_list li a {
   top: 15px;
   left: 100px;
   letter-spacing: -1em;
+  font-size: 0;
 }
 #login_header nav.pc .ad_search .search_field {
   letter-spacing: normal;

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190104025916) do
+ActiveRecord::Schema.define(version: 20190108035624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 20190104025916) do
     t.integer "fee"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "conversation_id"
+    t.index ["conversation_id"], name: "index_conversions_on_conversation_id", unique: true
     t.index ["diveloper_id", "advertiser_id", "advertisement_id"], name: "index_conversions_on_diveloper_advertiser_and_advertisement_id", unique: true
   end
 

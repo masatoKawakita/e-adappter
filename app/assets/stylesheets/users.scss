@@ -15,6 +15,7 @@
 #users_index_sec01 .left_side .user_search {
   width: 100%;
   margin-bottom: 15px;
+  font-size: 0;
 }
 #users_index_sec01 .left_side .user_search .search_field {
   width: 80%;
@@ -45,7 +46,9 @@
   margin-bottom: 20px;
   border-radius: 5px;
 }
-
+#users_index_sec01 .left_side .user_list ul a {
+  font-size: 0;
+}
 #users_index_sec01 .right_side {
   width: 24%;
   display: inline-block;

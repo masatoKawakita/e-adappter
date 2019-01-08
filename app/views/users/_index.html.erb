@@ -18,16 +18,6 @@
         <li class="user_icon"><%= image_tag('user_default_icon.jpg') %></li>
       <% end %>
       <li class="name"><%= current_user.name %></li>
-      <% if current_user.twitter.present? %>
-        <li class="twitter"><%= link_to current_user.twitter do %>
-          <i class="fab fa-twitter"></i> Twitter
-        <% end %></li>
-      <% end %>
-      <% if current_user.facebook.present? %>
-        <li class="facebook"><%= link_to current_user.facebook do %>
-          <i class="fab fa-facebook-square"></i> Facebook
-        <% end %></li>
-      <% end %>
       <div class="count_box">
         <div class="posted">
           <li class="column">投稿アプリ</li>
