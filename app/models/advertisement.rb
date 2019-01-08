@@ -1,16 +1,11 @@
 class Advertisement < ApplicationRecord
   mount_uploader :image, ImageUploader
-
   belongs_to :user
   has_one :conversion, dependent: :destroy
-
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user
-
   has_many :comments, dependent: :destroy
-
   has_many :conversations, dependent: :destroy
-
   validates :title, presence: true
   validates :app_url, presence: true
   validates :content, length: { in: 1..200 }, presence: true

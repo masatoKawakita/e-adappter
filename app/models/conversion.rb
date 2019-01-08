@@ -3,7 +3,6 @@ class Conversion < ApplicationRecord
   belongs_to :advertiser, foreign_key: :advertiser_id, class_name: 'User'
   belongs_to :advertisement
   belongs_to :conversation
-
   validates_uniqueness_of :conversation_id, scope: [:diveloper_id, :advertiser_id]
 
   scope :between, -> (diveloper_id, advertiser_id) do

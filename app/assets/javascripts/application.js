@@ -203,7 +203,6 @@ $(function(){
     const action = $('#action').val();
 
     $.ajaxPrefilter(function(options, originalOptions, jqXHR){
-      debugger
       var token;
       if (!options.crossDomain){
         token = $('meta[name="csrf-token"]').attr('content');

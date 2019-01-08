@@ -6,7 +6,6 @@ class MessagesController < ApplicationController
   before_action :set_messages
   include AdvertisementsHelper
 
-
   def index
   end
 
@@ -45,13 +44,10 @@ class MessagesController < ApplicationController
       @messages = @conversation.messages
     end
 
-    if @messages.last
-      @messages.where.not(user_id: current_user.id).update_all(read: true)
-    end
+    @messages.where.not(user_id: current_user.id).update_all(read: true) if @messages.last
 
     @messages = @messages.order(created_at: :desc)
     @message = @conversation.messages.build
-
     @sender = User.find(@conversation.sender_id)
   end
 end

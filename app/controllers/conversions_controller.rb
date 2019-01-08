@@ -3,6 +3,7 @@ class ConversionsController < ApplicationController
   before_action do
     @conversation = Conversation.find(params[:conversation_id])
   end
+  
   def create
     if Conversion.where(conversation_id: params[:conversation_id], advertiser_id: params[:advertiser_id], diveloper_id: params[:diveloper_id]).present?
       conversions = Conversion.between(params[:diveloper_id], params[:advertiser_id])

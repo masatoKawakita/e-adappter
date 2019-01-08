@@ -29,6 +29,9 @@
   box-sizing: border-box;
   text-align: center;
 }
+#form_sec form {
+  font-size: 0;
+}
 #form_sec .div_title {
   font-size: 30px;
   color: #E48A7B;
@@ -120,6 +123,7 @@
 }
 #form_sec .field.hash {
   letter-spacing: -1em;
+  font-size: 0;
 }
 #form_sec .field.hash label {
   display: block;

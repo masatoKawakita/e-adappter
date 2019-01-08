@@ -2,11 +2,11 @@
 <section id="users_edit_sec01">
   <div class="edit_card">
     <h2 class="title">ユーザー編集</h2>
-    <%= form_with(model: current_user, local: true) do |f| %>
+    <%= form_with(model: @user, local: true) do |f| %>
       <%= hidden_field_tag "action", params[:action] %>
       <%= hidden_field_tag "route", "users" %>
-      <%= hidden_field_tag "idParams", current_user.id %>
-      <% if current_user.errors.any? %>
+      <%= hidden_field_tag "idParams", @user.id %>
+      <% if @user.errors.any? %>
         <h3><%= @user.errors.count %>件のエラー</h3>
         <ul>
           <% @user.errors.full_messages.each do |msg| %>
@@ -74,7 +74,7 @@
               <%= link_to '戻る', root_path, class: "back_btn" %>
             </div>
             <div class="delete">
-              <i class="far fa-trash-alt"></i><%= link_to 'アカウントを削除する', user_path(current_user.id), method: :delete, data: { confirm: 'アカウントを削除します。よろしいですか？'}, class: "delete_btn" %>
+              <i class="far fa-trash-alt"></i><%= link_to 'アカウントを削除する', user_path(@user.id), method: :delete, data: { confirm: 'アカウントを削除します。よろしいですか？'}, class: "delete_btn" %>
             </div>
           </div>
         </div>

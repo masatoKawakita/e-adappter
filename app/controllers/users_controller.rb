@@ -5,10 +5,6 @@ class UsersController < ApplicationController
   def index
     @users = User.search(params[:keyword])
     @users = @users.order(created_at: :desc)
-
-    # if params[:keyword].present?
-    #   render 'index.js.erb'
-    # end
   end
 
   def show
@@ -21,8 +17,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
     @btn_label = "更新"
+    redirect_to advertisements_path, alert: "お探しのページは表示できません。" unless @user == current_user
   end
 
   def update
@@ -34,7 +31,7 @@ class UsersController < ApplicationController
     else
       respond_to do |format|
         flash[:danger] = current_user.errors.full_messages
-        format.js {render 'layouts/error'}
+        format.js { render 'layouts/error' }
       end
     end
   end
@@ -43,7 +40,7 @@ class UsersController < ApplicationController
     @user = current_user
     @user.destroy
     sign_out(@user)
-    redirect_to root_path, notice:"アカウント削除完了"
+    redirect_to advertisements_path, notice: "アカウントを削除しました。"
   end
 
   private

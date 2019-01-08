@@ -2,20 +2,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :timeoutable,
          :recoverable, :validatable, :trackable, :omniauthable,
          omniauth_providers: %i(twitter)
-
   validates :name, presence: true
   validates :email, presence: true
-  # validates :content, length: { in: 0..200 }
-
   mount_uploader :icon, IconUploader
-
   has_many :advertisements, dependent: :destroy
-
   has_many :comments, dependent: :destroy
-
   has_many :favorites, dependent: :destroy
   has_many :favorite_advertisements, through: :favorites, source: :advertisement
-
   has_many :active_relationships, foreign_key: 'follower_id', class_name: 'Relationship', dependent: :destroy
   has_many :passive_relationships, foreign_key: 'followed_id', class_name: 'Relationship', dependent: :destroy
 
@@ -65,7 +58,7 @@ class User < ApplicationRecord
     unless user
       user = User.new(provider: auth.provider,
                       uid:      auth.uid,
-                      email:    "#{auth.provider}-login@example.com",
+                      email:    "#{auth.uid}-#{auth.provider}@example.com",
                       password: Devise.friendly_token[0, 20],
                       name:     auth.info.name,
                       content:  auth.info.description,

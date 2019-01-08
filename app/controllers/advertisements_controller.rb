@@ -5,31 +5,16 @@ class AdvertisementsController < ApplicationController
 
   def index
     @advertisements = Advertisement.search(params[:keyword])
-
-    if params[:app_category].present?
-      @advertisements = @advertisements.category_search(params[:app_category])
-    end
-
-    if params[:target_sex].present?
-      @advertisements = @advertisements.target_sex_search(params[:target_sex])
-    end
-
-    if params[:target_age].present?
-      @advertisements = @advertisements.target_age_search(params[:target_age])
-    end
-
-    if params[:request_follower].present?
-      @advertisements = @advertisements.request_follower_search(params[:request_follower])
-    end
+    @advertisements = @advertisements.category_search(params[:app_category]) if params[:app_category].present?
+    @advertisements = @advertisements.target_sex_search(params[:target_sex]) if params[:target_sex].present?
+    @advertisements = @advertisements.target_age_search(params[:target_age]) if params[:target_age].present?
+    @advertisements = @advertisements.request_follower_search(params[:request_follower]) if params[:request_follower].present?
 
     if params[:active].present?
       @advertisements = @advertisements.active_search(params[:active]) unless params[:active] == "all"
     end
 
     @advertisements = @advertisements.order(created_at: :desc)
-    # if params[:from] == "advertisements/index" && params[:keyword].present?
-    #   render 'index.js.erb'
-    # end
   end
 
   def new
@@ -40,6 +25,7 @@ class AdvertisementsController < ApplicationController
   def create
     @advertisement = Advertisement.new(set_params)
     @advertisement.user_id = current_user.id
+
     if @advertisement.save
       respond_to do |format|
         flash[:notice] = "アプリを投稿しました。"
@@ -60,14 +46,16 @@ class AdvertisementsController < ApplicationController
   end
 
   def edit
+    advertisement = Advertisement.find(params[:id])
     @btn_label = "更新"
+    redirect_to advertisements_path, alert: "お探しのページは表示できません。" unless advertisement.user_id == current_user.id
   end
 
   def update
     if @advertisement.update(set_params)
       respond_to do |format|
         flash[:notice] = "投稿を更新しました。"
-        format.js {render ajax_redirect_to(advertisement_path(@advertisement.id))}
+        format.js { render ajax_redirect_to(advertisement_path(@advertisement.id)) }
       end
     else
       respond_to do |format|
