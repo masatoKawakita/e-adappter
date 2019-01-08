@@ -5,7 +5,7 @@
         <p class="name"><%= comment.user.name %></p>
         <div class="fukidashi">
           <p class="content"><%= comment.content %></p>
-          <p class="date"><%= comment.created_at %></p>
+          <p class="date"><%= detail_time(comment.created_at) %></p>
         </div>
         <p class="icon">
           <% if comment.user.icon.url.present? %>
@@ -28,7 +28,7 @@
             <%= image_tag('user_default_icon.jpg') %>
           <% end %>
         </p>
-        <p class="date"><%= comment.created_at %></p>
+        <p class="date"><%= detail_time(comment.created_at) %></p>
       </div>
     <% end %>
   <% end %>
