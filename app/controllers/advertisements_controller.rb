@@ -1,6 +1,7 @@
 class AdvertisementsController < ApplicationController
   before_action :authenticate_user!, except: :index
   before_action :set_ad, only: [:show, :edit, :update, :destroy]
+  before_action :only_current_user, only: [:edit, :update, :destroy]
   include AdvertisementsHelper
 
   def index
@@ -46,9 +47,7 @@ class AdvertisementsController < ApplicationController
   end
 
   def edit
-    advertisement = Advertisement.find(params[:id])
     @btn_label = "更新"
-    redirect_to advertisements_path, alert: "お探しのページは表示できません。" unless advertisement.user_id == current_user.id
   end
 
   def update
@@ -117,5 +116,10 @@ class AdvertisementsController < ApplicationController
 
   def set_ad
     @advertisement = Advertisement.find(params[:id])
+  end
+
+  def only_current_user
+    advertisement = Advertisement.find(params[:id])
+    redirect_to advertisements_path, alert: "お探しのページは表示できません。" unless advertisement.user_id == current_user.id
   end
 end

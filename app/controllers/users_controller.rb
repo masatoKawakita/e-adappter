@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :only_current_user, only: [:edit, :update, :destroy]
   include AdvertisementsHelper
 
   def index
@@ -49,4 +50,8 @@ class UsersController < ApplicationController
     params.permit(:name, :content, :email, :twitter, :facebook, :icon,
       :icon_cache, :want_to_advertise, :want_to_be_advertised)
   end
+
+  def only_current_user
+    @user = User.find(params[:id])
+    redirect_to advertisements_path, alert: "お探しのページは表示できません。" unless @user == current_user  end
 end
