@@ -62,7 +62,7 @@
         <%= form.label "受付停止する", for: "false" %>
       </div>
       <div class="field">
-        <%= form.label 'カテゴリーを選択' %>
+        <%= form.label 'メインカテゴリーを選択' %>
         <% category_list.each do |category| %>
           <%= form.radio_button :app_category, "#{category}", class: "radio_btn", id: "#{category}", name: "app_category" %>
           <%= form.label "#{category}", for: "#{category}" %>
