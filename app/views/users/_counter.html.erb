@@ -1,0 +1,12 @@
+<div class="posted">
+  <li class="column">投稿アプリ</li>
+  <li class="num"><%= user.advertisements.count %></li>
+</div>
+<div class="following">
+  <li class="column">フォロー中</li>
+  <li class="num"><%= user.active_relationships.count %></li>
+</div>
+<div class="followed">
+  <li class="column">フォロワー</li>
+  <li class="num"><%= user.passive_relationships.count %></li>
+</div>

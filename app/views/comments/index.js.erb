@@ -1,6 +1,8 @@
 $("#comments_area").html("<%= j(render 'comments/index', {comments: @comment.advertisement.comments.order(created_at: :desc), advertisement: @comment.advertisement }) %>")
 $('.notice_area').html("<%= j(render 'layouts/notice') %>")
 $("textarea").val('')
+$(".num_div").html("<%= escape_javascript(render partial: 'advertisements/counter', locals: { advertisement: @advertisement }) %>")
+
 
 setTimeout(flashNotice, 3000);
 function flashNotice(){

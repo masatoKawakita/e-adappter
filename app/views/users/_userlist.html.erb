@@ -25,19 +25,8 @@
           <% end %>
         </div>
         <li class="content"><%= user.content %></li>
-        <div class="count_box">
-          <div class="posted">
-            <li class="column">投稿数</li>
-            <li class="num"><%= user.advertisements.count %></li>
-          </div>
-          <div class="following">
-            <li class="column">フォロー中</li>
-            <li class="num"><%= user.active_relationships.count %></li>
-          </div>
-          <div class="followed">
-            <li class="column">フォロワー</li>
-            <li class="num"><%= user.passive_relationships.count %></li>
-          </div>
+        <div class="count_box" id="count_box_<%= user.id %>" >
+          <%= render 'users/counter', user: user %>
         </div>
         <% unless user == current_user %>
           <%= render 'users/follow_form', user: user %>

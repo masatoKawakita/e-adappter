@@ -28,19 +28,8 @@
             <i class="fab fa-facebook-square"></i> Facebook
           <% end %></li>
         <% end %>
-        <div class="count_box">
-          <div class="posted">
-            <li class="column">投稿アプリ</li>
-            <li class="num"><%= @user.advertisements.count %></li>
-          </div>
-          <div class="following">
-            <li class="column">フォロー中</li>
-            <li class="num"><%= @user.active_relationships.count %></li>
-          </div>
-          <div class="followed">
-            <li class="column">フォロワー</li>
-            <li class="num"><%= @user.passive_relationships.count %></li>
-          </div>
+        <div class="count_box" id="count_box_<%= @user.id %>" >
+          <%= render "users/counter", user: @user %>
         </div>
         <li class="comment"><%= @user.content %></li>
         <% unless @user == current_user %>

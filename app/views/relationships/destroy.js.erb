@@ -1,1 +1,4 @@
-$("#follow_form_"+"<%= @user.id %>").html("<%= escape_javascript(render partial: 'users/follow_form', locals: { user: @user }) %>")
+$("#follow_form_"+"<%= @user.id %>").html("<%= escape_javascript(render partial: 'users/follow_form', locals: { user: @user, pageowner: @pageowner }) %>")
+$("#count_box_<%= @user.id %>").html("<%= escape_javascript(render partial: 'users/counter', locals: { user: @user }) %>")
+$("#count_box_<%= @pageowner.id %>").html("<%= escape_javascript(render partial: 'users/counter', locals: { user: @pageowner }) %>")
+$("#count_box_current_user").html("<%= escape_javascript(render partial: 'users/counter', locals: { user: @pageowner }) %>")

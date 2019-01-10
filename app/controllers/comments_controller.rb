@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def create
     @advertisement = Advertisement.find(params[:advertisement_id])
     @comment = @advertisement.comments.build(set_params)
     @comment.user_id = current_user.id
+    @user = @advertisement.user
 
     respond_to do |format|
       if @comment.save

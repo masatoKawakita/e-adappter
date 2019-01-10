@@ -1,4 +1,29 @@
 <%= render 'layouts/header' %>
 <section id="users_index_sec01">
-  <%= render partial: 'index', locals: { users: @users } %>
+  <div class="left_side">
+    <%= form_with(url: users_path, method: 'get', local: true) do |form| %>
+      <div class="user_search">
+        <%= form.text_field :keyword, placeholder: "ユーザー検索", class: "search_field" %>
+        <%= button_tag type: 'submit', class: "search_btn" do %>
+          <i class="fas fa-search"></i>
+        <% end %>
+      </div>
+    <% end %>
+    <%= render 'users/userlist', users: @users %>
+  </div>
+  <div class="right_side">
+    <ul>
+      <div class="user_content">
+        <% if current_user.icon.url.present? %>
+          <li class="user_icon"><%= image_tag(current_user.icon.url) %></li>
+        <% else %>
+          <li class="user_icon"><%= image_tag('user_default_icon.jpg') %></li>
+        <% end %>
+        <li class="name"><%= current_user.name %></li>
+        <div class="count_box" id="count_box_current_user" >
+          <%= render 'users/counter', user: current_user %>
+        </div>
+      </div>
+    </ul>
+  </div>
 </section>
