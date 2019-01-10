@@ -47,11 +47,11 @@
       </div>
       <ul>
         <li class="require_ad"><i class="fas fa-search"></i><%= link_to 'アプリを探す', advertisements_path %></li>
-        <li class=""><i class="fas fa-users"></i><%=link_to 'ユーザー検索', users_path %></li>
+        <li class=""><i class="fas fa-users"></i><%= link_to 'ユーザー検索', users_path %></li>
         <li class=""><i class="fas fa-envelope"></i><%= link_to 'メッセージ', conversations_path %></li>
-        <li class="mypage"><i class="fas fa-user"></i><%=link_to 'マイページ', user_path(current_user.id) %></li>
-        <li class="mypage"><i class="fas fa-user-edit"></i><%=link_to '編集', edit_user_path(current_user.id) %></li>
-        <li class="logout"><i class="fas fa-sign-out-alt"></i><%=link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+        <li class="mypage"><i class="fas fa-user"></i><%= link_to 'マイページ', user_path(current_user.id) %></li>
+        <li class="mypage"><i class="fas fa-user-edit"></i><%= link_to '編集', edit_user_path(current_user.id) %></li>
+        <li class="logout"><i class="fas fa-sign-out-alt"></i><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
       </ul>
     </div>
   </nav>

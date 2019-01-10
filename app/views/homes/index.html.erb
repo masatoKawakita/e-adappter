@@ -4,8 +4,13 @@
     <h2 class="catch_copy">Webアプリを<br>SNSでカンタン広告</h2>
     <p class="sub_catch_copy">開発者とインフルエンサーのマッチングスペース</p>
     <ul class="sign_up_list">
-      <li class=""><%= link_to '新規登録', new_user_registration_path %></li>
-      <li class=""><%= link_to 'Twitterでログイン', user_twitter_omniauth_authorize_path %></li>
+      <% if user_signed_in? %>
+        <li class=""><%= link_to 'マイページへ', user_path(current_user.id) %></li>
+        <li class=""><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li class=""><%= link_to '新規登録', new_user_registration_path %></li>
+        <li class=""><%= link_to 'Twitterでログイン', user_twitter_omniauth_authorize_path %></li>
+      <% end %>
     </ul>
     <div class="top_image"><%=image_tag 'home_top.png' %></div>
     <div class="under_line"></div>

@@ -34,16 +34,16 @@
           <% end %>
           <div class="field radio">
             <p class="title"><i class="fas fa-check"></i> 広告依頼について</p>
-            <%= form.radio_button :active, true, class: "radio_btn", id: "true", name: "active", checked: true %>
+            <%= form.radio_button :active, true, class: "radio_btn", id: "true", name: "active" %>
             <%= form.label "広告依頼募集中のみ", for: "true" %>
             <%= form.radio_button :active, false, class: "radio_btn", id: "false", name: "active" %>
             <%= form.label "受付停止中のみ", for: "false" %>
-            <%= form.radio_button :active, "all", class: "radio_btn", id: "all_app", name: "active" %>
+            <%= form.radio_button :active, "all", class: "radio_btn", id: "all_app", name: "active", checked: true %>
             <%= form.label "募集中・停止中問わず全て", for: "all_app" %>
           </div>
           <p class="title"><i class="fas fa-check"></i> その他検索ワード</p>
           <div class="wrap">
-            <%= form.text_field :keyword, class: "text_field", placeholder: "キーワード入力" %>
+            <%= form.text_field :more_keyword, class: "text_field", placeholder: "キーワード入力" %>
             <%= button_tag type: 'submit', class: "submit_btn" do %>
               <i class="fas fa-search"></i> 検索
             <% end %>

@@ -5,6 +5,10 @@ class AdvertisementsController < ApplicationController
   include AdvertisementsHelper
 
   def index
+    if params[:more_keyword] != nil
+      params[:keyword] = params[:more_keyword] unless params[:more_keyword] == ""
+    end
+
     @advertisements = Advertisement.search(params[:keyword])
     @advertisements = @advertisements.category_search(params[:app_category]) if params[:app_category].present?
     @advertisements = @advertisements.target_sex_search(params[:target_sex]) if params[:target_sex].present?
