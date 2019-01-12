@@ -346,6 +346,7 @@ $(function(){
       return false;
     };
 
+
     reader.onload = (function(e){
       $('.overlay').fadeIn();
       $('.crop_modal').append($('<img>').attr({
