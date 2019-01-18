@@ -422,6 +422,7 @@
   height: 50px;
   line-height: 50px;
   padding-left: 20px;
+  padding-right: 110px;
   color: #fff;
   background-color: #E48A7B;
   border: solid 1px #E48A7B;
@@ -757,7 +758,31 @@
    advertisements/_adlist
 ------------------------------------------------------------*/
 .nothing {
+  text-align: center;
+  color: #888;
+  font-size: 18px;
+  margin-top: 60px;
   letter-spacing: normal;
+}
+.post_btn {
+  display: block;
+  background-color: #fff;
+  width: 250px;
+  height: 46px;
+  line-height: 46px;
+  color: #C84289;
+  margin: auto;
+  border-radius: 5px;
+  border: solid 1px #C84289;
+  box-sizing: border-box;
+  text-align: center;
+  margin-top: 15px;
+  transition: 0.2s ease-out;
+}
+.post_btn:hover {
+  background-color: #C84289;
+  color: #fff;
+  transition: 0.2s ease-out;
 }
 .ad_list {
   width: 100%;
@@ -981,6 +1006,7 @@
   height: 30px;
   line-height: 30px;
   padding-left: 15px;
+  padding-right: 55px;
   color: #fff;
   background-color: #C84289;
   border: solid 1px #C84289;

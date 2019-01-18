@@ -100,19 +100,10 @@ section#home_sec01 {
 
 // e-AdAppterとは
 section#home_sec02 {
-  width: 100%;
+  min-width: 1060px;
   height: 100vh;
   padding-top: 50px;
   position: relative;
-}
-@media screen and (min-width: 1360px){
-  section#home_sec02 {
-    width: 1360px;
-    height: 100vh;
-    padding-top: 50px;
-    position: relative;
-    margin: 0 auto;
-  }
 }
 #home_sec02 .text_area {
   position: absolute;
@@ -170,7 +161,7 @@ section#home_sec02 {
   border: solid 2px #C84289;
   border-radius: 50%;
   position: relative;
-  left: 2vw;
+  left: 30px;
 }
 #home_sec02 .infographic_area .developer::before {
   display: block;
@@ -180,7 +171,7 @@ section#home_sec02 {
 #home_sec02 .infographic_area .developer .text {
   position: absolute;
   color: #C84289;
-  font-size: 1.4vw;
+  font-size: 15px;
 }
 #home_sec02 .infographic_area .developer .text.top {
   top: 18px;
@@ -216,7 +207,7 @@ section#home_sec02 {
 }
 #home_sec02 .infographic_area .developer .round i {
   position: absolute;
-  font-size: 7vw;
+  font-size: 70px;
   color: #fff;
   top: 25%;
   left: 0;
@@ -225,7 +216,7 @@ section#home_sec02 {
 }
 #home_sec02 .infographic_area .developer .round p {
   position: absolute;
-  font-size: 1.5vw;
+  font-size: 18px;
   color: #fff;
   bottom: 22%;
   left: 0;
@@ -259,7 +250,7 @@ section#home_sec02 {
   -webkit-transform: translateY(-50%) translateX(-50%);
   font-family: "Avenir Next", Verdana;
   color: #fff;
-  font-size: 4vw;
+  font-size: 40px;
   margin: auto;
 }
 
@@ -267,7 +258,7 @@ section#home_sec02 {
   border: solid 2px #C84289;
   border-radius: 50%;
   position: relative;
-  right: 2vw;
+  right: 30px;
 }
 #home_sec02 .infographic_area .snsowner::before {
   display: block;
@@ -277,7 +268,7 @@ section#home_sec02 {
 #home_sec02 .infographic_area .snsowner .text {
   position: absolute;
   color: #C84289;
-  font-size: 1.4vw;
+  font-size: 15px;
 }
 #home_sec02 .infographic_area .snsowner .text.top {
   top: 18px;
@@ -313,7 +304,7 @@ section#home_sec02 {
 }
 #home_sec02 .infographic_area .snsowner .round i {
   position: absolute;
-  font-size: 7vw;
+  font-size: 70px;
   color: #fff;
   top: 25%;
   left: 0;
@@ -321,18 +312,38 @@ section#home_sec02 {
   margin: auto;
 }
 #home_sec02 .infographic_area .snsowner .round i.fa-comment {
-  font-size: 2.7vw;
+  font-size: 25px;
   top: 20%;
   left: auto;
-  right: 4.8vw;
+  right: 55px;
 }
 #home_sec02 .infographic_area .snsowner .round p {
   position: absolute;
-  font-size: 1.5vw;
+  font-size: 18px;
   color: #fff;
   bottom: 22%;
   left: 0;
   right: 0;
   margin: auto;
+}
 
+@media screen and (min-width: 1360px){
+  section#home_sec02 {
+    width: 1360px;
+    height: 100vh;
+    padding-top: 50px;
+    position: relative;
+    margin: 0 auto;
+  }
+  #home_sec02 .infographic_area .e-adappter .round p {
+    font-size: 52px;
+  }
+  #home_sec02 .infographic_area .developer .round i,
+  #home_sec02 .infographic_area .snsowner .round i {
+    font-size: 85px;
+  }
+  #home_sec02 .infographic_area .snsowner .round i.fa-comment {
+    font-size: 32px;
+    right: 60px;
+  }
 }

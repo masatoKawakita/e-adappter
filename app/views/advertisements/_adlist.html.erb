@@ -1,5 +1,7 @@
 <% if advertisements.count == 0 %>
   <p class="nothing">表示できるアプリはありません。</p>
+  <%= link_to 'アプリを投稿しよう！', new_advertisement_path, class: "post_btn" if list_type == "posted" %>
+  <%= link_to 'アプリを探してみよう！', advertisements_path, class: "post_btn" if list_type == "liked" %>
 <% else %>
   <% advertisements.each do |ad| %>
     <div class="ad_list">

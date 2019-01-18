@@ -58,7 +58,7 @@
     <li class="ad_count"><%= @advertisements.count %>件表示</li>
   </ul>
   <div class="adlist_div">
-    <%= render 'adlist', advertisements: @advertisements %>
+    <%= render 'adlist', advertisements: @advertisements, list_type: "index" %>
   </div>
 </div>
 <div class="right_side">

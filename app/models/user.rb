@@ -32,14 +32,14 @@ class User < ApplicationRecord
       result = []
 
       columns.each do |column|
-        query << ["#{column} LIKE ?"]
+        query << ["#{column} like ?"]
       end
 
       words.each_with_index do |w, index|
         if index == 0
-          result[index] = User.where([query.join(" OR "), "%#{w}%",  "%#{w}%"])
+          result[index] = User.where([query.join(" or "), "%#{w}%",  "%#{w}%"])
         else
-          result[index] = result[index-1].where([query.join(" OR "), "%#{w}%",  "%#{w}%"])
+          result[index] = result[index-1].where([query.join(" or "), "%#{w}%",  "%#{w}%"])
         end
       end
       return result[words.length-1]

@@ -23,14 +23,14 @@ class Advertisement < ApplicationRecord
       result = []
 
       columns.each do |column|
-        query << ["#{column} ILIKE ?"]
+        query << ["#{column} like ?"]
       end
 
       words.each_with_index do |w, index|
         if index == 0
-          result[index] = Advertisement.where([query.join(" OR "), "%#{w}%",  "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%"])
+          result[index] = Advertisement.where(query.join(" or "), "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%")
         else
-          result[index] = result[index-1].where([query.join(" OR "), "%#{w}%",  "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%"])
+          result[index] = result[index-1].where(query.join(" or "), "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%")
         end
       end
       return result[words.length-1]

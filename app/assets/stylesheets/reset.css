@@ -21,6 +21,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 
 body {
 	font-size: 62.5%;
+	word-break: break-all;
 }
 
 body,
@@ -28,6 +29,10 @@ table,
 input, textarea, select, option {
 	font-family: "游ゴシック Medium","YuGothicM","YuGothic","ヒラギノ角ゴ Pro","Hiragino Kaku Gothic Pro","メイリオ","Meiryo",sans-serif;
 	background-color: #fafafa;
+}
+
+textarea {
+	resize: none;
 }
 
 article, aside, canvas, details, figcaption, figure,
