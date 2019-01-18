@@ -16,27 +16,24 @@ class Advertisement < ApplicationRecord
   end
 
   def self.search(keyword)
-    if keyword && keyword != ""
-      words = keyword.to_s.gsub(/(?:[[:space:]%_])+/, " ").split(" ")
-      columns = ["title", "content", "hash_01", "hash_02", "hash_03", "hash_04"]
-      query = []
-      result = []
+    return Advertisement.all unless keyword && keyword != ""
 
-      columns.each do |column|
-        query << ["#{column} like ?"]
-      end
+    words = keyword.to_s.gsub(/(?:[[:space:]%_])+/, " ").split(" ")
+    columns = ["title", "content", "hash_01", "hash_02", "hash_03", "hash_04"]
+    query = []
+    results = []
 
-      words.each_with_index do |w, index|
-        if index == 0
-          result[index] = Advertisement.where(query.join(" or "), "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%")
-        else
-          result[index] = result[index-1].where(query.join(" or "), "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%")
-        end
+    columns.each { |column| query.push(["#{column} like ?"]) }
+
+    words.each_with_index do |w, index|
+    case index
+      when 0
+        results[index] = Advertisement.where(query.join(" or "), "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%")
+      else
+        results[index] = results.last.where(query.join(" or "), "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%", "%#{w}%")
       end
-      return result[words.length-1]
-    else
-      Advertisement.all
     end
+    return results.last
   end
 
   def self.category_search(categories)

@@ -25,27 +25,24 @@ class User < ApplicationRecord
   end
 
   def self.search(keyword)
-    if keyword && keyword != ""
-      words = keyword.to_s.gsub(/(?:[[:space:]%_])+/, " ").split(" ")
-      columns = ["name", "content"]
-      query = []
-      result = []
+    return User.all unless keyword && keyword != ""
 
-      columns.each do |column|
-        query << ["#{column} like ?"]
-      end
+    words = keyword.to_s.gsub(/(?:[[:space:]%_])+/, " ").split(" ")
+    columns = ["name", "content"]
+    query = []
+    results = []
 
-      words.each_with_index do |w, index|
-        if index == 0
-          result[index] = User.where([query.join(" or "), "%#{w}%",  "%#{w}%"])
-        else
-          result[index] = result[index-1].where([query.join(" or "), "%#{w}%",  "%#{w}%"])
-        end
+    columns.each { |column| query.push(["#{column} like ?"]) }
+
+    words.each_with_index do |w, index|
+    case index
+      when 0
+        results[index] = User.where([query.join(" or "), "%#{w}%",  "%#{w}%"])
+      else
+        results[index] = results.last.where([query.join(" or "), "%#{w}%",  "%#{w}%"])
       end
-      return result[words.length-1]
-    else
-      User.all
     end
+    return results.last
   end
 
   def self.create_unique_string
