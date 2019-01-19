@@ -3,7 +3,7 @@
   <div class="left_side">
     <%= form_with(url: users_path, method: 'get', local: true) do |form| %>
       <div class="user_search">
-        <%= form.text_field :keyword, placeholder: "ユーザー検索", class: "search_field" %>
+        <%= form.text_field :keyword, placeholder: "ユーザー検索", class: "search_field", value: params[:keyword] %>
         <%= button_tag type: 'submit', class: "search_btn" do %>
           <i class="fas fa-search"></i>
         <% end %>

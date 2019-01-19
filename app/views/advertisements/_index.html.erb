@@ -2,7 +2,7 @@
   <%= form_with(url: advertisements_path, method: 'get', local: true) do |form| %>
     <div class="ad_search">
       <div id="search_more_opened"><i class="fas fa-caret-up"></i> 絞り込み検索</div>
-      <%= form.text_field :keyword, placeholder: "依頼をさがす（フリーワード検索）", class: "top_search_field" %>
+      <%= form.text_field :keyword, placeholder: "依頼をさがす（フリーワード検索）", class: "top_search_field", value: params[:keyword] %>
       <div id="search_more_open"><i class="fas fa-caret-down"></i> 絞り込み検索</div>
       <%= button_tag type: 'submit', class: "top_search_btn" do %>
         <i class="fas fa-search"></i>
