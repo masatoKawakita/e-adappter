@@ -15,12 +15,12 @@ class User < ApplicationRecord
   has_many :passive_relationships, foreign_key: 'followed_id', class_name: 'Relationship', dependent: :destroy
 
   def twitter_url_exists?
-    return false if twitter == ""
+    return false if twitter == "" || twitter == nil
     return true
   end
 
   def facebook_url_exists?
-    return false if facebook == ""
+    return false if facebook == "" || twitter == nil
     return true
   end
 
