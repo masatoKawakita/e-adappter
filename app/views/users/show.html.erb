@@ -37,6 +37,11 @@
         <% end %>
         <li class="dm"><%= link_to 'メッセージ確認', conversations_path, class: "dm_index_btn" if @user.id == current_user.id %></li>
         <li class="date"><%= start_time(@user.created_at) %>より利用開始</li>
+        <% if @user == current_user %>
+          <%= link_to edit_user_path, class: "edit" do %>
+            <i class="fas fa-user-edit"></i>
+          <% end %>
+        <% end %>
       </div>
     </ul>
     <div class="search_wrap">

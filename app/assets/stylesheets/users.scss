@@ -178,6 +178,7 @@
   border-bottom-left-radius: 5px;
   box-sizing: border-box;
   padding: 10px 15px;
+  position: relative;
 }
 #users_show_sec01 .left_side ul .user_content .name {
   font-size: 26px;
@@ -214,7 +215,7 @@
   border: solid 1px #C84289;
   border-radius: 30px;
   letter-spacing: 0.2em;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   background-color: #fff;
   box-sizing: border-box;
 }
@@ -290,7 +291,12 @@
   padding: 3px 20px;
   width: 102px;
 }
-
+#users_show_sec01 .left_side ul .user_content .edit {
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+  color: #888;
+}
 #users_show_sec01 .right_side {
   width: calc(100% - 295px);
   margin-left: 15px;
