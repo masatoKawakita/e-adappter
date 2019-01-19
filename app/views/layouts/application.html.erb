@@ -13,14 +13,13 @@
     <footer>
       <nav>
         <ul class="nav_list">
-          <li class="about_eadappter"><a href="#">e-AdAppterとは</a></li>
-          <li class="require_ad"><a href="#">広告依頼</a></li>
+          <li class="about_eadappter"><a href="#home_sec02">e-AdAppterとは</a></li>
+          <li class="require_ad"><%= link_to 'アプリをさがす', advertisements_path %></li>
           <% if user_signed_in? %>
-            <li class="require_ad"><%= link_to '依頼作成', advertisements_path %></li>
             <li class="mypage"><%=link_to 'マイページ', user_path(current_user.id) %></li>
             <li class="logout"><%=link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
           <% else %>
-            <li class="sign_in"><%= link_to '新規登録', new_user_registration_path %></li>
+            <li class="sign_in"><%= link_to 'アカウント作成', new_user_registration_path %></li>
             <li class="login"><%= link_to 'ログイン', new_user_session_path %></li>
           <% end %>
           <!-- <li class="tos"><%= link_to '利用規約', homes_use_path %></li>

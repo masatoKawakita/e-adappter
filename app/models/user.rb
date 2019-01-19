@@ -4,6 +4,8 @@ class User < ApplicationRecord
          omniauth_providers: %i(twitter)
   validates :name, presence: true
   validates :email, presence: true
+  validates :twitter, format: /\A#{URI::regexp(%w(http https))}\z/, if: :twitter_url_exists?
+  validates :facebook, format: /\A#{URI::regexp(%w(http https))}\z/, if: :facebook_url_exists?
   mount_uploader :icon, IconUploader
   has_many :advertisements, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -11,6 +13,16 @@ class User < ApplicationRecord
   has_many :favorite_advertisements, through: :favorites, source: :advertisement
   has_many :active_relationships, foreign_key: 'follower_id', class_name: 'Relationship', dependent: :destroy
   has_many :passive_relationships, foreign_key: 'followed_id', class_name: 'Relationship', dependent: :destroy
+
+  def twitter_url_exists?
+    return false if twitter == ""
+    return true
+  end
+
+  def facebook_url_exists?
+    return false if facebook == ""
+    return true
+  end
 
   def follow!(other_user)
     active_relationships.create!(followed_id: other_user.id)

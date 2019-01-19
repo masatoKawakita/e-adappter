@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
   def set_params
     params.permit(:name, :content, :email, :twitter, :facebook, :icon,
-      :icon_cache, :want_to_advertise, :want_to_be_advertised)
+                  :icon_cache, :want_to_advertise, :want_to_be_advertised)
   end
 
   def only_current_user

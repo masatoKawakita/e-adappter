@@ -7,7 +7,7 @@ class Advertisement < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :conversations, dependent: :destroy
   validates :title, presence: true
-  validates :app_url, presence: true
+  validates :app_url, presence: true, format: /\A#{URI::regexp(%w(http https))}\z/
   validates :content, length: { in: 1..200 }, presence: true
   validates :about_fee, presence: true
 
