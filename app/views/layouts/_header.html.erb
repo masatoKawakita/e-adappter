@@ -20,7 +20,7 @@
     <% end %>
     <ul class="nav_list">
       <% if user_signed_in? %>
-        <li class="require_ad"><%= link_to 'アプリを投稿する', new_advertisement_path %></li>
+        <li class="require_ad"><%= link_to 'アプリを投稿する', new_advertisement_path if current_user.want_to_be_advertised %></li>
         <!-- <li class="call"><%= link_to do %>
           <i class="fas fa-bell"></i>
         <% end %></li> -->
