@@ -307,7 +307,7 @@ $(function(){
     formData.append('about_target', target);
     formData.append('about_condition', condition);
     formData.append('about_fee', fee);
-    if (app_category != null){
+    if (active != null){
       formData.append('active', active);
     }
     if (app_category != null){
