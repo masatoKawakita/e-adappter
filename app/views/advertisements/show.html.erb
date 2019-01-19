@@ -107,9 +107,11 @@
         <% if @advertisement.user_id == current_user.id %>
           <li class="request"><%= link_to '編集', edit_advertisement_path(@advertisement.id), class: "request_btn" %></li>
         <% else %>
-          <% if @advertisement.active == true %>
-            <li class="request"><%= link_to 'この依頼を受けたい！', conversations_path(sender_id: current_user.id, recipient_id: @advertisement.user.id, advertisement_id: @advertisement.id), method: :post, class: "request_btn" %></li>
-          <% elsif @advertisement.active == false %>
+          <% if @advertisement.active && current_user.want_to_advertise %>
+            <li class="request">
+              <%= link_to 'この依頼を受けたい！', conversations_path(sender_id: current_user.id, recipient_id: @advertisement.user.id, advertisement_id: @advertisement.id), method: :post, class: "request_btn" %>
+            </li>
+          <% elsif @advertisement.active == false && current_user.want_to_advertise %>
             <li class="request_out">現在受付を停止しております</li>
           <% end %>
         <% end %>

@@ -23,6 +23,7 @@ class AdvertisementsController < ApplicationController
   end
 
   def new
+    redirect_to advertisements_path, alert: "設定を変更してください。" unless current_user.want_to_be_advertised
     @advertisement = Advertisement.new
     @btn_label = "投稿する"
   end
