@@ -1,0 +1,160 @@
+@import '../../setting/*';
+@import '../../mixin/*';
+
+
+/* Block layer01 */
+.adList {
+  &__notExists {
+    text-align: center;
+    color: colors(gray);
+    font-size: 18px;
+    margin-top: 60px;
+  }
+  &__container {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    border-radius: 3px;
+    background-color: colors(white);
+    overflow: hidden;
+    position: relative;
+    font-size: 0;
+  }
+  &__leftSide {
+    width: 360px;
+    height: 350px;
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin-right: 0;
+  }
+  &__rightSide {
+    width: calc(100% - 360px);
+    height: 350px;
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+    padding: 10px 15px;
+  }
+}
+
+/* Block layer02 */
+.adList-leftSide {
+  &__thumbnail {
+    @include _defaultThumbnail(360px, 270px, 25px, 100px);
+    border-radius: 0;
+  }
+  &__text {
+    width: 360px;
+    height: 80px;
+    padding: 10px 15px;
+    vertical-align: top;
+    position: relative;
+    box-sizing: border-box;
+  }
+}
+.adList-rightSide {
+  &__hash {
+    li {
+      @include _hash;
+    }
+  }
+  &__content {
+    font-size: 14px;
+    color: colors(gray);
+    margin-top: 10px;
+    max-height: 130px;
+    overflow: hidden;
+  }
+  &__url {
+    display: inline-block;
+    font-size: 16px;
+    color: colors(twitter);
+    margin-top: 2px;
+  }
+  &__fee {
+    font-size: 16px;
+    color: colors(mainRed);
+    margin-top: 10px;
+  }
+  &__icon {
+    @include _circleIcon(50px);
+    vertical-align: top;
+    position: absolute;
+    bottom: 10px;
+    left: 375px;
+  }
+  &__count {
+    display: inline-block;
+    vertical-align: bottom;
+    font-size: 14px;
+    color: colors(gray);
+    position: absolute;
+    bottom: 10px;
+    left: 430px;
+  }
+  &__button {
+    @include _btn(200px, 35px, 3px, colors(white), colors(mainRed));
+    position: absolute;
+    right: 15px;
+    bottom: 12px;
+    &:hover {
+      background-color: colors(mainRed);
+      color: colors(white);
+    }
+  }
+}
+
+/* Block layer03 */
+.adList-leftSide-text {
+  &__title {
+    width: 260px;
+    height: 30px;
+    overflow: hidden;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  &__date {
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    font-size: 13px;
+    color: colors(gray, light);
+    padding-bottom: 10px;
+  }
+  %__stateCommon {
+    position: absolute;
+    right: 0;
+    top: 15px;
+    font-size: 11px;
+    cursor: auto;
+  }
+  &__state {
+    &_type_active {
+      @include _btn(auto, auto, 10px, colors(white), colors(mainRed));
+      @extend %__stateCommon;
+      padding: 0 6px 0 10px;
+    }
+    &_type_passive {
+      @include _btn(auto, auto, 10px, colors(white), colors(gray, dark));
+      @extend %__stateCommon;
+      padding: 0 10px;
+    }
+  }
+  &__adCountBox {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    color: colors(gray, light);
+    i {
+      margin-right: 3px;
+    }
+    div {
+      display: inline-block;
+      &:first-child {
+        margin-right: 8px;
+      }
+    }
+  }
+}

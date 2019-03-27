@@ -1,0 +1,92 @@
+@import '../../setting/*';
+@import '../../mixin/*';
+
+/* Block layer01 */
+.categoryEdit {
+  &__title {
+    font-size: 15px;
+    padding-left: 8px;
+    margin-bottom: 10px;
+  }
+  &__form {
+    position: relative;
+  }
+}
+
+/* Block layer02 */
+.categoryEdit-form {
+  &__inputArea {
+    margin-top: 4px;
+  }
+  &__addFormBtn {
+    display: block;
+    width: 55%;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 5px;
+    i {
+      color: colors(mainRed);
+    }
+  }
+  &__submitBtn {
+    @include _btn(70px, 25px, 3px, colors(mainRed), colors(mainRed));
+    padding: 0;
+    font-size: 12px;
+    color: colors(white);
+    position: absolute;
+    top: 0;
+    right: 40px;
+    i {
+      font-size: 12px;
+    }
+  }
+  &__backBtn {
+    @include _btn(70px, 25px, 3px, colors(white), colors(mainRed));
+    padding: 0;
+    font-size: 12px;
+    position: absolute;
+    top: 30px;
+    right: -1px;
+    i {
+      font-size: 12px;
+    }
+  }
+}
+
+
+.categoryEdit-form-inputArea {
+  margin-left: 10px;
+  width: 100%;
+  span {
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 3px;
+  }
+  &__palette {
+    display: inline-block;
+    width: 40px;
+    height: 12px;
+    background: rgba(255, 99, 132, 0.8);
+    padding: 0 !important;
+  }
+  &__label {
+    display: inline-block;
+    width: 150px !important;
+    height: 25px !important;
+    font-size: 13px;
+  }
+  &__data {
+    display: inline-block;
+    width: 60px !important;
+    height: 25px !important;
+    font-size: 13px;
+  }
+  &__deleteFormBtn {
+    display: inline-block;
+    margin-left: 3px;
+    i {
+      font-size: 14px;
+      color: colors(mainRed);
+    }
+  }
+}

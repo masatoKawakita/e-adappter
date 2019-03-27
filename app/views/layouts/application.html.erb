@@ -9,32 +9,9 @@
   </head>
 
   <body>
+    <%= hidden_field_tag 'currentUserCheck', user_signed_in? %>
+    <%= render 'layouts/header' %>
     <%= yield %>
-    <footer>
-      <nav>
-        <ul class="nav_list">
-          <li class="about_eadappter"><a href="#home_sec02">e-AdAppterとは</a></li>
-          <li class="require_ad"><%= link_to 'アプリをさがす', advertisements_path %></li>
-          <% if user_signed_in? %>
-            <li class="mypage"><%=link_to 'マイページ', user_path(current_user.id) %></li>
-            <li class="logout"><%=link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-          <% else %>
-            <li class="sign_in"><%= link_to 'アカウント作成', new_user_registration_path %></li>
-            <li class="login"><%= link_to 'ログイン', new_user_session_path %></li>
-          <% end %>
-          <!-- <li class="tos"><%= link_to '利用規約', homes_use_path %></li>
-          <li class="pp"><%= link_to 'プライバシーポリシー', homes_protect_path %></li> -->
-        </ul>
-      </nav>
-      <a href="#" class="footer_arrow">
-        <i class="fas fa-angle-up"></i>
-      </a>
-      <div class="footer_title">
-        <%= link_to 'e-AdAppter', root_path %>
-      </div>
-      <div class="copyright">
-        <p>Copyright ©︎supunic All Rights Reserved</p>
-      </div>
-    </footer>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

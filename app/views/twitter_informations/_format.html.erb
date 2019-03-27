@@ -1,0 +1,55 @@
+<div class="userShow-rightSide-twitterInfo__container userShow-rightSide-twitterInfo-container">
+  <% if user.twitter_information.present? %>
+    <p class="userShow-rightSide-twitterInfo-container__title">
+      <i class="fab fa-twitter"></i> Twitterアカウント情報
+    </p>
+    <div class="userShow-rightSide-twitterInfo-container__leftSide userShow-rightSide-twitterInfo-container-leftSide">
+      <%= link_to "@#{user.twitter}", "https://twitter.com/#{user.twitter}", class: 'userShow-rightSide-twitterInfo-container-leftSide__id' %>
+      <p class="userShow-rightSide-twitterInfo-container__date">
+        <%= simple_time(user.twitter_information.updated_at) %>のデータ
+      </p>
+      <% infoColumns(user).each do |column, value| %>
+        <div class="userShow-rightSide-twitterInfo-container-leftSide__content">
+          <p><%= column %></p>
+          <p><%= value ? value : '-' %></p>
+        </div>
+      <% end %>
+    </div>
+    <div class="userShow-rightSide-twitterInfo-container__rightSide userShow-rightSide-twitterInfo-container-rightSide">
+      <div class="userShow-rightSide-twitterInfo-container-rightSide__category userShow-rightSide-twitterInfo-container-rightSide-category" id="categoryArea">
+        <%= render 'twitter_categories/category_chart', user: user %>
+      </div>
+    </div>
+    <div class="userShow-rightSide-twitterInfo-container__bottomSide userShow-rightSide-twitterInfo-container-bottomSide">
+      <div class="userShow-rightSide-twitterInfo-container-bottomSide__detailData userShow-rightSide-twitterInfo-container-bottomSide-detailData">
+        <p class="userShow-rightSide-twitterInfo-container-bottomSide-detailData__title">
+          過去<%= setDevideNum(user) %>件のツイートデータ
+        </p>
+        <% tweetDetails(user).each do |column, value| %>
+          <div class="userShow-rightSide-twitterInfo-container-bottomSide-detailData__content">
+            <p><%= column %></p>
+            <p><%= value ? value : '-' %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% elsif user == current_user %>
+    <div class="userShow-rightSide-twitterInfo-container__sampleImg">
+      <%= image_tag('twitter_info_sample.jpg') %>
+    </div>
+    <p class="userShow-rightSide-twitterInfo-container__text">
+      こちらには、登録したTwitterアカウントの<br>
+      フォロワー数、フォロー数、お気に入り数、総ツイート数、開設日、<br>
+      また、直近200件のツイートに関する情報<br>
+      （リツイートされた回数・平均、いいねされた回数・平均）<br>
+      など、広告にあたって必要なアカウント情報を表示させることができます。
+    </p>
+    <%= link_to '登録したTwitterアカウント情報を表示する',
+      twitter_informations_path(user_id: user.id),
+      method: :post,
+      remote: true,
+      class: 'userShow-rightSide-twitterInfo-container__button' %>
+  <% else %>
+    <p>Twitterアカウント情報はございません。</p>
+  <% end %>
+</div>

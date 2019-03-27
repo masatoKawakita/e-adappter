@@ -9,12 +9,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    if params[:id].to_i == current_user.id
-      @user = current_user
-    else
-      @user = User.find(params[:id])
-    end
+    @user = User.find(params[:id])
     @advertisements = Advertisement.where(user_id: @user.id)
+
+    if @user.twitter_information.present?
+      gon.categoryLabel, gon.categoryData = @user.twitter_information.pluckColumns()
+    end
   end
 
   def edit

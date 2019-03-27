@@ -1,9 +1,9 @@
-<div class="alert">
+<div class="header__flashMessage_type_alert">
   <% if flash[:danger].kind_of?(Array) %>
     <% flash[:danger].each do |danger| %>
       <p><%= danger %></p>
     <% end %>
-  <% else%>
+  <% else %>
     <%= flash[:danger] %>
   <% end %>
 </div>

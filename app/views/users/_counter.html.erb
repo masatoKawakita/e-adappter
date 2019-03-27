@@ -1,12 +1,18 @@
-<div class="posted">
-  <li class="column">投稿アプリ</li>
-  <li class="num"><%= user.advertisements.count %></li>
+<div>
+  <p>投稿アプリ</p>
+  <p>
+    <%= current_user.present? ? current_user.advertisements.count : 0 %>
+  </p>
 </div>
-<div class="following">
-  <li class="column">フォロー中</li>
-  <li class="num"><%= user.active_relationships.count %></li>
+<div>
+  <p>フォロー中</p>
+  <p>
+    <%= current_user.present? ? current_user.active_relationships.count : 0 %>
+  </p>
 </div>
-<div class="followed">
-  <li class="column">フォロワー</li>
-  <li class="num"><%= user.passive_relationships.count %></li>
+<div>
+  <p>フォロワー</p>
+  <p>
+    <%= current_user.present? ? current_user.passive_relationships.count : 0 %>
+  </p>
 </div>

@@ -4,6 +4,6 @@ module UsersHelper
     favorites.each do |favorite|
       advertisements << favorite.advertisement
     end
-    return advertisements
+    advertisements
   end
 end

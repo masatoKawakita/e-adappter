@@ -2,7 +2,7 @@ class ConversationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @conversations = Conversation.all.order(created_at: :desc)
+    @conversations = Conversation.joins(:messages).includes(:messages).order("messages.created_at desc")
   end
 
   def create

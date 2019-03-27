@@ -1,75 +1,71 @@
-<% if advertisements.count == 0 %>
-  <p class="nothing">表示できるアプリはありません。</p>
-  <%= link_to 'アプリを投稿しよう！', new_advertisement_path, class: "post_btn" if list_type == "posted" %>
-  <%= link_to 'アプリを探してみよう！', advertisements_path, class: "post_btn" if list_type == "liked" %>
-<% else %>
-  <% advertisements.each do |ad| %>
-    <div class="ad_list">
-      <div class="ad_left_side">
-        <div class="image">
-          <% if ad.image.url.present? %>
-            <%= image_tag(ad.image.url) %>
-          <% else %>
-            <p>No image</p>
-            <i class="fas fa-image"></i>
-          <% end %>
-        </div>
-        <div class="text1">
-          <ul>
-            <li class="title"><%= ad.title %></li>
-            <li class="date">投稿日 <%= simple_time(ad.created_at) %></li>
-            <% if ad.active == true %>
-              <li class="welcome">広告してくれる人募集中！</li>
-            <% elsif ad.active == false %>
-              <li class="non_welcome">現在広告を受け付けておりません</li>
+<!-- Block -->
+<div class="adList">
+  <% if advertisements.count == 0 %>
+    <p class="adList__notExists">表示できるアプリはありません。</p>
+  <% else %>
+    <% advertisements.each do |ad| %>
+      <div class="adList__container">
+        <div class="adList__leftSide adList-leftSide">
+          <div class="adList-leftSide__thumbnail">
+            <% if ad.image.url.present? %>
+              <%= image_tag(ad.image.url) %>
+            <% else %>
+              <p>No image</p>
+              <i class="fas fa-image"></i>
             <% end %>
-            <div class="num_div">
-              <div class="comment_num"><i class="far fa-comments"></i><%= ad.comments.count %></div>
-              <div class="stock_num"><i class="far fa-thumbs-up"></i><%= ad.favorites.count %></div>
+          </div>
+          <div class="adList-leftSide__text adList-leftSide-text">
+            <ul>
+              <li class="adList-leftSide-text__title"><%= ad.title %></li>
+              <li class="adList-leftSide-text__date">投稿日 <%= simple_time(ad.created_at) %></li>
+              <% if ad.active == true %>
+                <li class="adList-leftSide-text__state_type_active">募集中！</li>
+              <% elsif ad.active == false %>
+                <li class="adList-leftSide-text__state_type_passive">募集停止中</li>
+              <% end %>
+            </ul>
+            <div class="adList-leftSide-text__adCountBox" id="numDiv">
+              <%= render 'advertisements/counter', advertisement: ad %>
             </div>
+          </div>
+        </div>
+        <div class="adList__rightSide adList-rightSide">
+          <ul class="adList-rightSide__hash">
+            <% unless ad.app_category == nil %>
+              <li><%= ad.app_category %></li>
+            <% end %>
+            <% unless ad.request_follower == nil %>
+              <li>希望フォロワー数 <%= ad.request_follower %></li>
+            <% end %>
+            <% unless ad.target_sex == nil %>
+              <li><%= ad.target_sex %></li>
+            <% end %>
+            <% unless ad.target_age == nil %>
+              <li><%= ad.target_age %></li>
+            <% end %>
+            <% unless ad.hash_01 == "" %>
+              <li><%= ad.hash_01 %></li>
+            <% end %>
+            <% unless ad.hash_02 == "" %>
+              <li><%= ad.hash_02 %></li>
+            <% end %>
+            <% unless ad.hash_03 == "" %>
+              <li><%= ad.hash_03 %></li>
+            <% end %>
+            <% unless ad.hash_04 == "" %>
+              <li><%= ad.hash_04 %></li>
+            <% end %>
           </ul>
+          <div class="adList-rightSide__content"><%= ad.content %></div>
+          <%= link_to ad.app_url, ad.app_url, class: 'adList-rightSide__url' %>
+          <div class="adList-rightSide__fee"><i class="fas fa-money-check"></i> 希望金額<br><%= ad.about_fee %></div>
+          <div class="adList-rightSide__icon">
+            <%= ad.user.icon.url.present? ? image_tag(ad.user.icon.url) : image_tag('user_default_icon.jpg') %>
+          </div>
+          <div class="adList-rightSide__count">投稿 <%= ad.user.advertisements.count %><br>評価 <%= ad.user.setValue %></div>
+          <%= link_to '詳細をみる', advertisement_path(ad.id), class: "adList-rightSide__button" %>
         </div>
       </div>
-      <div class="text2">
-        <ul class="wrap">
-          <% unless ad.app_category == nil %>
-            <li class="hash first"><%= ad.app_category %></li>
-          <% end %>
-          <% unless ad.request_follower == nil %>
-            <li class="hash">希望フォロワー数 <%= ad.request_follower %></li>
-          <% end %>
-          <% unless ad.target_sex == nil %>
-            <li class="hash"><%= ad.target_sex %></li>
-          <% end %>
-          <% unless ad.target_age == nil %>
-            <li class="hash"><%= ad.target_age %></li>
-          <% end %>
-          <% unless ad.hash_01 == "" %>
-            <li class="hash"><%= ad.hash_01 %></li>
-          <% end %>
-          <% unless ad.hash_02 == "" %>
-            <li class="hash"><%= ad.hash_02 %></li>
-          <% end %>
-          <% unless ad.hash_03 == "" %>
-            <li class="hash"><%= ad.hash_03 %></li>
-          <% end %>
-          <% unless ad.hash_04 == "" %>
-            <li class="hash"><%= ad.hash_04 %></li>
-          <% end %>
-        </ul>
-        <ul>
-          <li class="content"><%= ad.content %></li>
-          <li class="url"><%= link_to ad.app_url %></li>
-          <li class="fee"><i class="fas fa-money-check"></i> 希望金額<br><%= ad.about_fee %></li>
-          <% if ad.user.icon.url.present? %>
-            <li class="icon"><%= image_tag(ad.user.icon.url) %></li>
-          <% else %>
-            <li class="icon"><%= image_tag('user_default_icon.jpg') %></li>
-          <% end %>
-          <li class="count">投稿 <%= ad.user.advertisements.count %><br>評価 4.2</li>
-        </ul>
-        <%= link_to '詳細をみる', advertisement_path(ad.id), class: "more_btn" %>
-      </div>
-    </div>
+    <% end %>
   <% end %>
-<% end %>
+</div><!-- /Block -->

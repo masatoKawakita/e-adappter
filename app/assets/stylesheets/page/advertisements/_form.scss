@@ -1,0 +1,137 @@
+@import '../../setting/*';
+@import '../../mixin/*';
+
+
+/* Block layer01 */
+.form {
+  width: 900px;
+  padding: 30px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  border: solid 1px colors(gray, more-light);
+  border-radius: 3px;
+  background-color: colors(white);
+  font-size: 0;
+  &__leftSide {
+    width: calc(100% - 380px);
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 20px;
+  }
+  &__rightSide {
+    width: 360px;
+    display: inline-block;
+    vertical-align: top;
+  }
+  &__field {
+    margin-bottom: 20px;
+  }
+}
+
+/* Block layer02 */
+.form-rightSide {
+  &__btnArea {
+    margin-top: 30px;
+  }
+}
+.form-field {
+  &_type_hash {
+    font-size: 0;
+    input {
+      display: inline-block;
+      width: 49.5% !important;
+      &:nth-child(2n) {
+        margin-right: 1%;
+      }
+    }
+  }
+  &_type_thumbnail {
+    div {
+      @include _defaultThumbnail(360px, 270px, 15px, 100px);
+      margin-top: 5px;
+      border: solid 1px colors(gray, more-light);
+      position: relative;
+      cursor: pointer;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-color: colors(mainBg);
+      transition: 0.3s ease-out;
+      i {
+        color: colors(gray, more-light);
+        transition: 0.3s ease-out;
+      }
+      &:hover {
+        background-color: colors(mainRed);
+        border: solid 1px colors(mainRed);
+        opacity: 0.9;
+      }
+      &:hover i {
+        display: block;
+        color: colors(white);
+      }
+    }
+  }
+  &__targetSex,
+  &__targetAge {
+    display: inline-block;
+    span {
+      font-size: 14px;
+      font-weight: bold;
+      color: colors(mainRed);
+      margin-right: 5px;
+      height: 30px;
+      line-height: 30px;
+      display: inline-block;
+      box-sizing: border-box;
+    }
+  }
+  label {
+    font-size: 17px;
+    color: colors(gray, dark);
+    font-weight: bold;
+    display: block;
+  }
+  input[type="text"] {
+    font-size: 15px;
+    margin-top: 5px;
+    height: 40px;
+  }
+  input[type="radio"] {
+    & + label {
+      font-size: 14px;
+      font-weight: normal;
+      margin-top: 5px;
+      display: inline-block;
+    }
+  }
+  textarea {
+    font-size: 15px;
+    margin-top: 5px;
+    height: 130px;
+  }
+}
+
+/* Block layer03:last */
+.form-rightSide-btnArea {
+  &__submitBtn {
+    @include _btn(360px, 40px, 3px, colors(mainRed), colors(mainRed));
+    color: colors(white);
+    font-size: 18px;
+    letter-spacing: 0.2em;
+  };
+  &__backBtn {
+    @include _btn(360px, 40px, 3px, colors(white), colors(mainRed));
+    font-size: 18px;
+    letter-spacing: 0.2em;
+    margin-top: 15px;
+
+  };
+  &__deleteBtn {
+    @include _btn(360px, 40px, 3px, colors(gray, light), colors(gray, light));
+    color: colors(white);
+    font-size: 18px;
+    letter-spacing: 0.2em;
+    margin-top: 33px;
+  };
+}

@@ -1,0 +1,12 @@
+@mixin _hash($fs:12px, $color:colors(mainOrange)) {
+  display: inline-block;
+  color: $color;
+  font-size: $fs;
+  padding: 0 10px;
+  background-color: colors(white);
+  border: solid 1px $color;
+  border-radius: 3px;
+  &:last-child {
+    margin-right: 0;
+  }
+}

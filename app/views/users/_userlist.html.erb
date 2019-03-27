@@ -1,41 +1,34 @@
-<% if users.count == 0 %>
-  <p class="nothing">表示できるユーザーがいません。</p>
-  <%= link_to 'ユーザーを探そう！', users_path, class: "post_btn" if list_type == "following" %>
-  <%= link_to '自分からフォローしてみよう！', users_path, class: "post_btn" if list_type == "followed" %>
-<% else %>
-  <div class="user_list">
+<div class="userList">
+  <% if users.count == 0 %>
+    <div class="userList__notExists">
+      <p>表示できるユーザーがいません。</p>
+      <%= link_to 'ユーザーをさがす', users_path, class: "post_btn" if list_type == "following" || list_type == "followed" %>
+    </div>
+  <% else %>
     <% users.each do |user| %>
-    <ul>
-      <%= link_to user_path(user.id) do %>
-      <% if user.icon.url.present? %>
-        <div class="icon_div">
-          <li><%= image_tag(user.icon.url) %></li>
+      <%= link_to user_path(user.id), class: 'userList__container userList-container' do %>
+        <div class="userList-container__icon">
+          <%= user.icon.url.present? ? image_tag(user.icon.url) : image_tag('user_default_icon.jpg') %>
         </div>
-      <% else %>
-        <div class="icon_div">
-          <li><%= image_tag('user_default_icon.jpg') %></li>
+        <div class="userList-container__content userList-container-content">
+          <div class="userList-container-content__name"><%= user.name %></div>
+          <div class="userList-container-content__type">
+            <% if user.want_to_be_advertised == true %>
+              <div class="be_advertised">広告してほしい！</div>
+            <% end %>
+            <% if user.want_to_advertise == true %>
+              <div class="advertise">広告したい！</div>
+            <% end %>
+          </div>
+          <div class="userList-container-content__text"><%= user.content %></div>
+          <div class="userList-container-content__userCountBox" id="count_box_<%= user.id %>" >
+            <%= render 'users/counter', user: user %>
+          </div>
+          <div class="userList-container-content__followForm">
+            <%= render 'users/follow_form', user: user if user != current_user %>
+          </div>
         </div>
       <% end %>
-      <div class="content_div">
-        <li class="name"><%= user.name %></li>
-        <div class="user_val">
-          <% if user.want_to_be_advertised == true %>
-            <li class="be_advertised">広告してほしい！</li>
-          <% end %>
-          <% if user.want_to_advertise == true %>
-            <li class="advertise">広告したい！</li>
-          <% end %>
-        </div>
-        <li class="content"><%= user.content %></li>
-        <div class="count_box" id="count_box_<%= user.id %>" >
-          <%= render 'users/counter', user: user %>
-        </div>
-        <% unless user == current_user %>
-          <%= render 'users/follow_form', user: user %>
-        <% end %>
-      </div>
-      <% end %>
-    </ul>
     <% end %>
-  </div>
-<% end %>
+  <% end %>
+</div>

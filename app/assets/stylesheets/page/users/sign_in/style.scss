@@ -1,0 +1,99 @@
+@import '../../../setting/*';
+@import '../../../mixin/*';
+
+
+/* Block layer01 */
+.userNew {
+  width: 100%;
+  height: calc(100vh - 100px);
+  &__container {
+    width: 1060px;
+    height: auto;
+    margin: 0 auto;
+    padding: 60px 20px 60px;
+  }
+}
+
+/* Block layer02 */
+.userNew-container {
+  %__containerCommon {
+    width: 360px;
+    background-color: colors(white);
+    border-radius: 3px;
+    border: solid 1px colors(gray, more-light);
+    box-sizing: border-box;
+    text-align: center;
+  }
+  &__form {
+    @extend %__containerCommon;
+    margin: 0 auto;
+    padding: 15px 40px;
+  }
+  &__signupCard {
+    @extend %__containerCommon;
+    margin: 20px auto 0;
+    padding: 20px 40px 30px;
+    p {
+      font-size: 13px;
+      font-weight: bold;
+    }
+    a {
+      @include _btn(100%, 35px, 3px, colors(mainRed), colors(mainRed));
+      font-size: 13px;
+      color: colors(white);
+      margin-top: 7px;
+    }
+  }
+}
+
+/* Block layer03 */
+.userNew-container-form {
+  &__title {
+    font-family: "Avenir Next", Verdana;
+    font-weight: normal;
+    font-size: 30px;
+    color: colors(mainRed);
+    margin: 10px 0 20px;
+  }
+  &__errorMsg {
+    margin-bottom: 20px;
+    color: colors(mainOrange);
+    text-align: left;
+    p {
+      font-size: 12px;
+    }
+  }
+  &__email {
+    font-size: 14px;
+    height: 40px !important;
+  }
+  &__password {
+    margin-top: 10px;
+    font-size: 14px;
+    height: 40px !important;
+  }
+  &__submitBtn {
+    @include _btn(100%, 40px, 3px, colors(mainRed), colors(mainRed));
+    color: colors(white);
+    font-size: 14px;
+    margin-top: 20px;
+  }
+  &__btnArea {
+    margin-top: 30px;
+  }
+}
+
+/* Block layer04:last */
+.userNew-container-form-btnArea {
+  &__oauthBtn {
+    display: block;
+    color: colors(twitter);
+    font-weight: bold;
+  }
+  &__forgetPassBtn {
+    display: block;
+    font-size: 13px;
+    color: colors(black);
+    margin-top: 10px;
+  }
+}

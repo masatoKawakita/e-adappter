@@ -1,0 +1,125 @@
+@charset "utf-8";
+
+@import '../setting/*';
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 1rem;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+body {
+  font-size: 62.5%;
+	word-break: break-word;
+	font-family: YuGothic, "Yu Gothic", "游ゴシック Medium", "YuGothicM",
+	             "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3",
+							 'メイリオ', Meiryo, sans-serif;
+	background-color: colors(mainBg);
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+  display: block;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  background: transparent;
+  text-decoration: none;
+  &:link, &:visited, &:hover, &:active {
+    text-decoration: none;
+  }
+}
+
+ins {
+	text-decoration: none;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+table {
+	border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img {
+	vertical-align: top;
+}
+
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+input, select {
+  vertical-align: middle;
+}
+
+input::placeholder {
+  color: #bbb;
+}
+
+:focus {
+	outline: 0;
+}
+
+
+
+
+/*------------------------------------------------------------
+	フォント設定
+------------------------------------------------------------*/
+@font-face {
+  font-family: 'Akzidenz Grotesk';
+  src: url('../fonts/Akzidenz-grotesk-light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Akzidenz Grotesk';
+  src: url('../fonts/Akzidenz-grotesk-bold.ttf') format('truetype');
+  font-weight: 500;
+  font-style: bold;
+}
+@font-face {
+  font-family: 'Akzidenz Grotesk';
+  src: url('../fonts/Akzidenz-grotesk-roman.ttf') format('ttf');
+  font-weight: 300;
+  font-style: italic;
+}

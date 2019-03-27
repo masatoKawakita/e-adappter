@@ -1,29 +1,27 @@
-<%= render 'layouts/header' %>
-<section id="users_index_sec01">
-  <div class="left_side">
-    <%= form_with(url: users_path, method: 'get', local: true) do |form| %>
-      <div class="user_search">
-        <%= form.text_field :keyword, placeholder: "ユーザー検索", class: "search_field", value: params[:keyword] %>
-        <%= button_tag type: 'submit', class: "search_btn" do %>
+<!-- section -->
+<section id="userIndex">
+  <div class="userIndex__container">
+    <div class="userIndex__leftSide userIndex-leftSide">
+      <%= form_with(url: users_path, method: 'get', local: true, class: 'userIndex-leftSide__searchArea userIndex-leftSide-searchArea') do |form| %>
+        <%= form.text_field :keyword, placeholder: "ユーザー検索", class: "userIndex-leftSide-searchArea__input", value: params[:keyword] %>
+        <%= button_tag type: 'submit', class: "userIndex-leftSide-searchArea__button" do %>
           <i class="fas fa-search"></i>
         <% end %>
-      </div>
-    <% end %>
-    <%= render 'users/userlist', users: @users, list_type: "index" %>
-  </div>
-  <div class="right_side">
-    <ul>
-      <div class="user_content">
-        <% if current_user.icon.url.present? %>
-          <li class="user_icon"><%= image_tag(current_user.icon.url) %></li>
-        <% else %>
-          <li class="user_icon"><%= image_tag('user_default_icon.jpg') %></li>
-        <% end %>
-        <li class="name"><%= current_user.name %></li>
-        <div class="count_box" id="count_box_current_user" >
+      <% end %>
+      <%= render 'users/userlist', users: @users, list_type: "index" %>
+    </div>
+    <div class="userIndex__rightSide userIndex-rightSide">
+      <div class="userIndex-rightSide__userInfo userIndex-rightSide-userInfo">
+        <div class="userIndex-rightSide-userInfo__icon">
+          <%= current_user.icon.url.present? ? image_tag(current_user.icon.url) : image_tag('user_default_icon.jpg') %>
+        </div>
+        <div class="userIndex-rightSide-userInfo__name">
+          <%= current_user.name %>
+        </div>
+        <div class="userIndex-rightSide-userInfo__userCountBox" id="count_box_current_user">
           <%= render 'users/counter', user: current_user %>
         </div>
       </div>
-    </ul>
+    </div>
   </div>
-</section>
+</section><!-- /section -->

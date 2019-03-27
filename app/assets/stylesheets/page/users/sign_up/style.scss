@@ -1,0 +1,116 @@
+@import '../../../setting/*';
+@import '../../../mixin/*';
+
+
+/* Block layer01 */
+.userSignup {
+  width: 100%;
+  height: calc(100vh - 100px);
+  &__container {
+    width: 1060px;
+    height: auto;
+    margin: 0 auto;
+    padding: 60px 20px 60px;
+  }
+}
+
+/* Block layer02 */
+.userSignup-container {
+  &__form {
+    width: 360px;
+    background-color: colors(white);
+    border-radius: 3px;
+    border: solid 1px colors(gray, more-light);
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0 auto;
+    padding: 15px 40px;
+  }
+}
+
+/* Block layer03 */
+.userSignup-container-form {
+  i {
+    font-size: 14px;
+    color: colors(mainRed);
+  }
+  label {
+    font-size: 14px;
+    text-align: left;
+    color: colors(gray, dark);
+  }
+  input {
+    height: 40px;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  input[type="radio"] + label {
+    display: inline-block;
+    width: calc(50% - 3px);
+    text-align: center;
+    &:last-child {
+      margin-left: 6px;
+    }
+  }
+  &__title {
+    font-family: "Avenir Next", Verdana;
+    font-weight: normal;
+    font-size: 30px;
+    color: colors(mainRed);
+    margin: 10px 0 20px;
+  }
+  &__errorMsg {
+    margin-bottom: 20px;
+    color: colors(mainOrange);
+    text-align: left;
+    h2 {
+      display: none;
+    }
+    li {
+      font-size: 12px;
+    }
+  }
+  &__wantToBeAdvertised {
+    text-align: left;
+    margin-bottom: 10px;
+    div {
+      font-size: 0;
+    }
+  }
+  &__wantToAdvertise {
+    text-align: left;
+    margin-bottom: 20px;
+    div {
+      font-size: 0;
+    }
+  }
+  &__submitBtn {
+    @include _btn(100%, 40px, 3px, colors(mainRed), colors(mainRed));
+    color: colors(white);
+    font-size: 14px;
+  }
+  &__btnArea {
+    margin-top: 30px;
+    width: 100%;
+  }
+}
+
+/* Block layer04:last */
+.userSignup-container-form-btnArea {
+  &__oauthBtn {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: colors(twitter);
+    i {
+      color: colors(twitter);
+    }
+  }
+  &__signinBtn {
+    font-weight: bold;
+    display: block;
+    font-size: 13px;
+    margin-top: 20px;
+    color: colors(black);
+  }
+}

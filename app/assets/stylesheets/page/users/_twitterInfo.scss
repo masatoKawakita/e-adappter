@@ -1,0 +1,191 @@
+@import '../../setting/*';
+@import '../../mixin/*';
+
+
+%__containerCommon {
+  height: 240px;
+  display: inline-block;
+  vertical-align: top;
+}
+%__contentCommon {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 25px;
+  &:last-child {
+    margin-right: 0;
+  }
+  p {
+    font-size: 15px;
+    &:last-child {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+}
+
+/* Block layer03 */
+.userShow-rightSide-twitterInfo {
+  width: 100%;
+  background: colors(white);
+  border-radius: 3px;
+  margin-bottom: 15px;
+  &__container {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    font-size: 0;
+    position: relative;
+  }
+}
+
+/* Block layer04 */
+.userShow-rightSide-twitterInfo-container {
+  &__title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    i {
+      font-size: 25px;
+      color: colors(twitter);
+    }
+  }
+  &__date {
+    font-size: 14px;
+    color: colors(gray);
+    margin-bottom: 10px;
+  }
+  &__leftSide {
+    @extend %__containerCommon;
+    width: 331px;
+    font-size: 0;
+    border-right: solid 1px colors(gray, more-light);
+    box-sizing: border-box;
+    margin-right: 14px;
+  }
+  &__rightSide {
+    @extend %__containerCommon;
+    width: 380px;
+  }
+  &__bottomSide {
+    display: block;
+    width: 100%;
+  }
+  &__sampleImg {
+    width: 100%;
+    height: auto;
+    img {
+      width: 100%;
+      filter: blur(2px);
+      opacity: 0.2;
+    }
+  }
+  &__text {
+    text-align: center;
+    position: absolute;
+    top: 100px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    width: 600px;
+    height: 200px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 40px;
+    text-shadow: 0 1px 1px colors(black, clear);
+  }
+  &__button {
+    @include _btn(300px, 46px, 3px, colors(mainRed), colors(mainRed));
+    position: absolute;
+    top: 320px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    color: colors(white);
+    font-size: 13px;
+    box-shadow: 0 1px 1px colors(black, clear);
+    transition: 0.3s ease-in-out;
+    &:hover {
+      letter-spacing: 0.03em;
+      filter: saturate(1.2);
+    }
+  }
+}
+
+/* Block layer05 */
+.userShow-rightSide-twitterInfo-container-leftSide {
+  &__id {
+    display: block;
+    color: colors(twitter);
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+  &__content {
+    @extend %__contentCommon;
+    margin-bottom: 20px;
+    p:last-child {
+      font-size: 20px;
+    }
+  }
+}
+.userShow-rightSide-twitterInfo-container-rightSide {
+  &__category {
+    width: 100%;
+    height: 100%;
+  }
+}
+.userShow-rightSide-twitterInfo-container-bottomSide {
+  &__detailData {
+    font-size: 0;
+  }
+}
+
+/* Block layer06:last */
+.userShow-rightSide-twitterInfo-container-rightSide-category {
+  &__title {
+    display: inline-block;
+    font-size: 15px;
+    padding-left: 8px;
+  }
+  &__editBtn {
+    display: inline-block;
+    cursor: pointer;
+    i {
+      color: colors(mainRed);
+    }
+  }
+}
+
+.userShow-rightSide-twitterInfo-container-bottomSide-detailData {
+  &__title {
+    font-weight: bold;
+    padding-top: 10px;
+    position: relative;
+    font-size: 18px;
+    &:before {
+      content: "";
+      width: 480px;
+      height: 1px;
+      background: colors(gray, more-light);
+      position: absolute;
+      top: 22px;
+      left: 240px;
+    }
+  }
+  &__content {
+    @extend %__contentCommon;
+    width: 49%;
+    margin-right: 0;
+    margin-top: 10px;
+    &:nth-child(2n-1) {
+      margin-right: 2%;
+    }
+    p {
+      font-weight: bold;
+    }
+    p:last-child {
+      font-size: 26px;
+      color: colors(mainRed);
+    }
+  }
+}

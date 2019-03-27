@@ -1,0 +1,185 @@
+@import '../../../setting/*';
+@import '../../../mixin/*';
+
+/* Block layer01 */
+.adIndex {
+  width: 100%;
+  &__container {
+    width: 1060px;
+    margin: 0 auto;
+    padding: 80px 20px 60px;
+    font-size: 0;
+  };
+  &__leftSide {
+    width: calc(76% - 15px);
+    display: inline-block;
+    margin-right: 15px;
+  };
+  &__rightSide {
+    width: 24%;
+    display: inline-block;
+    letter-spacing: normal;
+    vertical-align: top;
+  };
+}
+
+/* Block layer02 */
+.adIndex-leftSide {
+  &__searchArea {
+    width: 100%;
+    margin-bottom: 15px;
+    background-color: colors(white);
+    font-size: 0;
+  }
+  &__sort {
+    width: 100%;
+    background-color: colors(white);
+    border-radius: 3px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    position: relative;
+    a {
+      display: inline-block;
+      width: 100px;
+      font-size: 13px;
+      cursor: pointer;
+      text-align: center;
+      color: colors(black);
+      &.clicked:after {
+        display: block;
+        content: "";
+        width: 100px;
+        height: 2px;
+        background-color: colors(mainRed);
+        box-sizing: border-box;
+      }
+    }
+    p {
+      position: absolute;
+      top: 5px;
+      right: 15px;
+      font-size: 14px;
+      color: colors(gray);
+    }
+  }
+  &__listArea {
+
+  }
+}
+.adIndex-rightSide {
+  &__userInfo {
+    display: block;
+  }
+  &__categoryArea {
+    @include _categoryBox;
+    margin-top: 15px;
+  }
+}
+
+/* Block layer03 */
+.adIndex-leftSide-searchArea {
+  &__detailSearch {
+    display: none;
+    box-sizing: border-box;
+    padding: 20px;
+  }
+  &__input {
+    width: 67% !important;
+    height: 30px;
+    border-right: none !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    background-color: colors(white) !important;
+    font-size: 16px;
+  }
+  &__searchMore {
+    &_type_opening {
+      @include _btn(13%, 30px, 0, colors(white), colors(gray, more-light));
+      color: colors(mainRed);
+      display: inline-block;
+      font-size: 12px;
+      vertical-align: top;
+      border-right: none;
+      padding: 0;
+    }
+    &_type_opened {
+      @include _btn(100%, 30px, 3px, colors(mainRed), colors(mainRed));
+      color: colors(white);
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      font-size: 14px;
+      transition: 0.5s ease-out;
+      i {
+        font-size: 20px;
+        vertical-align: middle;
+      }
+    }
+  }
+  &__button {
+    @include _btn(20%, 30px, 0, colors(mainRed), colors(mainRed));
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    color: colors(white);
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+.adIndex-rightSide-userInfo {
+  @include _userInfo;
+}
+
+/* Block layer04 */
+.adIndex-leftSide-searchArea-detailSearch {
+  &__inputArea {
+    font-size: 0;
+  }
+  &__title {
+    color: colors(mainRed);
+    margin-top: 20px;
+    font-weight: bold;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  input[type="checkbox"]  {
+    & + label {
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  }
+  input[type="radio"]  {
+    & + label {
+      font-size: 14px;
+      color: colors(gray, light);
+      background-color: colors(white);
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    &:checked + label {
+      background-color: colors(mainOrange);
+      border: solid 1px colors(mainOrange);
+    }
+  }
+}
+
+/* Block layer05:last */
+.adIndex-leftSide-searchArea-detailSearch-inputArea {
+  &__input {
+    width: 500px !important;
+    vertical-align: top;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  &__button {
+    @include _btn(150px, 30px, 3px, colors(mainRed), colors(mainRed));
+    color: colors(white);
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-left: calc(100% - 650px);
+    i {
+      font-size: 12px;
+    }
+  }
+}

@@ -4,7 +4,7 @@ class User < ApplicationRecord
          omniauth_providers: %i(twitter)
   validates :name, presence: true
   validates :email, presence: true
-  validates :twitter, format: /\A#{URI::regexp(%w(http https))}\z/, if: :twitter_url_exists?
+  # validates :twitter, format: /\A#{URI::regexp(%w(http https))}\z/, if: :twitter_url_exists?
   validates :facebook, format: /\A#{URI::regexp(%w(http https))}\z/, if: :facebook_url_exists?
   mount_uploader :icon, IconUploader
   has_many :advertisements, dependent: :destroy
@@ -13,11 +13,12 @@ class User < ApplicationRecord
   has_many :favorite_advertisements, through: :favorites, source: :advertisement
   has_many :active_relationships, foreign_key: 'follower_id', class_name: 'Relationship', dependent: :destroy
   has_many :passive_relationships, foreign_key: 'followed_id', class_name: 'Relationship', dependent: :destroy
+  has_one :twitter_information, dependent: :destroy
 
-  def twitter_url_exists?
-    return false if twitter == "" || twitter == nil
-    return true
-  end
+  # def twitter_url_exists?
+  #   return false if twitter == "" || twitter == nil
+  #   return true
+  # end
 
   def facebook_url_exists?
     return false if facebook == "" || twitter == nil
@@ -75,5 +76,10 @@ class User < ApplicationRecord
     end
     user.save
     user
+  end
+
+  def setValue
+    values = Evaluation.where(evaluated_id: id).pluck(:value)
+    values.present? ? (values.sum / values.count.to_f).round(1) : '-'
   end
 end

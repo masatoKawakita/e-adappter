@@ -1,0 +1,38 @@
+$colors: (
+  white: (
+    base: #fff
+  ),
+  black: (
+    base: #333,
+    dark: #000,
+    clear: rgba(0, 0, 0, 0.25),
+    dark-clear: rgba(0,0,0,0.85)
+  ),
+  gray: (
+    base: #888,
+    light: #aaa,
+    more-light: #ddd,
+    dark: #666
+  ),
+  mainRed: (
+    base: #C84289
+  ),
+  mainOrange: (
+    base: #E48A7B
+  ),
+  mainYellow: (
+    base: #EDBC6C
+  ),
+  mainBg: (
+    base: #fafafa
+  ),
+  twitter: (
+    base: #55acee
+  ),
+  facebook: (
+    base: #3B5998
+  ),
+  transparent: (
+    base: transparent
+  ),
+);

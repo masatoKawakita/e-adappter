@@ -1,0 +1,14 @@
+@mixin _btn($width:auto, $height:40px, $radius: 3px, $btnColor:colors(mainRed), $borderColor:colors(white)) {
+  display: block;
+  box-sizing: border-box;
+  width: $width;
+  height: $height;
+  line-height: $height;
+  color: $borderColor;
+  border: solid 1px $borderColor;
+  background-color: $btnColor;
+  border-radius: $radius;
+  padding: 0 15px;
+  text-align: center;
+  cursor: pointer;
+}

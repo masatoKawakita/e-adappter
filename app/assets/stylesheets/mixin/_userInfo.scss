@@ -1,0 +1,32 @@
+@import 'userCountBox';
+@import 'circleIcon';
+
+
+@mixin _userInfo {
+  height: auto;
+  position: relative;
+  border-radius: 3px;
+  overflow: hidden;
+  background-color: colors(white);
+  &__icon {
+    @include _circleIcon(35px);
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+  &__name {
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 15px;
+    padding-right: 55px;
+    color: colors(white);
+    background-color: colors(mainRed);
+    border: solid 1px colors(mainRed);
+    box-sizing: border-box;
+  }
+  &__userCountBox {
+    padding: 10px 15px;
+    @include _userCountBox;
+  }
+}

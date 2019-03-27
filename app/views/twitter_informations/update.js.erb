@@ -1,0 +1,9 @@
+$('#categoryArea').html("<%= j(render 'twitter_categories/category_chart', user: @user) %>");
+$('.header__flashMessage').html("<%= j(render 'layouts/notice') %>")
+
+setTimeout(flashNotice, 2000);
+function flashNotice(){
+  $('.header__flashMessage_type_notice').fadeOut().queue(function() {
+    $(this).remove();
+  });
+};

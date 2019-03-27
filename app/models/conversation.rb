@@ -17,4 +17,42 @@ class Conversation < ApplicationRecord
       User.find(sender_id)
     end
   end
+
+  def CheckRead(current_user)
+    notReadMsg = messages.where.not(user_id: current_user.id, read: true)
+    notReadMsg.present? ? "#{notReadMsg.length}" : false
+  end
+
+  def setCase(current_user)
+    tfList = {}
+    checkUserType(current_user, tfList)
+    checkConversionTable(tfList)
+    tfList
+  end
+
+  private
+
+  def checkUserType(current_user, tfList)
+    tfList['userType'] = true if recipient == current_user
+    tfList
+  end
+
+  def checkConversionTable(tfList)
+    if conversion.present?
+      tfList['conversionTable'] = true
+      checkTemporaryConfirm(tfList)
+      checkDefinitiveConfirm(tfList)
+    end
+    tfList
+  end
+
+  def checkTemporaryConfirm(tfList)
+    tfList['temporaryConfirm'] = true if conversion.temporary_confirm
+    tfList
+  end
+
+  def checkDefinitiveConfirm(tfList)
+    tfList['definitiveConfirm'] = true if conversion.definitive_confirm
+    tfList
+  end
 end

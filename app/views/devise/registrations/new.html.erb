@@ -1,59 +1,37 @@
-<%= render "layouts/others_header" %>
-<section id="registration_new_sec01">
-  <div class="signup_card">
-    <h2 class="title">e-AdAppter</h2>
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <div class="error_msg">
+<section class="userSignup">
+  <div class="userSignup__container userSignup-container">
+    <%= form_for(resource, as: resource_name, html: {class: 'userSignup-container__form userSignup-container-form'}, url: registration_path(resource_name)) do |f| %>
+      <h2 class="userSignup-container-form__title">e-AdAppter</h2>
+
+      <div class="userSignup-container-form__errorMsg" id="signUpError">
         <%= devise_error_messages! %>
       </div>
-      <div class="field">
-        <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ユーザーネーム （必須）", id: "name" %>
+
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ユーザーネーム", id: "name", class: 'userSignup-container-form__name' %>
+
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", id: "email", class: 'userSignup-container-form__email' %>
+
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード （#{@minimum_password_length}文字以上)", class: 'userSignup-container-form__password' %>
+
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード確認", class: 'userSignup-container-form__passwordConfirmation' %>
+
+      <div class="userSignup-container-form__wantToBeAdvertised">
+        <%= render 'users/want_to_be_advertised', f: f %>
       </div>
-      <div class="field">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス （必須）", id: "email" %>
+
+      <div class="userSignup-container-form__wantToAdvertise">
+        <%= render 'users/want_to_advertise', f: f %>
       </div>
-      <div class="field">
-        <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード （必須・#{@minimum_password_length}文字以上)" %>
-      </div>
-      <div class="field">
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード確認 （必須）" %>
-      </div>
-      <div class="field">
-        <i class="far fa-check-square"></i><%= f.label 'アプリ投稿を希望しますか？' %>
-        <div class="radio_div">
-          <%= f.radio_button :want_to_be_advertised, true, class: "radio_btn", id: 'yes01' %>
-          <%= f.label 'はい、希望します', for: 'yes01', class: "first" %>
-          <%= f.radio_button :want_to_be_advertised, false, class: "radio_btn", id: 'no01' %>
-          <%= f.label 'いいえ、希望しません', for: 'no01' %>
-        </div>
-      </div>
-      <div class="field">
-        <i class="far fa-check-square"></i><%= f.label '広告依頼を受けることを希望しますか？' %>
-        <div class="radio_div">
-          <%= f.radio_button :want_to_advertise, true, class: "radio_btn", id: 'yes02' %>
-          <%= f.label 'はい、希望します', for: 'yes02', class: "first" %>
-          <%= f.radio_button :want_to_advertise, false, class: "radio_btn", id: 'no02' %>
-          <%= f.label 'いいえ、希望しません', for: 'no02' %>
-        </div>
-      </div>
-      <div class="btn_div">
-        <div class="actions">
-          <%= f.submit "アカウント作成", class: "submit_btn" %>
-        </div>
-        <div class="back">
-          <%= link_to '戻る', root_path, class: "back_btn" %>
-        </div>
-      </div>
-      <div class="oauth_login">
-        <div class="twitter">
-          <%= link_to user_twitter_omniauth_authorize_path do %>
-            <i class="fab fa-twitter"></i> Twitterでログイン
-          <% end %>
-        </div>
-      </div>
-      <div class="sigh_up">
-        <%= link_to '＞ アカウントをお持ちの方', new_user_session_path %>
+
+      <%= f.submit "アカウント作成", class: 'userSignup-container-form__submitBtn' %>
+
+      <div class="userSignup-container-form__btnArea userSignup-container-form-btnArea">
+        <%= link_to user_twitter_omniauth_authorize_path, class: 'userSignup-container-form-btnArea__oauthBtn' do %>
+          <i class="fab fa-twitter"></i> Twitterでログイン
+        <% end %>
+        <%= link_to 'アカウントをお持ちの方', new_user_session_path, class: 'userSignup-container-form-btnArea__signinBtn' %>
       </div>
     <% end %>
+
   </div>
 </section>

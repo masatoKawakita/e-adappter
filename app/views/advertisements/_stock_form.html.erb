@@ -1,0 +1,8 @@
+<% if advertisement.favorite?(advertisement, current_user) %>
+  <%= link_to 'ストックをはずす', favorite_path(id: advertisement.id),
+  method: :delete, remote: true,
+  class: "adShow-rightSide-btnArea__stockBtn adShow-rightSide-btnArea__stockBtn_type_out" unless advertisement.user_id == current_user.id %>
+<% else %>
+  <%= link_to 'この依頼をストックする！', favorites_path(advertisement_id: advertisement.id),
+  method: :post, remote: true, class: "adShow-rightSide-btnArea__stockBtn adShow-rightSide-btnArea__stockBtn_type_in" unless advertisement.user_id == current_user.id %>
+<% end %>

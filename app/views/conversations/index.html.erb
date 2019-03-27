@@ -1,56 +1,57 @@
-<%= render 'layouts/header' %>
-<section id="conversations_index_sec01">
-  <div class="card">
-    <h2 class="title"><%= current_user.name %>さんのメッセージ履歴</h2>
-    <% if @conversations.where(sender_id: current_user.id).count == 0 && @conversations.where(recipient_id: current_user.id).count == 0 %>
-      <p class="nothing">メッセージはございません。</p>
-      <%= link_to '広告したいアプリを探してメッセージを送ろう！', advertisements_path, class: "start_ad" %>
-    <% else %>
-      <% @conversations.each do |conversation| %>
-        <% if conversation.target_user(current_user).present? %>
-          <ul class="message_div">
-            <%= link_to conversation_messages_path(conversation) do %>
-              <div class="left_side">
-                <div class="img_box">
-                  <li class="sender_icon">
-                    <% if conversation.sender.icon.url.present? %>
-                      <%= image_tag(conversation.sender.icon.url) %>
-                    <% else %>
-                      <%= image_tag('user_default_icon.jpg') %>
-                    <% end %>
-                  </li>
-                  <i class="fas fa-caret-right"></i>
-                  <i class="fas fa-caret-right"></i>
-                  <i class="fas fa-caret-right"></i>
-                  <li class="ad_image">
-                    <% if conversation.advertisement.image.url.present? %>
-                      <%= image_tag(conversation.advertisement.image.url) %>
-                    <% else %>
-                      <i class="fas fa-image"></i>
-                    <% end %>
-                  </li>
-                  <li class="recipient_icon">
-                    <% if conversation.recipient.icon.url.present? %>
-                      <%= image_tag(conversation.recipient.icon.url) %>
-                    <% else %>
-                      <%= image_tag('user_default_icon.jpg') %>
-                    <% end %>
-                  </li>
+<!-- section -->
+<section class="conversation">
+  <div class="conversation__container conversation-container">
+    <div class="conversation-container__bg conversation-container-bg">
+      <h2 class="conversation-container-bg__title"><%= current_user.name %>さんのメッセージ履歴</h2>
+      <% if @conversations.where(sender_id: current_user.id).count == 0 && @conversations.where(recipient_id: current_user.id).count == 0 %>
+        <div class="conversation-container-bg__notExsists">
+          <p>メッセージはございません。</p>
+          <%= link_to '広告したいアプリを探してメッセージを送ろう！', advertisements_path %>
+        </div>
+      <% else %>
+        <% @conversations.each do |conversation| %>
+          <% if conversation.target_user(current_user).present? %>
+            <%= link_to conversation_messages_path(conversation), class: 'conversation-container-bg__msgList conversation-container-bg-msgList' do %>
+              <div class="conversation-container-bg-msgList__leftSide conversation-container-bg-msgList-leftSide">
+                <div class="conversation-container-bg-msgList-leftSide__text">
+                  <p><%= conversation.target_user(current_user).name if conversation.target_user(current_user) %></p>
                 </div>
-                <div class="text_box">
-                  <li class="from">相手 <%= conversation.target_user(current_user).name if conversation.target_user(current_user) %>　</li>
-                  <li class="about">アプリ <%= conversation.advertisement.title if conversation.target_user(current_user) %></li>
+                <div class="conversation-container-bg-msgList-leftSide__senderIcon">
+                  <%= conversation.sender.icon.url.present? ? image_tag(conversation.sender.icon.url) : image_tag('user_default_icon.jpg') %>
+                </div>
+                <div class="conversation-container-bg-msgList-leftSide__arw">
+                  <i class="fas fa-caret-right"></i>
+                  <i class="fas fa-caret-right"></i>
+                  <i class="fas fa-caret-right"></i>
+                </div>
+                <div class="conversation-container-bg-msgList-leftSide__thumbnail">
+                  <% if conversation.advertisement.image.url.present? %>
+                    <%= image_tag(conversation.advertisement.image.url) %>
+                  <% else %>
+                    <i class="fas fa-image"></i>
+                  <% end %>
+                </div>
+                <div class="conversation-container-bg-msgList-leftSide__recipientIcon">
+                  <%= conversation.recipient.icon.url.present? ? image_tag(conversation.recipient.icon.url) : image_tag('user_default_icon.jpg') %>
                 </div>
               </div>
-              <div class="last_msg_box">
-                <li class="name"><%= conversation.messages.last.user.name if conversation.messages.any? %></li>
-                <li class="body"><%= conversation.messages.last.body.slice(0..80) if conversation.messages.any? %>...</li>
-                <li class="date"><%= detail_time(conversation.messages.last.created_at) if conversation.messages.any? %></li>
+              <div class="conversation-container-bg-msgList__rightSide conversation-container-bg-msgList-rightSide">
+                <%= simple_format(conversation.CheckRead(current_user), class: 'conversation-container-bg-msgList-rightSide__badge') if conversation.CheckRead(current_user) %>
+                <p class="conversation-container-bg-msgList-rightSide__userName">
+                  <%= conversation.messages.sort.last.user.name if conversation.messages.any? %>
+                </p>
+                <p class="conversation-container-bg-msgList-rightSide__msgBody">
+                  <%= conversation.messages.sort.last.body.slice(0..80) if conversation.messages.any? %>...
+                </p>
+                <p class="conversation-container-bg-msgList-rightSide__date">
+                  <%= detail_time(conversation.messages.sort.last.created_at) if conversation.messages.any? %>
+                </p>
               </div>
             <% end %>
-          </ul>
+          <% end %>
+
         <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
-</section>
+</section><!-- /section -->

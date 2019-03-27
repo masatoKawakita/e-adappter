@@ -103,6 +103,12 @@ class AdvertisementsController < ApplicationController
       @advertisements = @advertisements.find(favorites_array)
     elsif params[:type] == "sort_new"
       @advertisements = @advertisements.order(created_at: :desc)
+    elsif params[:type] == "sort_comNum"
+      ads_id = @advertisements.pluck(:id)
+      comments = Comment.where(advertisement_id: ads_id).group(:advertisement_id).order('count(advertisement_id) desc').pluck(:advertisement_id)
+      remains = ads_id - comments
+      comments_array = comments.push(remains)
+      @advertisements = @advertisements.find(comments_array)
     end
 
     respond_to do |format|
@@ -125,6 +131,6 @@ class AdvertisementsController < ApplicationController
 
   def only_current_user
     advertisement = Advertisement.find(params[:id])
-    redirect_to advertisements_path, alert: "お探しのページは表示できません。" unless advertisement.user_id == current_user.id
+    redirect_to advertisements_path, alert: "お探しのページへのアクセス権限がありません。" unless advertisement.user_id == current_user.id
   end
 end

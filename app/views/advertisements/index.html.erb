@@ -1,8 +1,86 @@
-<% if current_user.present? %>
-  <%= render 'layouts/header' %>
-<% else %>
-  <%= render 'layouts/others_header' %>
-<% end %>
-<section id="advertisements_index_sec01">
-  <%= render partial: 'index', locals: { advertisements: @advertisements } %>
-</section>
+<!-- section -->
+<section class="adIndex">
+  <div class="adIndex__container">
+    <div class="adIndex__leftSide adIndex-leftSide">
+      <%= form_with(url: advertisements_path, method: 'get', local: true, class: 'adIndex-leftSide__searchArea adIndex-leftSide-searchArea') do |form| %>
+        <%= form.text_field :keyword, placeholder: "キーワードを入力", class: "adIndex-leftSide-searchArea__input", id: 'searchAreaInput', value: params[:keyword] %>
+        <div class="adIndex-leftSide-searchArea__searchMore_type_opening" id="detailSearchBtn">
+          <i class="fas fa-caret-down"></i> 絞り込み検索
+        </div>
+        <%= button_tag type: 'submit', class: "adIndex-leftSide-searchArea__button", id: 'searchAreabtn' do %>
+          <i class="fas fa-search"></i>
+        <% end %>
+        <div class="adIndex-leftSide-searchArea__detailSearch adIndex-leftSide-searchArea-detailSearch" id="detailSearch">
+          <p class="adIndex-leftSide-searchArea-detailSearch__title">
+            <i class="fas fa-check"></i> カテゴリーで検索
+          </p>
+          <% category_list.each do |category| %>
+            <%= form.check_box :app_category, {id: "#{category}", class: "check_box", multiple: true}, "#{category}", false %>
+            <%= form.label "#{category}", for: "#{category}" %>
+          <% end %>
+          <p class="adIndex-leftSide-searchArea-detailSearch__title">
+            <i class="fas fa-check"></i> ターゲット属性で検索
+          </p>
+          <% target_sex_list.each do |target| %>
+            <%= form.check_box :target_sex, {id: "#{target}", class: "check_box", multiple: true}, "#{target}", false %>
+            <%= form.label "#{target}", for: "#{target}" %>
+          <% end %>
+          <% target_age_list.each do |target| %>
+            <%= form.check_box :target_age, {id: "#{target}", class: "check_box", multiple: true}, "#{target}", false %>
+            <%= form.label "#{target}", for: "#{target}" %>
+          <% end %>
+          <p class="adIndex-leftSide-searchArea-detailSearch__title">
+            <i class="fas fa-check"></i> 希望Twitterフォロワー数で検索
+          </p>
+          <% request_follower_list.each do |request| %>
+            <%= form.check_box :request_follower, {id: "#{request}", class: "check_box", multiple: true}, "#{request}", false %>
+            <%= form.label "#{request}", for: "#{request}" %>
+          <% end %>
+          <p class="adIndex-leftSide-searchArea-detailSearch__title">
+            <i class="fas fa-check"></i> 広告依頼について
+          </p>
+          <%= form.radio_button :active, true, class: "radio_btn", id: "true", name: "active" %>
+          <%= form.label "広告依頼募集中のみ", for: "true" %>
+          <%= form.radio_button :active, false, class: "radio_btn", id: "false", name: "active" %>
+          <%= form.label "受付停止中のみ", for: "false" %>
+          <%= form.radio_button :active, "all", class: "radio_btn", id: "all_app", name: "active", checked: true %>
+          <%= form.label "募集中・停止中問わず全て", for: "all_app" %>
+          <p class="adIndex-leftSide-searchArea-detailSearch__title">
+            <i class="fas fa-check"></i> その他検索ワード
+          </p>
+          <div class="adIndex-leftSide-searchArea-detailSearch__inputArea adIndex-leftSide-searchArea-detailSearch-inputArea">
+            <%= form.text_field :more_keyword, class: "adIndex-leftSide-searchArea-detailSearch-inputArea__input", placeholder: "キーワード入力" %>
+            <%= button_tag type: 'submit', class: "adIndex-leftSide-searchArea-detailSearch-inputArea__button" do %>
+              <i class="fas fa-search"></i> 検索
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <div class="adIndex-leftSide__sort" id="adIndexSort">
+        <%= link_to '新着順', sort_advertisements_path(type: "sort_new", advertisements: @advertisements.pluck(:id)), id: "sortNew", class: "new clicked", remote: true %>
+        <%= link_to '人気順', sort_advertisements_path(type: "sort_popular", advertisements: @advertisements.pluck(:id)), id: "sortPopular", class: "popular", remote: true %>
+        <%= link_to 'コメント数順', sort_advertisements_path(type: "sort_comNum", advertisements: @advertisements.pluck(:id)), id: "sortComNum", class: "popular", remote: true %>
+        <p><%= @advertisements.count %>件表示</p>
+      </div>
+      <div class="adIndex-leftSide__listArea" id="adListArea">
+        <%= render 'adlist', advertisements: @advertisements, list_type: "index" %>
+      </div>
+    </div>
+    <div class="adIndex__rightSide adIndex-rightSide">
+      <%= link_to set_path, class: 'adIndex-rightSide__userInfo adIndex-rightSide-userInfo' do %>
+        <div class="adIndex-rightSide-userInfo__icon">
+          <%= current_user.present? && current_user.icon.url.present? ? image_tag(current_user.icon.url) : image_tag('user_default_icon.jpg') %>
+        </div>
+        <div class="adIndex-rightSide-userInfo__name">
+          <%= current_user.present? ? current_user.name : 'ゲストさん' %>
+        </div>
+        <div class="adIndex-rightSide-userInfo__userCountBox">
+          <%= render 'users/counter', user: current_user %>
+        </div>
+      <% end %>
+      <div class="adIndex-rightSide__categoryArea">
+        <%= render 'category_box' %>
+      </div>
+    </div>
+  </div>
+</section><!-- /section -->

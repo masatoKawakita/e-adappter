@@ -22,8 +22,10 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
-  resources :users, only: [:index, :edit, :show, :update, :destroy]
-  resources :favorites, only: [:create, :destroy]
-  resources :relationships, only: [:create, :destroy]
-  resources :conversions, only: [:create, :edit, :update, :destroy]
+  resources :users,                only: [:index, :edit, :show, :update, :destroy]
+  resources :favorites,            only: [:create, :destroy]
+  resources :relationships,        only: [:create, :destroy]
+  resources :conversions,          only: [:create, :edit, :update, :destroy]
+  resources :evaluations,          only: [:create, :edit, :update, :destroy]
+  resources :twitter_informations, only: [:create, :edit, :update, :destroy]
 end

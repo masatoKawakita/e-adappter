@@ -1,5 +1,0 @@
-<% if advertisement.favorite?(advertisement, current_user) %>
-  <li class="stock_out"><%= link_to 'ストックをはずす', favorite_path(id: advertisement.id), method: :delete, remote: true, class: "stock_out_btn" unless advertisement.user_id == current_user.id %></li>
-<% else %>
-  <li class="stock_in"><%= link_to 'この依頼をストックする！', favorites_path(advertisement_id: advertisement.id), method: :post, remote: true, class: "stock_in_btn" unless advertisement.user_id == current_user.id %></li>
-<% end %>

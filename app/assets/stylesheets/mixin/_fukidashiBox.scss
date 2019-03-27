@@ -1,0 +1,68 @@
+@import 'circleIcon';
+
+
+@mixin _fukidashiBox($type: 'I', $route: 'comment') {
+  width: 500px;
+  position: relative;
+  margin-bottom: 20px;
+  .#{$route}Box {
+    &__name {
+      font-size: 14px;
+    }
+    &__icon {
+      @include _circleIcon(60px);
+      position: absolute;
+    }
+    &__fukidashi {
+      max-width: calc(100% - 110px);
+      border-radius: 8px;
+      padding: 15px 20px 33px;
+      &__content {
+        display: inline-block;
+      }
+    }
+    &__date {
+      font-size: 10px;
+      position: absolute;
+    }
+    @if $type == 'I' {
+      &__name {
+        width: calc(100% - 70px);
+        text-align: right;
+      }
+      &__icon {
+        top: 0;
+        right: 0;
+      }
+      &__fukidashi {
+        border-top-right-radius: 0;
+        background-color: colors(mainOrange);
+        color: colors(white);
+      }
+      &__date {
+        color: colors(white);
+        bottom: 8px;
+        right: 90px;
+      }
+    } @else if $type == 'You' {
+      &__name {
+        margin-left: 70px;
+      }
+      &__icon {
+        top: 0;
+        left: 0;
+      }
+      &__fukidashi {
+        border-top-left-radius: 0;
+        background-color: colors(gray, more-light);
+        color: colors(black);
+        margin-left: 70px;
+      }
+      &__date {
+        color: colors(black);
+        bottom: 8px;
+        left: 90px;
+      }
+    }
+  }
+}

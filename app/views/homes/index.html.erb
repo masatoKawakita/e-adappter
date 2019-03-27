@@ -1,78 +1,74 @@
-<%= render 'layouts/homes_header'%>
-<section id="home_sec01">
-  <div class="inner_div">
-    <h2 class="catch_copy">Webアプリを<br>SNSでカンタン広告</h2>
-    <p class="sub_catch_copy">開発者とインフルエンサーのマッチングスペース</p>
-    <ul class="sign_up_list">
-      <% if user_signed_in? %>
-        <li class=""><%= link_to 'マイページへ', user_path(current_user.id) %></li>
-        <li class=""><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-      <% else %>
-        <li class=""><%= link_to '新規登録', new_user_registration_path %></li>
-        <li class=""><%= link_to 'Twitterでログイン', user_twitter_omniauth_authorize_path %></li>
-      <% end %>
-    </ul>
-    <div class="top_image"><%=image_tag 'home_top.png' %></div>
-    <div class="under_line"></div>
-  </div>
-</section>
-<section id="home_sec02">
-  <div class="text_area">
-    <h2 class="title">e-AdAppter</h2>
-    <p class="sub_title">Webアプリ開発者とSNSインフルエンサーのマッチングスペース</p>
-    <p class="content">
-      e-AdAppterは、「Webアプリを広告したい人」と「SNSインフルエンサー」を<br>
-      つなぐサービスです。アプリを宣伝したい開発者と、広告に協力的なSNSオーナーが集まる<br>
-      マッチングスペースを提供します。
-    </p>
-  </div>
-  <div class="infographic_area">
-    <div class="developer">
-      <p class="text top">広告依頼の投稿</p>
-      <div class="round">
-        <i class="fas fa-laptop"></i>
-        <p>アプリ開発者</p>
+<div class="homeRoot">
+  <div class="homeRoot__container homeRoot-container">
+    <section class="homeRoot-container__topArea homeRoot-container-topArea">
+      <div class="homeRoot-container-topArea__wrap homeRoot-container-topArea-wrap">
+        <h2 class="homeRoot-container-topArea-wrap__title">
+          あなたのアプリを<br>SNSでカンタン広告！
+        </h2>
+        <p class="homeRoot-container-topArea-wrap__subTitle">
+          開発者とインフルエンサーのマッチングスペース
+        </p>
+        <div class="homeRoot-container-topArea-wrap__btnBox">
+          <%= link_to '新規登録', new_user_registration_path %>
+          <%= link_to 'Twitterでログイン', user_twitter_omniauth_authorize_path %>
+        </div>
+        <div class="homeRoot-container-topArea-wrap__mainImg">
+          <%=image_tag 'home_top.png' %>
+        </div>
+        <div class="homeRoot-container-topArea-wrap__slantLine"></div>
+        <%= link_to '#about', class: 'homeRoot-container-topArea-wrap__arwBtn' do %>
+          <i class="fas fa-arrow-down"></i>
+        <% end %>
       </div>
-      <p class="text bottom">アプリ利用者拡大</p>
-    </div>
-    <div class="e-adappter">
-      <div class="round">
-        <p>e-AdAppter</p>
+    </section>
+    <section class="homeRoot-container__aboutArea homeRoot-container-aboutArea" id="about">
+      <div class="homeRoot-container-aboutArea__wrap homeRoot-container-aboutArea-wrap">
+        <div class="homeRoot-container-aboutArea-wrap__textArea homeRoot-container-aboutArea-wrap-textArea">
+          <h2 class="homeRoot-container-aboutArea-wrap-textArea__title">
+            e-AdAppter
+          </h2>
+          <p class="homeRoot-container-aboutArea-wrap-textArea__subTitle">
+            Webアプリ開発者とSNSインフルエンサーのマッチングスペース
+          </p>
+          <p class="homeRoot-container-aboutArea-wrap-textArea__content">
+            e-AdAppterは、「Webアプリを広告したい人」と「SNSインフルエンサー」を<br>
+            つなぐサービスです。アプリを宣伝したい開発者と、広告に協力的なSNSオーナーが集まる<br>
+            マッチングスペースを提供します。
+          </p>
+        </div>
+        <div class="homeRoot-container-aboutArea-wrap__infographicArea homeRoot-container-aboutArea-wrap-infographicArea">
+          <div class="homeRoot-container-aboutArea-wrap-infographicArea__developer homeRoot-container-aboutArea-wrap-infographicArea-developer">
+            <p class="homeRoot-container-aboutArea-wrap-infographicArea-developer__textTop">
+              広告依頼の投稿
+            </p>
+            <div class="homeRoot-container-aboutArea-wrap-infographicArea-developer__round">
+              <i class="fas fa-laptop"></i>
+              <p>アプリ開発者</p>
+            </div>
+            <p class="homeRoot-container-aboutArea-wrap-infographicArea-developer__textBottom">
+              アプリ利用者拡大
+            </p>
+          </div>
+          <div class="homeRoot-container-aboutArea-wrap-infographicArea__e-adappter homeRoot-container-aboutArea-wrap-infographicArea-e-adappter">
+            <div class="homeRoot-container-aboutArea-wrap-infographicArea-e-adappter__round">
+              <p>e-AdAppter</p>
+            </div>
+          </div>
+          <div class="homeRoot-container-aboutArea-wrap-infographicArea__snsowner homeRoot-container-aboutArea-wrap-infographicArea-snsowner">
+            <p class="homeRoot-container-aboutArea-wrap-infographicArea-snsowner__textTop">
+              SNSで宣伝
+            </p>
+            <div class="homeRoot-container-aboutArea-wrap-infographicArea-snsowner__round">
+              <i class="fas fa-comment"></i>
+              <i class="fas fa-user"></i>
+              <p>SNSオーナー</p>
+            </div>
+            <p class="homeRoot-container-aboutArea-wrap-infographicArea-snsowner__textBottom">
+              報酬の獲得
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="snsowner">
-      <p class="text top">SNSで宣伝</p>
-      <div class="round">
-        <i class="fas fa-comment"></i>
-        <i class="fas fa-user"></i>
-        <p>SNSオーナー</p>
-      </div>
-      <p class="text bottom">報酬の獲得</p>
-    </div>
+    </section>
   </div>
-</section>
-<section id="home_sec03">
-</section>
-<script>
-$(function(){
-  nav = $('.pc');
-  offset = $('#home_sec01').offset();
-  $(window).scroll(function() {
-    if($(window).scrollTop() > offset.top + 550){
-      if(!nav.hasClass("fixed")){
-        nav.hide();
-      }
-      nav.addClass('fixed');
-      $('.site_title').addClass('fixed');
-      $('.e-adappter').addClass('fixed');
-      $('.nav_list').addClass('fixed');
-      nav.fadeIn();
-    } else {
-      nav.removeClass('fixed');
-      $('.site_title').removeClass('fixed');
-      $('.nav_list').removeClass('fixed');
-      $('.e-adappter').removeClass('fixed');
-    }
-  });
-});
-</script>
+</div>

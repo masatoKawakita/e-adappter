@@ -1,9 +1,7 @@
 class ConversionsController < ApplicationController
   before_action :authenticate_user!
-  before_action do
-    @conversation = Conversation.find(params[:conversation_id])
-  end
-  
+  before_action :set_conversation
+
   def create
     if Conversion.where(conversation_id: params[:conversation_id], advertiser_id: params[:advertiser_id], diveloper_id: params[:diveloper_id]).present?
       conversions = Conversion.between(params[:diveloper_id], params[:advertiser_id])
@@ -14,6 +12,7 @@ class ConversionsController < ApplicationController
 
     respond_to do |format|
       if @conversion.save
+        set_case()
         flash[:success] = "依頼申請を行いました。お相手が金額の設定を行うまでお待ちください。"
         format.js {render :create}
       else
@@ -29,19 +28,22 @@ class ConversionsController < ApplicationController
   def update
     respond_to do |format|
       if params[:definitive_confirm].present?
-        @conversation.advertisement.conversion.update(update_params)
+        @conversation.conversion.update(update_params)
+        set_case()
         flash[:success] = "正式に依頼しました。"
         format.js {render :create}
       elsif params[:fee] == "clear"
         params[:fee] = nil
-        if @conversation.advertisement.conversion.update(update_params)
+        if @conversation.conversion.update(update_params)
+          set_case()
           flash[:success] = "入力内容をキャンセルしました。" if params[:temporary_confirm] == "false"
           format.js {render :create}
         end
       elsif params[:fee].to_i == 0
         flash[:danger] = "金額を入力してください。（半角数字、1円以上）"
         format.js {render 'layouts/error'}
-      elsif @conversation.advertisement.conversion.update(update_params)
+      elsif @conversation.conversion.update(update_params)
+        set_case()
         flash[:success] = "送信しました。お相手が確認するまでお待ちください。" if params[:temporary_confirm] == "true"
         format.js {render :create}
       else
@@ -52,10 +54,11 @@ class ConversionsController < ApplicationController
   end
 
   def destroy
-    @conversion = Conversion.find(params[:id]).destroy
+    @conversion = Conversion.find(params[:id])
 
     respond_to do |format|
       if @conversion.destroy
+        set_case()
         flash[:success] = "依頼申請を解除しました。"
         format.js {render :create}
       else
@@ -69,6 +72,14 @@ class ConversionsController < ApplicationController
 
   def set_params
     params.permit(:conversation_id, :advertisement_id, :advertiser_id, :diveloper_id)
+  end
+
+  def set_conversation
+    @conversation = Conversation.find(params[:conversation_id])
+  end
+
+  def set_case
+    @conCase = @conversation.setCase(current_user)
   end
 
   def update_params

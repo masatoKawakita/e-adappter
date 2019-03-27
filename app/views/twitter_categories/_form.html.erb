@@ -1,0 +1,72 @@
+<% if twitterInfo.present? %>
+  <div class="categoryEdit">
+    <p class="categoryEdit__title">ツイートカテゴリー</p>
+    <%= form_with(model: twitterInfo, class: 'categoryEdit__form categoryEdit-form') do |f| %>
+      <div class="categoryEdit-form__categoryFormArea categoryEdit-form-categoryFormArea" id="categoryFormArea">
+        <%= f.fields_for :twitter_categories do |category_form| %>
+          <%= render 'twitter_category_fields', f: category_form, index: category_form.index %>
+        <% end %>
+      </div>
+      <%= link_to_add_association f, :twitter_categories,
+        id: 'addFormBtn',
+        class: "categoryEdit-form__addFormBtn",
+        data: {
+          association_insertion_node: '#categoryFormArea',
+          association_insertion_method: 'append'
+        },
+        render_options: {
+          locals: {
+            index: 'add'
+          }
+        } do %><i class="fas fa-plus"></i>
+      <% end %>
+      <%= f.submit style: 'display:none;', id: 'submitBtn' %>
+      <div class="categoryEdit-form__submitBtn" onClick="$('#submitBtn').click()">
+        <i class="far fa-share-square"></i> 更新
+      <div>
+    <% end %>
+  </div>
+<% end %>
+
+<script>
+  (() => {
+    const categoryMaxNum = 5;
+    
+    checkLength();
+    setCocoonForm(categoryMaxNum);
+
+    function checkLength() {
+      if ($('#categoryFormArea #inputArea').length === 5) {
+        $('#addFormBtn').hide();
+      }
+    }
+
+    function setCocoonForm(num) {
+      $('#categoryFormArea')
+        .on('cocoon:after-insert', function() {
+          const count = checkDisplay();
+          if ($('#categoryFormArea #inputArea').length >= num + count) {
+            $('#addFormBtn').hide();
+          } else {
+            $('#addFormBtn').show();
+          }
+        })
+        .on('cocoon:after-remove', function() {
+          const count = checkDisplay();
+          if ($('#categoryFormArea #inputArea').length < num + count) {
+            $('#addFormBtn').show();
+          }
+        });
+    }
+
+    function checkDisplay() {
+      let count = 0;
+      $('#categoryFormArea #inputArea').each(function(k, v) {
+        if (v.style[0] === 'display') {
+          count += 1;
+        }
+      });
+      return count;
+    }
+  })();
+</script>

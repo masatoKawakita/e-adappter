@@ -1,0 +1,163 @@
+@import '../../../setting/*';
+@import '../../../mixin/*';
+
+
+/* Block layer01 */
+.userShow {
+  width: 100%;
+  &__container {
+    width: 1060px;
+    min-height: 700px;
+    margin: 0 auto;
+    padding: 80px 20px 60px;
+    font-size: 0;
+  };
+  %__blockCommon {
+    display: inline-block;
+    vertical-align: top;
+  }
+  &__leftSide {
+    @extend %__blockCommon;
+    width: 280px;
+    margin-right: 15px;
+  }
+  &__rightSide {
+    @extend %__blockCommon;
+    width: calc(100% - 295px);
+  }
+}
+
+/* Block layer02 */
+.userShow-leftSide {
+  &__userProfile {
+    border-radius: 3px;
+    overflow: hidden;
+    font-size: 0;
+  }
+  &__categoryArea {
+    @include _categoryBox;
+    margin-top: 15px;
+    p {
+      font-size: 20px;
+      color: colors(mainOrange);
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  }
+}
+.userShow-rightSide {
+  &__tabList {
+    border-radius: 3px;
+    overflow: hidden;
+    font-size: 0;
+    a {
+      @include _btn(25%, 40px, 0, colors(white), colors(mainRed));
+      display: inline-block;
+      font-size: 16px;
+      border: 0;
+      transition: 0.3s ease-out;
+      &.open {
+        background-color: colors(mainRed);
+        color: colors(white);
+      }
+    }
+  }
+  &__adList {
+    margin-top: 15px;
+  }
+}
+
+/* Block layer03 */
+.userShow-leftSide-userProfile {
+  &__icon {
+    @include _circleIcon(280px);
+    border-radius: 0;
+  }
+  &__content {
+    width: 280px;
+    height: auto;
+    background-color: colors(white);
+    box-sizing: border-box;
+    padding: 10px 15px;
+    position: relative;
+  }
+}
+
+/* Block layer04:last */
+.userShow-leftSide-userProfile-content {
+  &__name {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  &__type {
+    margin-bottom: 5px;
+    p {
+      @include _hash;
+      color: colors(mainRed);
+      border: solid 1px colors(mainRed);
+      font-size: 12px;
+    }
+  }
+  %__snsCommon {
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    padding: 0;
+    i {
+      color: colors(white);
+    }
+  }
+  &__twitter {
+    @extend %__snsCommon;
+    @include _btn(23px, 23px, 3px, colors(twitter), colors(twitter));
+    i {
+      font-size: 15px;
+    }
+  }
+  &__facebook {
+    @extend %__snsCommon;
+    @include _btn(23px, 23px, 3px, colors(facebook), colors(facebook));
+  }
+  &__userCountBox {
+    @include _userCountBox;
+    margin-top: 5px;
+  }
+  &__text {
+    margin: 5px 0;
+    font-size: 13px;
+  }
+
+  // パーシャル汎用化のため別クラス対応
+  .following_btn {
+    @include _btn(102px, auto, 13px, colors(white), colors(mainRed));
+    padding: 3px 10px;
+  }
+  .followed_btn {
+    @include _btn(102px, auto, 13px, colors(mainRed), colors(mainRed));
+    color: colors(white);
+    padding: 3px 10px;
+  } //
+
+  &__dm {
+    @include _btn(100%, 30px, 3px, colors(white), colors(mainRed));
+    font-size: 16px;
+    letter-spacing: 0.2em;
+    margin-bottom: 15px;
+    &:hover {
+      background-color: colors(mainRed);
+      color: colors(white);
+    }
+  }
+  &__date {
+    font-size: 12px;
+    color: colors(gray);
+    margin-top: 10px;
+  }
+  &__edit {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    color: colors(gray);
+  }
+}

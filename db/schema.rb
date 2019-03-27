@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181206063435) do
+ActiveRecord::Schema.define(version: 20190312064235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,16 @@ ActiveRecord::Schema.define(version: 20181206063435) do
     t.index ["diveloper_id", "advertiser_id", "conversation_id"], name: "index_conversions_on_diveloper_advertiser_and_conversation_id", unique: true
   end
 
+  create_table "evaluations", force: :cascade do |t|
+    t.integer "evaluator_id", default: 0, null: false
+    t.integer "evaluated_id", default: 0, null: false
+    t.integer "conversion_id", default: 0, null: false
+    t.integer "value", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["evaluator_id", "evaluated_id", "conversion_id"], name: "index_conversions_on_evaluator_evaluated_and_conversion_id", unique: true
+  end
+
   create_table "favorites", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "advertisement_id"
@@ -102,6 +112,29 @@ ActiveRecord::Schema.define(version: 20181206063435) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "twitter_categories", force: :cascade do |t|
+    t.string "label", null: false
+    t.integer "data", null: false
+    t.integer "twitter_information_id", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["twitter_information_id"], name: "index_twitter_categories_on_twitter_information_id"
+  end
+
+  create_table "twitter_informations", force: :cascade do |t|
+    t.integer "user_id", default: 0, null: false
+    t.integer "followers_count", default: 0, null: false
+    t.integer "followeds_count", default: 0, null: false
+    t.integer "favorites_count", default: 0, null: false
+    t.integer "tweets_count", default: 0, null: false
+    t.integer "liked_count", default: 0, null: false
+    t.integer "retweeted_count", default: 0, null: false
+    t.datetime "account_created_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_twitter_informations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

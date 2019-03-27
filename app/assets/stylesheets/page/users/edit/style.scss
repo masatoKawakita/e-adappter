@@ -1,0 +1,199 @@
+@import '../../../setting/*';
+@import '../../../mixin/*';
+
+
+/* Block layer01 */
+.userEdit {
+  width: 100%;
+  &__container {
+    width: 1060px;
+    height: auto;
+    margin: 0 auto;
+    padding: 80px 20px 60px;
+  }
+}
+
+/* Block layer02 */
+.userEdit-container {
+  &__form {
+    width: 760px;
+    background-color: colors(white);
+    margin: 0 auto;
+    border-radius: 2px;
+    border: solid 1px colors(gray, more-light);
+    padding: 29px;
+    box-sizing: border-box;
+    font-size: 0;
+  }
+}
+
+/* Block layer03 */
+.userEdit-container-form {
+  &__leftSide {
+    width: 400px;
+    display: inline-block;
+    letter-spacing: normal;
+    vertical-align: top;
+    text-align: left;
+    margin-right: 20px;
+  }
+  &__rightSide {
+    width: 280px;
+    display: inline-block;
+    letter-spacing: normal;
+    vertical-align: top;
+    text-align: left;
+  }
+  %__field {
+    &_type_common {
+      margin-bottom: 15px;
+      label {
+        font-weight: bold;
+        display: inline-block;
+        margin-bottom: 5px;
+      }
+      i {
+        margin-right: 6px;
+        color: colors(mainRed);
+      }
+    }
+    &_type_text {
+      input[type="text"] {
+        font-size: 14px;
+        height: 35px;
+        width: 400px;
+      }
+    }
+    &_type_email {
+      input[type="email"] {
+        font-size: 14px;
+        height: 35px;
+        width: 400px;
+      }
+    }
+    &_type_textArea {
+      textarea {
+        font-size: 14px;
+        width: 400px;
+      }
+    }
+    &_type_radio {
+      input[type="radio"] {
+        & + label {
+          width: 49%;
+          font-weight: normal;
+          text-align: center;
+          &:first-child {
+            margin-right: 2%;
+          }
+        }
+      }
+    }
+    &_type_icon {
+      div {
+        width: 280px;
+        height: 280px;
+        font-size: 15px;
+        border: solid 1px colors(gray, more-light);
+        border-radius: 3px;
+        cursor: pointer;
+        overflow: hidden;
+        box-sizing: border-box;
+        transition: 0.3s ease-out;
+        img {
+          width: 280px;
+          height: 280px;
+        }
+        &:hover {
+          border: solid 1px colors(mainRed);
+          transition: 0.3s ease-out;
+          opacity: 0.9;
+        }
+      }
+    }
+  }
+}
+
+/* Block layer04 */
+.userEdit-container-form-leftSide {
+  &__field_type_name {
+    @extend %__field_type_common;
+    @extend %__field_type_text;
+  }
+  &__field_type_email {
+    @extend %__field_type_common;
+    @extend %__field_type_email;
+  }
+  &__field_type_twitter {
+    @extend %__field_type_common;
+    @extend %__field_type_text;
+    span {
+      display: inline-block;
+      font-weight: bold;
+      margin-right: 5px;
+    }
+    input[type="text"] {
+      width: 180px !important;
+      height: 27px !important;
+    }
+  }
+  &__field_type_facebook {
+    @extend %__field_type_common;
+    @extend %__field_type_text;
+  }
+  &__field_type_content {
+    @extend %__field_type_common;
+    @extend %__field_type_textArea;
+  }
+  &__field_type_wantToBeAdvertised {
+    @extend %__field_type_common;
+    @extend %__field_type_radio;
+  }
+  &__field_type_wantToAdvertise {
+    @extend %__field_type_common;
+    @extend %__field_type_radio;
+    margin-bottom: 0 !important;
+  }
+}
+.userEdit-container-form-rightSide {
+  &__field_type_icon {
+    @extend %__field_type_common;
+    @extend %__field_type_icon;
+  }
+  &__btnArea {
+    margin-top: 20px;
+    text-align: right;
+  }
+}
+
+/* Block layer05:last */
+.userEdit-container-form-rightSide-btnArea {
+  &__submitBtn {
+    @include _btn(280px, 40px, 3px, colors(mainRed), colors(mainRed));
+    margin-bottom: 15px;
+    color: colors(white);
+    font-size: 18px;
+    padding: 0;
+    letter-spacing: 0.2em;
+  }
+  &__backBtn {
+    @include _btn(280px, 40px, 3px, colors(white), colors(mainRed));
+    font-size: 18px;
+    letter-spacing: 0.2em;
+  }
+  &__deleteBtn {
+    margin-top: 25px;
+    i {
+      font-size: 12px;
+      color: colors(mainRed);
+      margin-right: 3px;
+    }
+    a {
+      font-size: 12px;
+      color: colors(mainRed);
+    }
+  }
+}
+.overlay {
+  @include _overlay;
+}

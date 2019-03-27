@@ -1,0 +1,187 @@
+@import '../mixin/search';
+@import '../setting/*';
+@import '../mixin/*';
+
+/* Block */
+.header {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  width: 100%;
+  min-width: 1060px;
+  &_type {
+    &_fixed {
+      height: 100px;
+      background: transparent;
+    }
+    &_default {
+      height: 60px;
+      background: colors(mainBg);
+      border-bottom: solid 1px rgba(0, 0, 0, 0.1)
+    }
+  }
+}
+
+/* Element */
+
+// 違反コード（elementが入れ子状態）
+.header__container {
+  width: 1060px;
+  height: 60px;
+  padding: 0 20px;
+  position: relative;
+  margin: auto;
+}
+
+.header__siteTitle {
+  position: absolute;
+  letter-spacing: 0.05em;
+  font-family: "Avenir Next", Verdana;
+  a {
+    color: colors(white);
+    font-weight: normal;
+  }
+  &_type {
+    &_fixed {
+      top: 23px;
+      a { font-size: 36px; }
+    }
+    &_default {
+      top: 16px;
+      a {
+        font-size: 22px;
+        color: colors(mainRed);
+      }
+    }
+  }
+  &_state {
+    &_logout {
+      left: 20px;
+    }
+    &_login {
+      right: 0;
+      left: 0;
+      margin: 0 auto;
+      text-align: center;
+    }
+  }
+}
+
+.header__navList {
+  position: absolute;
+  &_type {
+    &_fixed {
+      top: 40px;
+      a {color: colors(white);}
+    }
+    &_default {
+      top: 20px;
+      a {color: colors(mainRed);}
+    }
+  }
+  &_state {
+    &_logout {
+      right: 20px;
+      li {
+        display: inline-block;
+        margin-right: 30px;
+        &:last-child { margin-right: 0; }
+        a {
+          font-size: 14px;
+          font-weight: bold;
+        }
+      }
+    }
+    &_login {
+      top: 15px;
+      li {
+        margin-right: 10px;
+        vertical-align: top;
+        &.require_ad a {
+          @include _btn(auto, 30px, 3px, colors(white), colors(mainRed));
+          &:hover {
+            color: colors(white);
+            border: solid 1px colors(mainRed);
+            background-color: colors(mainRed);
+          }
+        }
+        a {
+          display: inline-block;
+          color: colors(white);
+          font-size: 12px;
+          position: relative;
+          i {
+            font-size: 22px;
+            color: colors(mainRed);
+            vertical-align: middle;
+          }
+          p {
+            width: 18px;
+            height: 18px;
+            line-height: 18px;
+            border-radius: 50%;
+            background: colors(white);
+            color: colors(mainRed);
+            box-shadow: 0 1px 3px colors(black, clear);
+            font-size: 10px;
+            text-align: center;
+            position: absolute;
+            bottom: -8px;
+            right: -10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.header__snavBtn {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  cursor: pointer;
+  i {
+    font-size: 22px;
+    color: colors(mainRed);
+    vertical-align: middle;
+  }
+}
+
+.header__userIcon {
+  @include _circleIcon(30px);
+  position: absolute;
+  top: 15px;
+  left: 70px;
+}
+
+.header__adSearch {
+  @include search;
+  position: absolute;
+  top: 15px;
+  left: 110px;
+}
+
+.header__flashMessage {
+  width: 100%;
+  position: absolute;
+  top: 60px;
+  %__flashMessage {
+    box-sizing: border-box;
+    opacity: 0.9;
+    width: 100%;
+    line-height: 30px;
+    text-align: center;
+    color: colors(white);
+    padding: 10px 0;
+  }
+  &_type {
+    &_notice {
+      @extend %__flashMessage;
+      background-color: #55acee;
+    }
+    &_alert {
+      @extend %__flashMessage;
+      background-color: #d9534f;
+    }
+  }
+}

@@ -1,12 +1,11 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
-  before_action do
-    @conversation = Conversation.find(params[:conversation_id])
-  end
+  before_action :set_conversation
   before_action :set_messages
   include AdvertisementsHelper
 
   def index
+    @conCase = @conversation.setCase(current_user)
   end
 
   def create
@@ -31,21 +30,13 @@ class MessagesController < ApplicationController
     params.require(:message).permit(:body, :user_id)
   end
 
+  def set_conversation
+    @conversation = Conversation.find(params[:conversation_id])
+  end
+
   def set_messages
     @messages = @conversation.messages
-
-    if @messages.length >10
-      @over_ten = true
-      @messages = Message.where(id: @messages[-10..-1].pluck(:id))
-    end
-
-    if params[:m]
-      @over_ten = false
-      @messages = @conversation.messages
-    end
-
     @messages.where.not(user_id: current_user.id).update_all(read: true) if @messages.last
-
     @messages = @messages.order(created_at: :desc)
     @message = @conversation.messages.build
     @sender = User.find(@conversation.sender_id)

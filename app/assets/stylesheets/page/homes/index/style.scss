@@ -1,0 +1,326 @@
+@import '../../../setting/*';
+@import '../../../mixin/*';
+
+
+/* Block layer01 */
+.homeRoot {
+  width: 100%;
+  &__container {
+    width: 100%;
+    min-width: 1100px;
+  }
+}
+
+/* Block layer02 */
+.homeRoot-container {
+  %__areaCommon {
+    width: 100%;
+    min-width: 1100px;
+    height: 100vh;
+    overflow: hidden;
+  }
+  &__topArea {
+    @extend %__areaCommon;
+    background: linear-gradient(120deg, colors(mainRed) 10%, colors(mainOrange), colors(mainYellow));
+  }
+  &__aboutArea {
+    @extend %__areaCommon;
+  }
+}
+
+/* Block layer03 */
+.homeRoot-container-topArea {
+  &__wrap {
+    @extend %__wrapCommon;
+  }
+}
+.homeRoot-container-aboutArea {
+  &__wrap {
+    @extend %__wrapCommon;
+  }
+}
+%__wrapCommon {
+  box-sizing: border-box;
+  position: relative;
+  max-width: 1200px;
+  height: 100%;
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* Block layer04 */
+.homeRoot-container-topArea-wrap {
+  %__titleCommon {
+    width: 610px;
+    position: absolute;
+    color: colors(white);
+    z-index: 1;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  &__title {
+    @extend %__titleCommon;
+    top: 180px;
+    right: 20px;
+    font-size: 60px;
+  }
+  &__subTitle {
+    @extend %__titleCommon;
+    top: 380px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  &__btnBox {
+    width: 610px;
+    position: absolute;
+    top: 470px;
+    right: 20px;
+    font-size: 13px;
+    z-index: 1;
+    font-size: 0;
+    a {
+      @include _btn(49%, 46px, 3px, colors(white), colors(white));
+      font-size: 17px;
+      display: inline-block;
+      color: colors(mainOrange);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      transition: 0.3s ease-out;
+      &:first-child {
+        margin-right: 2%;
+      }
+      &:hover {
+        letter-spacing: 0.05em;
+        color: colors(mainRed);
+      }
+    }
+  }
+  &__mainImg {
+    position: absolute;
+    top: 140px;
+    left: -60px;
+    width: 650px;
+    height: auto;
+    img {
+      width: 100%;
+      height: auto;
+      opacity: 0.7;
+    }
+  }
+  &__slantLine {
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    width: 150%;
+    height: 140px;
+    background-color: colors(mainBg);
+    transform: rotate(-5deg) translateX(-50%);
+  }
+  &__arwBtn {
+    width: 80px;
+    height: 80px;
+    background-color: colors(white);
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    bottom: 70px;
+    right: 20px;
+    transition: 0.3s ease-out;
+    i {
+      transition: 0.3s ease-out;
+      font-size: 30px;
+      line-height: 80px;
+      color: colors(mainOrange);
+    }
+    &:hover {
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      i {
+        color: colors(mainRed);
+      }
+    }
+  }
+}
+.homeRoot-container-aboutArea-wrap {
+  %__aboutAreaCommon {
+    position: absolute;
+    width: 1060px;
+    padding: 0 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: 0 auto;
+  }
+  &__textArea {
+    @extend %__aboutAreaCommon;
+    top: 100px;
+  }
+  &__infographicArea {
+    @extend %__aboutAreaCommon;
+    top: 370px;
+    letter-spacing: -1em;
+    div {
+      display: inline-block;
+      width: 33.3%;
+      letter-spacing: normal;
+      vertical-align: middle;
+    }
+  }
+}
+
+/* Block layer05 */
+.homeRoot-container-aboutArea-wrap-textArea {
+  &__title {
+    font-family: "Avenir Next", Verdana;
+    text-align: left;
+    font-size: 54px;
+    font-weight: normal;
+    color: colors(mainOrange);
+  }
+  &__subTitle {
+    text-align: left;
+    font-size: 13px;
+    letter-spacing: 0.03em;
+  }
+  &__content {
+    text-align: left;
+    font-size: 17px;
+    padding-top: 45px;
+    line-height: 1.8em;
+    &:before {
+      position: absolute;
+      top: 125px;
+      display: block;
+      content: "";
+      background-color: colors(mainOrange);
+      width: 150px;
+      height: 2px;
+    }
+  }
+}
+.homeRoot-container-aboutArea-wrap-infographicArea {
+  %__infographicAreaCommon {
+    border: solid 2px colors(mainRed);
+    border-radius: 50%;
+    position: relative;
+    &:before {
+      display: block;
+      content: "";
+      padding-top: 100%;
+    }
+  }
+  &__developer {
+    @extend %__infographicAreaCommon;
+    left: 30px;
+  }
+  &__snsowner {
+    @extend %__infographicAreaCommon;
+    right: 30px;
+  }
+}
+
+/* Block layer06:last */
+.homeRoot-container-aboutArea-wrap-infographicArea-developer {
+  &__textTop {
+    @extend %__roundText;
+    top: 18px;
+  }
+  &__round {
+    @extend %__round;
+  }
+  &__textBottom {
+    @extend %__roundText;
+    bottom: 18px;
+  }
+}
+.homeRoot-container-aboutArea-wrap-infographicArea-e-adappter {
+  &__round {
+    position: relative;
+    width: 100% !important;
+    background: linear-gradient(120deg, colors(mainRed) 10%, colors(mainOrange), colors(mainYellow));
+    border-radius: 50%;
+    box-shadow: 0 2px 6px colors(black, clear);
+    z-index: 1;
+    &:before {
+      display: block;
+      content: "";
+      padding-top: 100%;
+    }
+    p {
+      position: absolute;
+      display: inline-block;
+      bottom: 0;
+      right: 0;
+      top: 60%;
+      left: 50%;
+      width: 100%;
+      transform: translateY(-50%) translateX(-50%);
+      font-family: "Avenir Next", Verdana;
+      color: colors(white);
+      font-size: 52px;
+      margin: auto;
+    }
+  }
+}
+.homeRoot-container-aboutArea-wrap-infographicArea-snsowner {
+  &__textTop {
+    @extend %__roundText;
+    top: 18px;
+  }
+  &__round {
+    @extend %__round;
+  }
+  &__textBottom {
+    @extend %__roundText;
+    bottom: 18px;
+  }
+}
+%__roundText {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: colors(mainRed);
+  font-size: 15px;
+}
+%__round {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 70% !important;
+  height: 70%;
+  margin: auto;
+  background: linear-gradient(120deg, colors(mainRed) 10%, colors(mainOrange), colors(mainYellow));
+  border-radius: 50%;
+  box-shadow: 0 2px 6px colors(black, clear);
+  &:before {
+    display: block;
+    content: "";
+    padding-top: 100%;
+  }
+  i {
+    position: absolute;
+    font-size: 85px;
+    color: colors(white);
+    top: 25%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    &.fa-comment {
+      font-size: 32px;
+      right: 60px;
+      top: 20%;
+      left: auto;
+    }
+  }
+  p {
+    position: absolute;
+    font-size: 18px;
+    color: colors(white);
+    bottom: 22%;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+}

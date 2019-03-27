@@ -1,0 +1,63 @@
+@import '../setting/*';
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"]{
+  color: colors(black);
+  border: solid 1px colors(gray, more-light);
+  border-radius: 3px;
+  box-sizing: border-box;
+  background-color: colors(mainBg);
+  width: 100%;
+  height: 30px;
+  padding: 5px 8px;
+}
+input[type="radio"] {
+  display: none;
+  & + label {
+    display: inline-block;
+    color: colors(gray);
+    border: solid 1px colors(gray, more-light);
+    border-radius: 3px;
+    box-sizing: border-box;
+    background-color: colors(mainBg);
+    padding: 3px 10px;
+    cursor: pointer;
+  }
+  &:checked + label {
+    color: colors(white);
+    background-color: colors(mainRed);
+    border: solid 1px colors(mainRed);
+  }
+}
+input[type="checkbox"] {
+  display: none;
+  & + label {
+    display: inline-block;
+    box-sizing: border-box;
+    color: colors(gray, light);
+    border: solid 1px colors(gray, more-light);
+    border-radius: 3px;
+    box-sizing: border-box;
+    background-color: colors(white);
+    padding: 3px 10px;
+    cursor: pointer;
+  }
+  &:checked + label {
+    color: colors(white);
+    background-color: colors(mainOrange);
+    border: solid 1px colors(mainOrange);
+  }
+}
+textarea {
+  resize: none;
+	border: solid 1px colors(gray, more-light);
+  border-radius: 3px;
+  box-sizing: border-box;
+  background-color: colors(mainBg);
+  color: colors(gray, dark);
+  width: 100%;
+  min-height: 110px;
+  padding: 5px 8px;
+}

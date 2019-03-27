@@ -1,70 +1,65 @@
-<header id="login_header">
-  <nav class="pc">
-    <h1 class="site_title"><a href="#" class="e-adappter">e-AdAppter</a></h1>
-    <div class="icon">
-      <%=link_to user_path(current_user.id) do %>
-        <% if current_user.icon.url == nil %>
-          <%= image_tag('user_default_icon.jpg') %>
-        <% else %>
-          <%= image_tag current_user.icon %>
-        <% end %>
-      <% end %>
-    </div>
-    <%= form_with(url: advertisements_path, method: 'get', local: true) do |form| %>
-      <div class="ad_search">
-        <%= form.text_field :keyword, placeholder: "アプリをさがす", class: "search_field" %>
-        <%= button_tag type: 'submit', class: "search_btn" do %>
-          <i class="fas fa-search"></i>
-        <% end %>
-      </div>
-    <% end %>
-    <ul class="nav_list">
+<!-- header -->
+<header class="header header_type_fixed">
+  <div class="header__container">
+    <h1 class="header__siteTitle header__siteTitle_type_fixed">
+      <%= link_to 'e-AdAppter', '#' %>
+    </h1>
+    <ul class="header__navList header__navList_type_fixed header__navList_state_logout">
       <% if user_signed_in? %>
         <li class="require_ad"><%= link_to 'アプリを投稿する', new_advertisement_path if current_user.want_to_be_advertised %></li>
+        <!-- 通知機能未実装のためコメントアウト -->
         <!-- <li class="call"><%= link_to do %>
           <i class="fas fa-bell"></i>
         <% end %></li> -->
-        <li class="home"><%= link_to advertisements_path do %>
+        <li><%= link_to advertisements_path do %>
           <i class="fas fa-home"></i>
         <% end %></li>
         <li class="message"><%= link_to conversations_path do %>
           <i class="fas fa-envelope"></i>
+          <%= simple_format(setMsgBadge) if setMsgBadge %>
         <% end %></li>
         <li class="search_user"><%= link_to users_path do %>
           <i class="fas fa-users"></i>
         <% end %></li>
-        <li id="menu_link">
-          <i class="fas fa-bars"></i>
-        </li>
       <% else %>
-        <li class="sign_in"><%= link_to 'アカウント作成', new_user_registration_path %></li>
-        <li class="login"><%= link_to 'ログイン', new_user_session_path %></li>
+        <li><%= link_to 'e-AdAppterとは', '/#about' %></li>
+        <li><%= link_to 'アプリをさがす', advertisements_path %></li>
+        <li><%= link_to 'アカウント作成', new_user_registration_path %></li>
+        <li><%= link_to 'ログイン', new_user_session_path %></li>
       <% end %>
     </ul>
-    <div class="icon_link_tab">
-      <div class="close_btn">
-        <i class="fas fa-times"></i>
+    <% if user_signed_in? %>
+      <div class="header__snavBtn">
+        <i class="fas fa-bars"></i>
       </div>
-      <ul>
-        <li class="require_ad"><i class="fas fa-search"></i><%= link_to 'アプリを探す', advertisements_path %></li>
-        <li class=""><i class="fas fa-users"></i><%= link_to 'ユーザー検索', users_path %></li>
-        <li class=""><i class="fas fa-envelope"></i><%= link_to 'メッセージ', conversations_path %></li>
-        <li class="mypage"><i class="fas fa-user"></i><%= link_to 'マイページ', user_path(current_user.id) %></li>
-        <li class="mypage"><i class="fas fa-user-edit"></i><%= link_to '編集', edit_user_path(current_user.id) %></li>
-        <li class="logout"><i class="fas fa-sign-out-alt"></i><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-      </ul>
+      <div class="header__userIcon">
+        <%= link_to user_path(current_user.id) do %>
+          <% if current_user.icon.url == nil %>
+            <%= image_tag('user_default_icon.jpg') %>
+          <% else %>
+            <%= image_tag current_user.icon %>
+          <% end %>
+        <% end %>
+      </div>
+      <%= form_with(url: advertisements_path, method: 'get', local: true) do |form| %>
+        <div class="header__adSearch">
+          <%= form.text_field :keyword, placeholder: "アプリをさがす" %>
+          <%= button_tag type: 'submit' do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <% if user_signed_in? %>
+    <div class="header__flashMessage">
+      <% if notice %>
+       <div class="header__flashMessage_type_notice"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+       <div class="header__flashMessage_type_alert"><%= alert %></div>
+      <% end %>
     </div>
-  </nav>
-  <nav class="sp">
-  </nav>
-  <div class="notice_area">
-    <% if notice %>
-     <div class="notice"><%= notice %></div>
-    <% end %>
-  </div>
-  <div class="alert_area">
-    <% if alert %>
-     <div class="alert"><%= alert %></div>
-    <% end %>
-  </div>
-</header>
+  <% end %>
+  <%= render 'layouts/snav' if user_signed_in? %>
+</header><!-- /header -->

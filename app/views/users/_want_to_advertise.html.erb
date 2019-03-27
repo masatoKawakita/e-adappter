@@ -1,0 +1,8 @@
+<i class="far fa-check-square"></i>
+<%= f.label '広告依頼を受けることを希望しますか？', for: 'want_to_advertise' %>
+<div>
+  <%= f.radio_button :want_to_advertise, true, id: 'yes02', name: 'want_to_advertise' %>
+  <%= f.label '希望する', for: 'yes02' %>
+  <%= f.radio_button :want_to_advertise, false, id: 'no02', name: 'want_to_advertise' %>
+  <%= f.label '希望しない', for: 'no02' %>
+</div>

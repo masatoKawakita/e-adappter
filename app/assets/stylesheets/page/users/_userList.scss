@@ -1,0 +1,101 @@
+@import '../../setting/*';
+@import '../../mixin/*';
+
+
+/* Block layer01 */
+.userList {
+  &__notExists {
+    text-align: center;
+    p {
+      color: colors(gray);
+      font-size: 18px;
+      margin-top: 60px;
+    }
+    a {
+      @include _btn(200px, 40px, 3px, colors(mainRed), colors(mainRed));
+      color: colors(white);
+      display: inline-block;
+      margin-top: 10px;
+    }
+  }
+  &__container {
+    display: block;
+    font-size: 0;
+    margin-bottom: 15px;
+    background-color: colors(white);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+}
+
+/* Block layer02 */
+.userList-container {
+  &__icon {
+    @include _circleIcon(140px);
+    border-radius: 0;
+    vertical-align: top;
+  }
+  &__content {
+    width: calc(100% - 140px);
+    height: 140px;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+  }
+}
+
+/* Block layer03:last */
+.userList-container-content {
+  &__name {
+    font-weight: bold;
+    color: colors(black);
+    margin-bottom: 5px;
+    width: 400px;
+    height: 24px;
+    overflow: hidden;
+  }
+  &__type {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    div {
+      @include _hash;
+      color: colors(mainRed);
+      border: solid 1px colors(mainRed);
+      padding: 0 6px 0 10px;
+    }
+  }
+  &__text {
+    color: colors(gray);
+    font-size: 13px;
+    display: block;
+    max-height: 42px;
+    overflow: hidden;
+  }
+  &__userCountBox {
+    @include _userCountBox;
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+  }
+  &__followForm {
+    // パーシャル汎用化のため別クラス対応
+    .following_btn {
+      @include _btn(102px, auto, 13px, colors(white), colors(mainOrange));
+      padding: 3px 10px;
+      position: absolute;
+      right: 15px;
+      bottom: 10px;
+    }
+    .followed_btn {
+      @include _btn(102px, auto, 13px, colors(mainOrange), colors(mainOrange));
+      color: colors(white);
+      padding: 3px 10px;
+      position: absolute;
+      right: 15px;
+      bottom: 10px;
+    }//
+  }
+}

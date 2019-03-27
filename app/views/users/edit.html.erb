@@ -1,89 +1,58 @@
-<%= render 'layouts/header' %>
-<section id="users_edit_sec01">
-  <div class="edit_card">
-    <h2 class="title">ユーザー編集</h2>
-    <%= form_with(model: @user, local: true) do |f| %>
-      <%= hidden_field_tag "action", params[:action] %>
-      <%= hidden_field_tag "route", "users" %>
-      <%= hidden_field_tag "idParams", @user.id %>
-      <% if @user.errors.any? %>
-        <h3><%= @user.errors.count %>件のエラー</h3>
-        <ul>
-          <% @user.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      <% end %>
-        <div class="left_side">
-          <div class="field">
-            <i class="far fa-check-square"></i><%= f.label '名前' %>
-            <%= f.text_field :name, id: 'name' %>
-          </div>
-          <div class="field">
-            <i class="far fa-check-square"></i><%= f.label 'メールアドレス' %>
-            <%= f.email_field :email, id: 'email' %>
-          </div>
-          <div class="field">
-            <i class="far fa-check-square"></i><%= f.label 'Twitterアカウント URL' %>
-            <%= f.text_field :twitter, id: 'twitter' %>
-          </div>
-          <div class="field">
-            <i class="far fa-check-square"></i><%= f.label 'Facebookアカウント URL' %>
-            <%= f.text_field :facebook, id: 'facebook' %>
-          </div>
-          <div class="field content">
-            <i class="far fa-check-square"></i><%= f.label '自己紹介' %>
-            <%= f.text_area :content, class: "content", id: 'content' %>
-          </div>
-          <div class="field">
-            <i class="far fa-check-square"></i><%= f.label 'アプリ投稿を希望しますか？' %>
-            <div class="radio_div">
-              <%= f.radio_button :want_to_be_advertised, true, class: "radio_btn", id: 'yes01', name: 'want_to_be_advertised' %>
-              <%= f.label 'はい、希望します', for: 'yes01', class: "first" %>
-              <%= f.radio_button :want_to_be_advertised, false, class: "radio_btn", id: 'no01', name: 'want_to_be_advertised' %>
-              <%= f.label 'いいえ、希望しません', for: 'no01' %>
-            </div>
-          </div>
-          <div class="field">
-            <i class="far fa-check-square"></i><%= f.label '広告依頼を受けることを希望しますか？' %>
-            <div class="radio_div">
-              <%= f.radio_button :want_to_advertise, true, class: "radio_btn", id: 'yes02', name: 'want_to_advertise' %>
-              <%= f.label 'はい、希望します', for: 'yes02', class: "first" %>
-              <%= f.radio_button :want_to_advertise, false, class: "radio_btn", id: 'no02', name: 'want_to_advertise' %>
-              <%= f.label 'いいえ、希望しません', for: 'no02' %>
-            </div>
-          </div>
+<!-- section -->
+<section class="userEdit">
+  <div class="userEdit__container userEdit-container">
+    <h2 class="title" style="display:none;">ユーザー編集</h2>
+    <%= hidden_field_tag "action", params[:action] %>
+    <%= hidden_field_tag "route", "users" %>
+    <%= hidden_field_tag "idParams", @user.id %>
+    <%= form_with(model: @user, local: true, class: 'userEdit-container__form userEdit-container-form') do |f| %>
+      <div class="userEdit-container-form__leftSide userEdit-container-form-leftSide">
+        <div class="userEdit-container-form-leftSide__field_type_name">
+          <i class="far fa-check-square"></i><%= f.label '名前', for: 'name' %>
+          <%= f.text_field :name, id: 'name' %>
         </div>
-        <div class="right_side">
-          <div class="field image">
-            <i class="far fa-check-square"></i><%= f.label 'ユーザーアイコン' %>
-            <div id="img_field" onClick="$('#upicon').click()" >
-              <% if @user.icon.url.present? %>
-                <%= image_tag @user.icon.url %>
-              <% else %>
-                <i class="fas fa-image"></i><i class="fas fa-file-upload add"></i>
-              <% end %>
-            </div>
-            <%= f.file_field :icon_http, class: "icon", style: "display:none;", id: "upicon"%>
+        <div class="userEdit-container-form-leftSide__field_type_email">
+          <i class="far fa-check-square"></i><%= f.label 'メールアドレス', for: 'email' %>
+          <%= f.email_field :email, id: 'email' %>
+        </div>
+        <div class="userEdit-container-form-leftSide__field_type_twitter">
+          <i class="far fa-check-square"></i><%= f.label 'Twitterアカウント', for: 'twitter' %><br>
+          <span>＠</span><%= f.text_field :twitter, id: 'twitter' %>
+        </div>
+        <div class="userEdit-container-form-leftSide__field_type_facebook">
+          <i class="far fa-check-square"></i><%= f.label 'Facebookアカウント URL', for: 'facebook' %>
+          <%= f.text_field :facebook, id: 'facebook' %>
+        </div>
+        <div class="userEdit-container-form-leftSide__field_type_content">
+          <i class="far fa-check-square"></i><%= f.label '自己紹介', for: 'content' %>
+          <%= f.text_area :content, id: 'content' %>
+        </div>
+        <div class="userEdit-container-form-leftSide__field_type_wantToBeAdvertised">
+          <%= render 'want_to_be_advertised', f: f %>
+        </div>
+        <div class="userEdit-container-form-leftSide__field_type_wantToAdvertise">
+          <%= render 'want_to_advertise', f: f %>
+        </div>
+      </div>
+      <div class="userEdit-container-form__rightSide userEdit-container-form-rightSide">
+        <div class="userEdit-container-form-rightSide__field_type_icon">
+          <i class="far fa-check-square"></i><%= f.label 'ユーザーアイコン' %>
+          <div id="img_field" onClick="$('#upfile').click()" >
+            <%= @user.icon.url.present? ? image_tag(@user.icon.url) : image_tag('user_default_icon.jpg') %>
           </div>
-          <div class="btn_div">
-            <div class="actions">
-              <div class="submit_btn"><%= @btn_label %></div>
-            </div>
-            <div class="back">
-              <%= link_to '戻る', user_path(@user.id), class: "back_btn" %>
-            </div>
-            <div class="delete">
-              <i class="far fa-trash-alt"></i><%= link_to 'アカウントを削除する', user_path(@user.id), method: :delete, data: { confirm: 'アカウントを削除します。よろしいですか？'}, class: "delete_btn" %>
-            </div>
+          <%= f.file_field :icon_http, style: "display:none;", id: "upfile"%>
+        </div>
+        <div class="userEdit-container-form-rightSide__btnArea userEdit-container-form-rightSide-btnArea">
+          <div class="userEdit-container-form-rightSide-btnArea__submitBtn" id="ajaxSubmit">
+            <%= @btn_label %></div>
+          <%= link_to '戻る', user_path(@user.id), class: "userEdit-container-form-rightSide-btnArea__backBtn" %>
+          <div class="userEdit-container-form-rightSide-btnArea__deleteBtn">
+            <i class="far fa-trash-alt"></i>
+            <%= link_to 'アカウントを削除する', user_path(@user.id), method: :delete, data: { confirm: 'アカウントを削除します。よろしいですか？'} %>
           </div>
         </div>
       </div>
     <% end %>
-    <div class="overlay">
-      <div class="crop_modal"></div>
-      <div class="close_btn"></div>
-      <div class="select_icon_btn">決定</div>
-    </div>
   </div>
-</section>
+  <%= render 'layouts/overlay' %>
+</section><!-- /section -->

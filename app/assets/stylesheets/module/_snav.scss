@@ -1,0 +1,57 @@
+@import '../setting/*';
+
+/* Block */
+.snav {
+  width: 250px;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: -300px;
+  background-color: colors(mainRed);
+  transition: 0.3s ease-out;
+  z-index: 9999;
+  box-shadow: 1px 0 3px rgba(0, 0, 0, 0.3);
+  &.open {
+    left: 0;
+    transition: 0.3s ease-out;
+  }
+}
+
+/* Element */
+.snav__closeBtn {
+  position: absolute;
+  width: 60px;
+  top: 18px;
+  right: 30px;
+  text-align: right;
+  cursor: pointer;
+  i {
+    font-size: 22px;
+    color: colors(white);
+    vertical-align: middle;
+  }
+}
+.snav__list {
+  padding: 100px 0 0;
+  li {
+    display: block;
+    text-align: left;
+    box-sizing: border-box;
+    width: 170px;
+    margin: 10px 0;
+    margin-left: 60px;
+    a {
+      color: colors(white);
+      display: inline-block;
+      height: 50px;
+      line-height: 50px;
+      margin: 0 auto;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    i {
+      color: colors(white);
+      margin-right: 7px;
+    }
+  }
+}

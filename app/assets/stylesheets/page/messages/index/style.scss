@@ -1,0 +1,219 @@
+@import '../../../setting/*';
+@import '../../../mixin/*';
+
+
+/* Block layer01 */
+.msgIndex {
+  width: 100%;
+  &__container {
+    width: 1060px;
+    height: auto;
+    margin: 0 auto;
+    padding: 80px 20px 60px;
+  }
+}
+
+/* Block layer02 */
+.msgIndex-container {
+  &__bg {
+    width: 100%;
+    padding: 20px 120px;
+    background-color: colors(white);
+    box-sizing: border-box;
+    border-radius: 3px;
+    border: solid 1px colors(gray, more-light);
+  }
+}
+
+/* Block layer03 */
+.msgIndex-container-bg {
+  &__mainArea {
+    margin: 0 auto;
+    text-align: center;
+  }
+  &__conversionArea {
+    width: 100%;
+  }
+  &__msgArea {
+    text-align: left;
+    // パーシャル汎用のためElement内クラス対応
+    .msgBox {
+      &_type_i {
+        margin-left: calc(100% - 500px);
+        @include _fukidashiBox('I', 'msg');
+        .msgBox__read {
+          position: absolute;
+          font-size: 12px;
+          color: colors(gray);
+          bottom: 0;
+          right: 37px;
+        }
+      }
+      &_type_you {
+        margin-left: 0;
+        @include _fukidashiBox('You', 'msg');
+        .msgBox__read {
+          display: none;
+        }
+      }
+    }//
+  }
+}
+
+/* Block layer04 */
+.msgIndex-container-bg-mainArea {
+  &__title {
+    p {
+      font-size: 24px;
+      color: colors(mainRed);
+    }
+  }
+  &__imgBox {
+    width: 400px;
+    margin: 20px auto;
+    height: 90px;
+    position: relative;
+  }
+  &__comment {
+    margin: 10px 0;
+    text-align: left;
+    color: colors(gray, dark);
+  }
+}
+.msgIndex-container-bg-conversionArea {
+  &__firstConfirmBtn {
+    &_type_in {
+      @include _btn(300px, 46px, 3px, colors(white), colors(mainRed));
+      margin: 0 auto;
+      &:hover {
+        background-color: colors(mainRed);
+        color: colors(white);
+      }
+    }
+    &_type_out {
+      @include _btn(300px, 46px, 3px, colors(mainRed), colors(mainRed));
+      margin: 0 auto;
+      color: colors(white);
+    }
+  }
+  &__confirmMsg {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  &__confirmBtn {
+    @include _btn(300px, 46px, 3px, colors(white), colors(mainRed));
+    margin: 0 auto;
+    &:hover {
+      background-color: colors(mainRed);
+      color: colors(white);
+    }
+  }
+  &__inputFeeArea {
+    display: none;
+    text-align: center;
+    font-weight: bold;
+    input[type='text'] {
+      width: 120px;
+      display: inline-block;
+      font-size: 15px;
+    }
+    input[type="submit"] {
+      @include _btn(150px, 30px, 3px, colors(white), colors(mainRed));
+      display: inline-block;
+      font-size: 13px;
+      margin-left: 15px;
+      &:hover {
+        background-color: colors(mainRed);
+        color: colors(white);
+      }
+    }
+  }
+  &__cancelFeeBtn {
+    @include _btn(200px, 35px, 3px, colors(mainRed), colors(mainRed));
+    margin: 0 auto;
+    display: block;
+    color: colors(white);
+  }
+  &__finalConfirmBtn {
+    @include _btn(200px, 46px, 3px, colors(mainRed), colors(mainRed));
+    display: block;
+    margin: 0 auto;
+    color: colors(white);
+    font-size: 16px;
+  }
+  &__conversionMsg {
+    border: solid 1px colors(mainRed);
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    border-radius: 3px;
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+    color: colors(mainRed);
+  }
+}
+.msgIndex-container-bg-msgArea {
+  &__form {
+    margin: 20px auto 0;
+    width: 100%;
+    padding-bottom: 35px;
+    position: relative;
+    font-size: 0;
+  }
+  &__msgList {
+    margin-top: 80px;
+  }
+}
+
+
+/* Block layer05:last */
+.msgIndex-container-bg-mainArea-imgBox {
+  &__senderIcon {
+    @include _circleIcon(90px);
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  &__arw {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 30px;
+    left: 0;
+    line-height: 90px;
+    i {
+      font-size: 30px;
+      color: colors(mainOrange);
+    }
+  }
+  &__thumbnail {
+    @include _defaultThumbnail(120px, 90px, 16px, 40px);
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+  }
+}
+.msgIndex-container-bg-msgArea-form {
+  &__input {
+    font-size: 16px;
+    width: 100%;
+    min-height: 120px;
+    line-height: 20px;
+    box-sizing: border-box;
+  }
+  &__button {
+    @include _btn(120px, 27px, 3px, colors(white), colors(mainRed));
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    &:hover {
+      color: colors(white);
+      background-color: colors(mainRed);
+    }
+  }
+}

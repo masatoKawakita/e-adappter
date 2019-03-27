@@ -1,0 +1,32 @@
+@mixin _defaultThumbnail($width: 300px, $height: 225px, $fs: 22px, $ifs: 100px) {
+  width: $width;
+  height: $height;
+  background-color: colors(mainYellow);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+  p {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: $fs;
+    color: colors(white);
+    font-family: "Avenir Next", Verdana;
+  }
+  i {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: $ifs;
+    height: $ifs;
+    font-size: $ifs;
+    color: colors(white);
+  }
+  img {
+    width: $width;
+    height: $height;
+  }
+}

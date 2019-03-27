@@ -1,116 +1,102 @@
-<section id="form_sec">
-  <div class="div_title">アプリ投稿</div>
-  <%= form_with(model: @advertisement, local: true) do |form| %>
-    <%= hidden_field_tag "action", params[:action] %>
-    <%= hidden_field_tag "route", "advertisements" %>
-    <%= hidden_field_tag "idParams", @advertisement.id %>
-    <div id="errorMsg"></div>
-    <div class="left_side">
-      <div class="field">
-        <%= form.label 'タイトル（必須）' %>
-        <%= form.text_field :title, placeholder: "アプリタイトルを入力してください", id: "title" %>
-      </div>
-      <div class="field">
-        <%= form.label 'アプリURL（必須）' %>
-        <%= form.text_field :app_url, placeholder: "（例）http://www.example.com", id: "url" %>
-      </div>
-      <div class="field hash">
-        <%= form.label 'ハッシュ（4つまで指定可能）' %>
-        <%= form.text_field :hash_01, placeholder: "（例）SNS", id: "hash_01" %>
-        <%= form.text_field :hash_02, placeholder: "（例）無料アプリ", id: "hash_02" %>
-        <%= form.text_field :hash_03, id: "hash_03" %>
-        <%= form.text_field :hash_04, id: "hash_04" %>
-      </div>
-      <div class="field content">
-        <%= form.label 'アプリの概要（必須）' %>
-        <%= form.text_area :content, class: "content", id: "content" %>
-      </div>
-      <div class="field function">
-        <%= form.label 'アプリの機能詳細' %>
-        <%= form.text_area :about_function, class: "function", id: "function" %>
-      </div>
-      <div class="field target">
-        <%= form.label '広告したいターゲット' %>
-        <%= form.text_area :about_target, class: "target", id: "target" %>
-      </div>
-      <div class="field condition">
-        <%= form.label '依頼事項・条件など' %>
-        <%= form.text_area :about_condition, class: "condition", id: "condition" %>
-      </div>
-      <div class="field fee">
-        <%= form.label '希望金額（必須）' %>
-        <%= form.text_field :about_fee, class: "fee", placeholder: "（例）5,000円〜、フォロワー数×5円（応相談） など", id: "fee" %>
-      </div>
+<%= form_with(model: @advertisement, local: true, class: 'form') do |form| %>
+  <%= hidden_field_tag "action", params[:action] %>
+  <%= hidden_field_tag "route", "advertisements" %>
+  <%= hidden_field_tag "idParams", @advertisement.id %>
+  <div class="form__leftSide form-leftSide">
+    <div class="form__field form-field">
+      <%= form.label 'タイトル（必須）' %>
+      <%= form.text_field :title, placeholder: "アプリタイトルを入力してください", id: "title" %>
     </div>
-    <div class="right_side">
-      <div class="field image">
-        <%= form.label 'サムネイル（スクリーンショットなど）' %>
-        <div id="img_field" onClick="$('#upfile').click()" >
-          <% if @advertisement.image.url.present? %>
-            <%= image_tag(@advertisement.image.url) %>
-          <% else %>
-            <i class="fas fa-image"></i><i class="fas fa-file-upload add"></i>
-          <% end %>
-        </div>
-        <%= form.file_field :image_html, class: "image", style: "display:none;", id: "upfile"%>
-      </div>
-      <div class="field">
-        <%= form.label '広告依頼について' %>
-        <%= form.radio_button :active, true, class: "radio_btn", id: "true", name: "active" %>
-        <%= form.label "募集中にする", for: "true" %>
-        <%= form.radio_button :active, false, class: "radio_btn", id: "false", name: "active" %>
-        <%= form.label "受付停止する", for: "false" %>
-      </div>
-      <div class="field">
-        <%= form.label 'メインカテゴリーを選択' %>
-        <% category_list.each do |category| %>
-          <%= form.radio_button :app_category, "#{category}", class: "radio_btn", id: "#{category}", name: "app_category" %>
-          <%= form.label "#{category}", for: "#{category}" %>
-        <% end %>
-      </div>
-      <div class="field">
-        <%= form.label 'ターゲットの属性' %>
-        <div class="target_sex">
-          <span class="title">性別</span>
-          <% target_sex_list.each do |target| %>
-            <%= form.radio_button :target_sex, "#{target}", class: "radio_btn", id: "#{target}", name: "target_sex" %>
-            <%= form.label "#{target}", for: "#{target}" %>
-          <% end %>
-        </div>
-        <br>
-        <div class="target_age">
-          <span class="title">年齢</span>
-          <% target_age_list.each do |target| %>
-            <%= form.radio_button :target_age, "#{target}", class: "radio_btn", id: "#{target}", name: "target_age" %>
-            <%= form.label "#{target}", for: "#{target}" %>
-          <% end %>
-        </div>
-      </div>
-      <div class="field">
-        <%= form.label '希望するTwitterフォロワー数' %>
-        <% request_follower_list.each do |request| %>
-          <%= form.radio_button :request_follower, "#{request}", class: "radio_btn", id: "#{request}", name: "request_follower" %>
-          <%= form.label "#{request}", for: "#{request}" %>
-        <% end %>
-      </div>
-      <div class="btn_div">
-        <div class="actions">
-          <div class="submit_btn" id="ajaxSubmit"><%= @btn_label %></div>
-        </div>
-        <div class="back">
-          <%= link_to '戻る', user_path(current_user.id), class: "back_btn" %>
-        </div>
-        <div class="delete_div">
-          <% if params[:action] == "edit" %>
-            <%= link_to '投稿を削除', advertisement_path, method: :delete, class: "delete_btn", data: { confirm: '投稿を削除します。よろしいですか？'} %>
-          <% end %>
-        </div>
-      </div>
+    <div class="form__field form-field">
+      <%= form.label 'アプリURL（必須）' %>
+      <%= form.text_field :app_url, placeholder: "（例）http://www.example.com", id: "url" %>
     </div>
-  <% end %>
-  <div class="overlay">
-    <div class="crop_modal"></div>
-    <div class="close_btn"></div>
-    <div class="select_image_btn">決定</div>
+    <div class="form__field form-field form-field_type_hash">
+      <%= form.label 'ハッシュ（4つまで指定可能）' %>
+      <%= form.text_field :hash_01, placeholder: "（例）SNS", id: "hash_01" %>
+      <%= form.text_field :hash_02, placeholder: "（例）無料アプリ", id: "hash_02" %>
+      <%= form.text_field :hash_03, id: "hash_03" %>
+      <%= form.text_field :hash_04, id: "hash_04" %>
+    </div>
+    <div class="form__field form-field">
+      <%= form.label 'アプリの概要（必須）' %>
+      <%= form.text_area :content, class: "content", id: "content" %>
+    </div>
+    <div class="form__field form-field">
+      <%= form.label 'アプリの機能詳細' %>
+      <%= form.text_area :about_function, class: "function", id: "function" %>
+    </div>
+    <div class="form__field form-field">
+      <%= form.label '広告したいターゲット' %>
+      <%= form.text_area :about_target, class: "target", id: "target" %>
+    </div>
+    <div class="form__field form-field">
+      <%= form.label '依頼事項・条件など' %>
+      <%= form.text_area :about_condition, class: "condition", id: "condition" %>
+    </div>
+    <div class="form__field form-field">
+      <%= form.label '希望金額（必須）' %>
+      <%= form.text_field :about_fee, class: "fee", placeholder: "（例）5,000円〜、フォロワー数×5円（応相談） など", id: "fee" %>
+    </div>
   </div>
-</section>
+  <div class="form__rightSide form-rightSide">
+    <div class="form__field form-field form-field_type_thumbnail">
+      <%= form.label 'サムネイル（スクリーンショットなど）' %>
+      <div id="img_field" onClick="$('#upfile').click()" >
+        <% if @advertisement.image.url.present? %>
+          <%= image_tag(@advertisement.image.url) %>
+        <% else %>
+          <i class="fas fa-image"></i>
+        <% end %>
+      </div>
+      <%= form.file_field :image_html, class: "image", style: "display:none;", id: "upfile"%>
+    </div>
+    <div class="form__field form-field">
+      <%= form.label '広告依頼について' %>
+      <%= form.radio_button :active, true, class: "radio_btn", id: "true", name: "active" %>
+      <%= form.label "募集中にする", for: "true" %>
+      <%= form.radio_button :active, false, class: "radio_btn", id: "false", name: "active" %>
+      <%= form.label "受付停止する", for: "false" %>
+    </div>
+    <div class="form__field form-field">
+      <%= form.label 'メインカテゴリーを選択' %>
+      <% category_list.each do |category| %>
+        <%= form.radio_button :app_category, "#{category}", class: "radio_btn", id: "#{category}", name: "app_category" %>
+        <%= form.label "#{category}", for: "#{category}" %>
+      <% end %>
+    </div>
+    <div class="form__field form-field">
+      <%= form.label 'ターゲットの属性' %>
+      <div class="form-field__targetSex">
+        <span>性別</span>
+        <% target_sex_list.each do |target| %>
+          <%= form.radio_button :target_sex, "#{target}", class: "radio_btn", id: "#{target}", name: "target_sex" %>
+          <%= form.label "#{target}", for: "#{target}" %>
+        <% end %>
+      </div>
+      <br>
+      <div class="form-field__targetAge">
+        <span>年齢</span>
+        <% target_age_list.each do |target| %>
+          <%= form.radio_button :target_age, "#{target}", class: "radio_btn", id: "#{target}", name: "target_age" %>
+          <%= form.label "#{target}", for: "#{target}" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="form__field form-field">
+      <%= form.label '希望するTwitterフォロワー数' %>
+      <% request_follower_list.each do |request| %>
+        <%= form.radio_button :request_follower, "#{request}", class: "radio_btn", id: "#{request}", name: "request_follower" %>
+        <%= form.label "#{request}", for: "#{request}" %>
+      <% end %>
+    </div>
+    <div class="form-rightSide__btnArea form-rightSide-btnArea">
+      <div class="form-rightSide-btnArea__submitBtn" id="ajaxSubmit"><%= @btn_label %></div>
+      <%= link_to '戻る', user_path(current_user.id), class: "form-rightSide-btnArea__backBtn" %>
+      <% if params[:action] == "edit" %>
+        <%= link_to '投稿を削除', advertisement_path, method: :delete, class: "form-rightSide-btnArea__deleteBtn", data: { confirm: '投稿を削除します。よろしいですか？'} %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<%= render 'layouts/overlay' %>

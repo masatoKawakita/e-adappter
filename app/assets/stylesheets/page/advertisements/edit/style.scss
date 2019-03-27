@@ -1,0 +1,22 @@
+@import '../../../setting/*';
+@import '../../../mixin/*';
+
+
+/* Block layer01 */
+.adEdit {
+  width: 100%;
+  &__container {
+    width: 1060px;
+    margin: 0 auto;
+    padding: 80px 20px 60px;
+    font-size: 0;
+  };
+}
+
+/* Block layer02:last */
+.adEdit-container {
+  &__form {
+    width: 900px;
+    margin: 0 auto;
+  }
+}

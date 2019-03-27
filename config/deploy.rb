@@ -1,6 +1,6 @@
 lock '3.6.0'
 
-set :application, 'achieve'
+set :application, 'e-adappter'
 
 set :repo_url, 'https://github.com/supunic/e-adappter.git'
 

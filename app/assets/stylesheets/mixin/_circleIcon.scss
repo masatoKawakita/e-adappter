@@ -1,0 +1,12 @@
+@mixin _circleIcon($size: 50px) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: inline-block;
+  img {
+    width: $size;
+    height: $size;
+  }
+}

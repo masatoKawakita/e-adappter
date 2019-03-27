@@ -1,6 +1,8 @@
-$('.alert_area').html("<%= j(render 'layouts/alert') %>")
+$('.header__flashMessage').append("<%= j(render 'layouts/alert') %>");
 
 setTimeout(flashAlert, 5000);
 function flashAlert(){
-  $('.alert').fadeOut();
-}
+  $('.header__flashMessage_type_alert').fadeOut().queue(function() {
+    $(this).remove();
+  });
+};

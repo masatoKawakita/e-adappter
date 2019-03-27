@@ -1,0 +1,42 @@
+<p class="userShow-rightSide-twitterInfo-container-rightSide-category__title">ツイートカテゴリー</p>
+<% if user == current_user %>
+  <%= link_to edit_twitter_information_path(user.twitter_information.id),
+    remote: true,
+    class: 'userShow-rightSide-twitterInfo-container-rightSide-category__editBtn' do %>
+    <i class="far fa-edit"></i>
+  <% end %>
+<% end %>
+<canvas id="myChart" width="425" height="235">
+  <p>ブラウザが対応していないため、表示できません。</p>
+</canvas>
+<%= Gon::Base.render_data %>
+<script>
+  (() => {
+    "use strict";
+    
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const chart = new Chart(ctx, {
+      type: 'pie',
+      responsive: false,
+      data: {
+        labels: gon.categoryLabel,
+        datasets: [{
+          data: gon.categoryData,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.8)',
+            'rgba(54, 162, 235, 0.8)',
+            'rgba(255, 206, 86, 0.8)',
+            'rgba(75, 192, 192, 0.8)',
+            'rgba(255, 159, 64, 0.8)',
+          ],
+        }],
+      },
+      options: {
+        legend: {
+          display: true,
+          position: 'left',
+        }
+      },
+    });
+  })();
+</script>

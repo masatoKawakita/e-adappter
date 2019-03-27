@@ -1,7 +1,9 @@
-$("#conversion_form").html("<%= escape_javascript(render partial: 'messages/conversion', locals: { conversion: @conversion }) %>")
-$('.notice_area').html("<%= j(render 'layouts/notice') %>")
+$("#conversion_form").html("<%= j(render partial: 'messages/conversion', locals: { conversion: @conversion, conCase: @conCase }) %>")
+$('.header__flashMessage').html("<%= j(render 'layouts/notice') %>")
 
 setTimeout(flashNotice, 5000);
 function flashNotice(){
-  $('.notice').fadeOut();
+  $('.header__flashMessage_type_notice').fadeOut().queue(function() {
+    $(this).remove();
+  });
 }

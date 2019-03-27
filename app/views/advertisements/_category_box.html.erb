@@ -1,0 +1,21 @@
+<div>
+  <p>カテゴリーから探す</p>
+  <% category_list.each do |category| %>
+    <%= link_to "#{category}", advertisements_path(app_category: category) %>
+  <% end %>
+</div>
+<div>
+  <p>ターゲット属性から探す</p>
+  <% target_sex_list.each do |target| %>
+    <%= link_to "#{target}", advertisements_path(target_sex: target) %>
+  <% end %>
+  <% target_age_list.each do |target| %>
+    <%= link_to "#{target}", advertisements_path(target_age: target) %>
+  <% end %>
+</div>
+<div>
+  <p>Twitterフォロワー数から探す</p>
+  <% request_follower_list.each do |request| %>
+    <%= link_to "#{request}", advertisements_path(request_follower: request) %>
+  <% end %>
+</div>

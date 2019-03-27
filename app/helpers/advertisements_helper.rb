@@ -22,4 +22,12 @@ module AdvertisementsHelper
   def ajax_redirect_to(redirect_uri)
     { js: "window.location.replace('#{redirect_uri}');" }
   end
+
+  def set_path
+    if current_user.present?
+      user_path(current_user)
+    else
+      return '#'
+    end
+  end
 end

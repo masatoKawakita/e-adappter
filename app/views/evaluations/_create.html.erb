@@ -1,0 +1,15 @@
+<% if setHTML(evaluations) %>
+  <br>
+  <%= conversation.target_user(current_user).name %>さんとの取引は実行されましたか？<br>
+  完了したら<%= conversation.target_user(current_user).name %>さんを評価しよう！<br>
+  <%= form_with(model: conversation.conversion.evaluations.build(conversion_id: conversation.conversion.id)) do |form| %>
+    <%= form.hidden_field :conversion_id %>
+    <% for i in 1..5 do %>
+      <%= form.radio_button :value, i, class: "radio_btn", id: "value#{i}", name: "value" %>
+      <%= form.label "#{i}", for: "value#{i}" %>
+    <% end %>
+    <%= form.submit '送信' %>
+  <% end %>
+<% else %>
+  <%= conversation.target_user(current_user).name %>さんからの評価：<%= setValue(evaluations) %>
+<% end %>

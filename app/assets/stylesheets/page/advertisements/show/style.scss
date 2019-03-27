@@ -1,0 +1,240 @@
+@import '../../../setting/*';
+@import '../../../mixin/*';
+@import '../../../base/*';
+
+/* Block layer01 */
+.adShow {
+  width: 100%;
+  &__container {
+    width: 1060px;
+    min-height: 1500px;
+    margin: 0 auto;
+    padding: 80px 20px 60px;
+    font-size: 0;
+  };
+  %__blockCommon {
+    display: inline-block;
+    vertical-align: top;
+  }
+  &__leftSide {
+    @extend %__blockCommon;
+    width: calc(100% - 315px);
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 15px;
+    position: relative;
+  };
+  &__rightSide {
+    @extend %__blockCommon;
+    width: 300px;
+  };
+}
+
+/* Block layer02 */
+.adShow-leftSide {
+  %__leftCommon {
+    background: colors(white);
+    padding: 20px;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+  &__detailArea {
+    @extend %__leftCommon;
+  };
+  &__commentArea {
+    @extend %__leftCommon;
+    margin: 15px 0 60px;
+  };
+};
+.adShow-rightSide {
+  &__thumbnail {
+    @include _defaultThumbnail(300px, 225px, 22px, 100px);
+  };
+  &__userInfo {
+    margin-top: 15px;
+  };
+  &__btnArea {
+    margin-top: 20px;
+  };
+};
+
+/* Block layer03 */
+.adShow-leftSide-detailArea {
+  &__wrap {
+    margin: 20px 0;
+    padding-bottom: 20px;
+    border-bottom: solid 1px colors(mainRed);
+    color: colors(black);
+  };
+}
+.adShow-leftSide-commentArea {
+  &__input {
+    margin: 0 0 80px;
+    position: relative;
+    label {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    textarea {
+      font-size: 15px;
+      margin-top: 10px;
+      line-height: 20px;
+    }
+    input {
+      @include _btn(auto, 27px, 3px, colors(white), colors(mainRed));
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      padding: 0 40px;
+      position: absolute;
+      bottom: -30px;
+      right: 0;
+      &:hover {
+        background: colors(mainRed);
+        color: colors(white);
+      }
+    }
+  }
+  &__content {
+    margin: 0 0 30px;
+
+    // パーシャル汎用のためElement内クラス対応
+    .commentBox {
+      &_type_i {
+        margin-left: calc(100% - 500px);
+        @include _fukidashiBox('I', 'comment');
+      }
+      &_type_you {
+        margin-left: 0;
+        @include _fukidashiBox('You', 'comment');
+      }
+    }//
+  }
+}
+.adShow-rightSide-userInfo {
+  @include _userInfo;
+
+  // パーシャル汎用のためElement内クラス対応
+  .following_btn {
+    @include _btn(102px, auto, 13px, colors(white), colors(mainRed));
+    padding: 3px 20px;
+    margin: 20px 20px 0;
+  }
+  .followed_btn {
+    @include _btn(102px, auto, 13px, colors(mainRed), colors(mainRed));
+    color: colors(white);
+    padding: 3px 20px;
+    margin: 20px 20px 0;
+  }//
+
+  &__comment {
+    padding: 20px 20px 0;
+    font-size: 14px;
+  }
+  %__twitter_facebook {
+    display: inline-block;
+    text-align: center;
+    a {
+      font-size: 11px;
+      letter-spacing: 0.03em;
+      color: colors(white);
+      padding: 0;
+      border: none;
+      i {
+        font-size: 12px;
+      }
+    }
+  }
+  &__twitter {
+    padding: 0 0 20px 20px;
+    @extend %__twitter_facebook;
+    a {
+      @include _btn(82px, 23px, 3px, colors(twitter), colors(twitter));
+    }
+  }
+  &__facebook {
+    padding: 0 0 20px 10px;
+    @extend %__twitter_facebook;
+    a {
+      @include _btn(90px, 23px, 3px, colors(facebook), colors(facebook));
+    }
+  }
+}
+.adShow-rightSide-btnArea {
+  &__requestBtn {
+    font-size: 18px;
+    margin-bottom: 10px;
+    &_type_active {
+      @include _btn(auto, 40px, 3px, colors(white), colors(mainRed));
+    }
+    &_type_passive {
+      @include _btn(auto, 40px, 3px, colors(gray, more-light), colors(gray, dark));
+      cursor: auto;
+    }
+  }
+  &__stockBtn {
+    font-size: 18px;
+    &_type_out {
+      @include _btn(auto, 40px, 3px, colors(mainRed), colors(mainRed));
+      color: #fff;
+    }
+    &_type_in {
+      @include _btn(auto, 40px, 3px, colors(white), colors(mainRed));
+    }
+  }
+}
+
+/* Block layer04:last */
+.adShow-leftSide-detailArea-wrap {
+  &:first-child {
+    margin-top: 0;
+  }
+  &__title {
+    width: 600px;
+    font-size: 30px;
+    color: colors(black);
+    margin-bottom: 10px;
+  }
+  &__date {
+    margin-bottom: 5px;
+  }
+  &__state {
+    position: absolute;
+    font-size: 14px;
+    &_type_active {
+      top: 24px;
+      right: 20px;
+      padding: 0 6px 0 10px;
+      @include _btn(auto, auto, 10px, colors(white), colors(mainRed));
+      cursor: auto;
+    }
+    &_type_passive {
+      top: 30px;
+      right: 20px;
+      padding: 0 10px;
+      @include _btn(auto, auto, 10px, colors(white), colors(gray, dark));
+      cursor: auto;
+    }
+  }
+  &__adCountBox {
+    position: absolute;
+    top: 55px;
+    right: 20px;
+    @include _adCountBox;
+  }
+  &__hash {
+    @include _hash(12px, colors(mainOrange));
+  }
+  &__content {
+    margin: 10px 0 5px;
+  }
+  &__appUrl {
+    a {
+      color: colors(twitter);
+    }
+  }
+  &__label {
+    font-size: 20px;
+    color: colors(black);
+    margin-bottom: 5px;
+  }
+}

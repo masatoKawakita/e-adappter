@@ -1,22 +1,47 @@
-<%= render 'layouts/header' %>
-<section id="messages_index_sec01">
-  <h2 class="page_title">メッセージ</h2>
-  <div class="top_comment_area">
-    <%= render 'top_comment' %>
-  </div>
-  <div id="conversion_form">
-    <%= render 'conversion' %>
-  </div>
-  <div class="message_input_div">
-    <%= form_with(model: [@conversation, @message]) do |f| %>
-      <div class="field content">
-        <%= f.text_area :body, class: "content" %>
-        <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
-        <%= f.submit '送信', class: "submit_btn" %>
+<section class="msgIndex">
+  <h2 class="msgIndex-container__title" style="display:none;">メッセージ</h2>
+  <div class="msgIndex__container msgIndex-container">
+    <div class="msgIndex-container__bg msgIndex-container-bg">
+      <div class="msgIndex-container-bg__mainArea msgIndex-container-bg-mainArea">
+        <h2 class="msgIndex-container-bg-mainArea__title">
+          <%= simple_format(setMainMsg(@conversation, @sender)['title']) %>
+        </h2>
+        <div class="msgIndex-container-bg-mainArea__imgBox msgIndex-container-bg-mainArea-imgBox">
+          <div class="msgIndex-container-bg-mainArea-imgBox__senderIcon">
+            <%= @sender.icon.url.present? ? image_tag(@sender.icon.url) : image_tag('user_default_icon.jpg') %>
+          </div>
+          <div class="msgIndex-container-bg-mainArea-imgBox__arw">
+            <i class="fas fa-caret-right"></i>
+            <i class="fas fa-caret-right"></i>
+            <i class="fas fa-caret-right"></i>
+            <i class="fas fa-caret-right"></i>
+            <i class="fas fa-caret-right"></i>
+            <i class="fas fa-caret-right"></i>
+          </div>
+          <div class="msgIndex-container-bg-mainArea-imgBox__thumbnail">
+            <% if @conversation.advertisement.image.url.present? %>
+              <%= image_tag(@conversation.advertisement.image.url) %>
+            <% else %>
+              <i class="fas fa-image"></i>
+            <% end %>
+          </div>
+        </div>
+        <p class="msgIndex-container-bg-mainArea__comment">
+          <%= setMainMsg(@conversation, @sender)['comment'] %>
+        </p>
+        <div class="msgIndex-container-bg__conversionArea msgIndex-container-bg-conversionArea" id="conversion_form">
+          <%= render 'conversion', conCase: @conCase %>
+        </div>
+      <div class="msgIndex-container-bg__msgArea msgIndex-container-bg-msgArea">
+        <%= form_with(model: [@conversation, @message], class: 'msgIndex-container-bg-msgArea__form msgIndex-container-bg-msgArea-form') do |f| %>
+          <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+          <%= f.text_area :body, class: "msgIndex-container-bg-msgArea-form__input" %>
+          <%= f.submit '送信', class: "msgIndex-container-bg-msgArea-form__button" %>
+        <% end %>
+        <div class="msgIndex-container-bg-msgArea__msgList" id="message_area">
+          <%= render partial: 'messages/index' %>
+        </div>
       </div>
-    <% end %>
-  </div>
-  <div id="message_area">
-    <%= render partial: 'messages/index' %>
+    </div>
   </div>
 </section>

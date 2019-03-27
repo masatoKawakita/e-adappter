@@ -1,39 +1,15 @@
 <% @messages.each do |message| %>
   <% if message.body.present? %>
-    <% if message.user.id == current_user.id %>
-      <div class="message_div current_user">
-        <p class="name"><%= message.user.name %></p>
-        <div class="fukidashi">
-          <p class="content"><%= message.body %></p>
-          <p class="date"><%= detail_time(message.created_at) %></p>
-        </div>
-        <p class="icon">
-          <% if message.user.icon.url.present? %>
-            <%= image_tag(message.user.icon.url) %>
-          <% else %>
-            <%= image_tag('user_default_icon.jpg') %>
-          <% end %>
-        </p>
-        <p class="read"><%= message.read ? '既読' : '未読' %></p>
+    <div class="msgBox_<%= checkUser(message) %>">
+      <p class="msgBox__name"><%= message.user.name %></p>
+      <div class="msgBox__fukidashi">
+        <p class="msgBox__content"><%= message.body %></p>
+        <p class="msgBox__date"><%= detail_time(message.created_at) %></p>
       </div>
-    <% else %>
-      <div class="message_div others">
-        <p class="name"><%= message.user.name %></p>
-        <div class="fukidashi">
-          <p class="content"><%= message.body %></p>
-          <p class="date"><%= detail_time(message.created_at) %></p>
-        </div>
-        <p class="icon">
-          <% if message.user.icon.url.present? %>
-            <%= image_tag(message.user.icon.url) %>
-          <% else %>
-            <%= image_tag('user_default_icon.jpg') %>
-          <% end %>
-        </p>
-      </div>
-    <% end %>
+      <p class="msgBox__icon">
+        <%= message.user.icon.url.present? ? image_tag(message.user.icon.url) : image_tag('user_default_icon.jpg') %>
+      </p>
+      <p class="msgBox__read"><%= message.read ? '既読' : '未読' %></p>
+    </div>
   <% end %>
-<% end %>
-<% if @over_ten %>
-  <%= link_to '以前のメッセージ', '?m=all' %>
 <% end %>

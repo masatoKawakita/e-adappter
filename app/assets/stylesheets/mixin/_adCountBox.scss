@@ -1,0 +1,15 @@
+@mixin _adCountBox {
+  color: colors(gray);
+  div {
+    display: inline-block;
+    font-size: 18px;
+    margin-right: 6px;
+    &:last-child {
+      margin-right: 0;
+    }
+    i {
+      margin-right: 4px;
+      font-size: 18px;
+    }
+  }
+}
