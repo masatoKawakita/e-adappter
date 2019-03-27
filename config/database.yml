@@ -14,5 +14,5 @@ test:
 production:
   <<: *default
   database: e-adappter_production
-  username: seiyaendo
+  username: e-adappter
   password: <%= ENV['E-ADAPPTER_DATABASE_PASSWORD'] %>
