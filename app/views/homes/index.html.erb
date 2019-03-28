@@ -83,5 +83,31 @@
         <%= link_to 'Twitterでログイン', user_twitter_omniauth_authorize_path %>
       </div>
     </section>
+    <section class="homeRoot-container__usageArea homeRoot-container-usageArea">
+      <div class="homeRoot-container-usageArea__wrap homeRoot-container-usageArea-wrap">
+        <p class="homeRoot-container-usageArea-wrap__title">
+          <i class="fas fa-check"></i>マッチングまでの流れ
+        </p>
+        <div class="homeRoot-container-usageArea-wrap__slider homeRoot-container-usageArea-wrap-slider">
+          <% setUsageCnt.each_with_index do |content, index| %>
+            <div class="homeRoot-container-usageArea-wrap-slider__content">
+              <p><%= content[:ttl] %></p>
+              <%= image_tag(content[:img], class: "img_#{index}") %>
+              <span><%= content[:txt] %></span>
+            </div>
+          <% end %>
+        </div>
+    </section>
   </div>
 </div>
+<script>
+  $(() => {
+    $('.homeRoot-container-usageArea-wrap__slider').slick({
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      dots: true,
+    });
+  });
+</script>

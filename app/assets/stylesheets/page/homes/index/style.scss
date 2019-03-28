@@ -24,13 +24,14 @@
     background: linear-gradient(120deg, colors(mainRed) 10%, colors(mainOrange), colors(mainYellow));
   }
   &__aboutArea {
-    height: auto;
     @extend %__areaCommon;
   }
   &__introArea {
     @extend %__areaCommon;
     background: linear-gradient(120deg, colors(mainRed) 10%, colors(mainOrange), colors(mainYellow));
-    height: auto;
+  }
+  &__usageArea {
+    @extend %__areaCommon;
   }
 }
 
@@ -50,7 +51,15 @@
   &__wrap {
     @extend %__wrapCommon;
     font-size: 0;
-    padding: 100px 20px !important;
+    padding: 100px 20px;
+    text-align: center;
+  }
+}
+.homeRoot-container-usageArea {
+  &__wrap {
+    @extend %__wrapCommon;
+    font-size: 0;
+    padding: 80px 20px;
     text-align: center;
   }
 }
@@ -213,6 +222,21 @@
     }
   }
 }
+.homeRoot-container-usageArea-wrap {
+  &__title {
+    font-size: 40px;
+    font-weight: bold;
+    color: colors(mainRed);
+    margin-bottom: 30px;
+    i {
+      font-size: 40px;
+      margin-right: 10px;
+    }
+  }
+  &__slider {
+    height: 500px;
+  }
+}
 
 /* Block layer05 */
 .homeRoot-container-aboutArea-wrap-textArea {
@@ -256,6 +280,46 @@
   &__snsowner {
     @extend %__infographicAreaCommon;
     right: 30px;
+  }
+}
+.homeRoot-container-usageArea-wrap-slider {
+  &__content {
+    display: inline-block;
+    height: 500px !important;
+    text-align: center;
+    p {
+      font-size: 20px;
+      padding: 20px 0;
+      font-weight: bold;
+    }
+    span {
+      display: block;
+      width: 345px;
+      text-align: justify;
+      margin: 30px auto;
+      color: colors(gray);
+      font-size: 14px;
+    }
+    img.img_0 {
+      height: 400px;
+      width: auto;
+      margin: 0 auto;
+    }
+    img.img_1 {
+      width: 345px;
+      height: auto;
+      margin: 0 auto;
+    }
+    img.img_2 {
+      width: 345px;
+      height: auto;
+      margin: 0 auto;
+    }
+    img.img_3 {
+      width: 345px;
+      height: auto;
+      margin: 0 auto;
+    }
   }
 }
 
