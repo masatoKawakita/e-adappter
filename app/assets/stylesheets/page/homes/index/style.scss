@@ -16,15 +16,21 @@
   %__areaCommon {
     width: 100%;
     min-width: 1100px;
-    height: 100vh;
     overflow: hidden;
   }
   &__topArea {
     @extend %__areaCommon;
+    height: 100vh;
     background: linear-gradient(120deg, colors(mainRed) 10%, colors(mainOrange), colors(mainYellow));
   }
   &__aboutArea {
+    height: auto;
     @extend %__areaCommon;
+  }
+  &__introArea {
+    @extend %__areaCommon;
+    background: linear-gradient(120deg, colors(mainRed) 10%, colors(mainOrange), colors(mainYellow));
+    height: auto;
   }
 }
 
@@ -37,6 +43,15 @@
 .homeRoot-container-aboutArea {
   &__wrap {
     @extend %__wrapCommon;
+    padding: 60px 0 100px;
+  }
+}
+.homeRoot-container-introArea {
+  &__wrap {
+    @extend %__wrapCommon;
+    font-size: 0;
+    padding: 100px 20px !important;
+    text-align: center;
   }
 }
 %__wrapCommon {
@@ -45,7 +60,6 @@
   max-width: 1200px;
   height: 100%;
   margin: auto;
-  padding: 0 20px;
 }
 
 /* Block layer04 */
@@ -142,27 +156,60 @@
 }
 .homeRoot-container-aboutArea-wrap {
   %__aboutAreaCommon {
-    position: absolute;
-    width: 1060px;
     padding: 0 20px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    margin: 0 auto;
   }
   &__textArea {
     @extend %__aboutAreaCommon;
-    top: 100px;
   }
   &__infographicArea {
     @extend %__aboutAreaCommon;
-    top: 370px;
     letter-spacing: -1em;
+    margin-top: 40px;
     div {
       display: inline-block;
       width: 33.3%;
       letter-spacing: normal;
       vertical-align: middle;
+    }
+  }
+}
+.homeRoot-container-introArea-wrap {
+  a {
+    @include _btn(340px, 60px, 3px, colors(white), colors(mainOrange));
+    display: inline-block;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    margin-right: 30px;
+    border: none;
+    box-shadow: 0 1px 2px colors(black, clear);
+  }
+  &__content {
+    display: inline-block;
+    width: 30%;
+    margin-left: 5%;
+    vertical-align: top;
+    &:first-child {
+      margin-left: 0;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 50%;
+    }
+    p {
+      margin-top: 30px;
+      font-size: 26px;
+      text-align: center;
+      color: colors(white);
+      font-weight: bold;
+    }
+    span {
+      display: block;
+      margin: 30px 0 20px;
+      color: colors(white);
+      font-size: 17px;
+      line-height: 40px;
+      text-align: justify;
     }
   }
 }
@@ -172,29 +219,22 @@
   &__title {
     font-family: "Avenir Next", Verdana;
     text-align: left;
-    font-size: 54px;
+    font-size: 80px;
     font-weight: normal;
-    color: colors(mainOrange);
+    color: colors(mainRed);
   }
   &__subTitle {
     text-align: left;
-    font-size: 13px;
+    font-size: 24px;
+    color: colors(gray);
     letter-spacing: 0.03em;
   }
   &__content {
-    text-align: left;
-    font-size: 17px;
-    padding-top: 45px;
-    line-height: 1.8em;
-    &:before {
-      position: absolute;
-      top: 125px;
-      display: block;
-      content: "";
-      background-color: colors(mainOrange);
-      width: 150px;
-      height: 2px;
-    }
+    width: 600px;
+    text-align: justify;
+    font-size: 18px;
+    padding-top: 35px;
+    line-height: 35px;
   }
 }
 .homeRoot-container-aboutArea-wrap-infographicArea {
@@ -202,6 +242,7 @@
     border: solid 2px colors(mainRed);
     border-radius: 50%;
     position: relative;
+    text-align: center;
     &:before {
       display: block;
       content: "";
@@ -240,6 +281,7 @@
     border-radius: 50%;
     box-shadow: 0 2px 6px colors(black, clear);
     z-index: 1;
+    text-align: center;
     &:before {
       display: block;
       content: "";

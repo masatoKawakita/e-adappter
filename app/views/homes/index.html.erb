@@ -28,11 +28,11 @@
             e-AdAppter
           </h2>
           <p class="homeRoot-container-aboutArea-wrap-textArea__subTitle">
-            Webアプリ開発者とSNSインフルエンサーのマッチングスペース
+            アプリ広告マッチングスペース
           </p>
           <p class="homeRoot-container-aboutArea-wrap-textArea__content">
-            e-AdAppterは、「Webアプリを広告したい人」と「SNSインフルエンサー」を<br>
-            つなぐサービスです。アプリを宣伝したい開発者と、広告に協力的なSNSオーナーが集まる<br>
+            e-AdAppterは、「Webアプリを広告したい人」と「SNSインフルエンサー」を
+            つなぐサービスです。アプリを宣伝したい開発者と、広告に協力的なSNSオーナーが集まる
             マッチングスペースを提供します。
           </p>
         </div>
@@ -68,6 +68,19 @@
             </p>
           </div>
         </div>
+      </div>
+    </section>
+    <section class="homeRoot-container__introArea homeRoot-container-introArea">
+      <div class="homeRoot-container-introArea__wrap homeRoot-container-introArea-wrap">
+        <% setIntroCnt.each do |content| %>
+          <div class="homeRoot-container-introArea-wrap__content">
+            <%= image_tag(content[:img]) %>
+            <p><%= content[:ttl] %></p>
+            <span><%= content[:txt] %></span>
+          </div>
+        <% end %>
+        <%= link_to '新規登録', new_user_registration_path %>
+        <%= link_to 'Twitterでログイン', user_twitter_omniauth_authorize_path %>
       </div>
     </section>
   </div>
