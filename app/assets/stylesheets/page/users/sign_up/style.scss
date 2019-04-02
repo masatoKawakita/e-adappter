@@ -13,6 +13,14 @@
     padding: 60px 20px 60px;
   }
 }
+@media screen and (max-width: 768px) {
+  .userSignup {
+    &__container {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+}
 
 /* Block layer02 */
 .userSignup-container {
@@ -25,6 +33,13 @@
     text-align: center;
     margin: 0 auto;
     padding: 15px 40px;
+  }
+}
+@media screen and (max-width: 414px) {
+  .userSignup-container {
+    &__form {
+      width: 100%;
+    }
   }
 }
 

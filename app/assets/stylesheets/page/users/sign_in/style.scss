@@ -13,6 +13,14 @@
     padding: 60px 20px 60px;
   }
 }
+@media screen and (max-width: 768px) {
+  .userNew {
+    &__container {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+}
 
 /* Block layer02 */
 .userNew-container {
@@ -42,6 +50,13 @@
       font-size: 13px;
       color: colors(white);
       margin-top: 7px;
+    }
+  }
+}
+@media screen and (max-width: 414px) {
+  .userNew-container {
+    %__containerCommon {
+      width: 100%;
     }
   }
 }

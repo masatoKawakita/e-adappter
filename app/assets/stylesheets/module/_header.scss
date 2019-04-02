@@ -21,16 +21,25 @@
     }
   }
 }
+@media screen and (max-width: 768px) {
+  .header {
+    min-width: auto;
+  }
+}
 
 /* Element */
-
-// 違反コード（elementが入れ子状態）
 .header__container {
   width: 1060px;
   height: 60px;
   padding: 0 20px;
   position: relative;
   margin: auto;
+}
+@media screen and (max-width: 768px) {
+  .header__container {
+    width: 100%;
+    box-sizing: border-box;
+  }
 }
 
 .header__siteTitle {
@@ -40,6 +49,7 @@
   a {
     color: colors(white);
     font-weight: normal;
+    cursor: pointer;
   }
   &_type {
     &_fixed {
@@ -63,6 +73,17 @@
       left: 0;
       margin: 0 auto;
       text-align: center;
+    }
+  }
+}
+@media screen and (max-width: 414px) {
+  .header__siteTitle {
+    &_type {
+      &_fixed {
+        a {
+          font-size: 25px;
+        }
+      }
     }
   }
 }
@@ -132,6 +153,11 @@
         }
       }
     }
+  }
+}
+@media screen and (max-width: 414px) {
+  .header__navList {
+    display: none;
   }
 }
 
