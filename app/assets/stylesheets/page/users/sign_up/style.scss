@@ -21,6 +21,14 @@
     }
   }
 }
+@media screen and (max-width: 414px) {
+  .userSignup {
+    height: 700px;
+    &__container {
+      padding: 20px;
+    }
+  }
+}
 
 /* Block layer02 */
 .userSignup-container {

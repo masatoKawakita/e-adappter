@@ -21,6 +21,14 @@
     }
   }
 }
+@media screen and (max-width: 414px) {
+  .userNew {
+    height: 550px;
+    &__container {
+      padding: 20px;
+    }
+  }
+}
 
 /* Block layer02 */
 .userNew-container {
