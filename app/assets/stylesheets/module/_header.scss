@@ -186,6 +186,15 @@
   top: 15px;
   left: 110px;
 }
+@media screen and (max-width: 414px) {
+  .header__userIcon {
+    left: auto;
+    right: 20px;
+  }
+  .header__adSearch {
+    display: none;
+  }
+}
 
 .header__flashMessage {
   width: 100%;
