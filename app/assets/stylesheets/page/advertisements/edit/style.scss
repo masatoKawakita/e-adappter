@@ -12,11 +12,27 @@
     font-size: 0;
   };
 }
+@media screen and (max-width: 414px) {
+  .adEdit {
+    &__container {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 60px 0 0;
+    };
+  }
+}
 
 /* Block layer02:last */
 .adEdit-container {
   &__form {
     width: 900px;
     margin: 0 auto;
+  }
+}
+@media screen and (max-width: 414px) {
+  .adEdit-container {
+    &__form {
+      width: 100%;
+    }
   }
 }

@@ -29,6 +29,25 @@
     width: 300px;
   };
 }
+@media screen and (max-width: 414px) {
+  .adShow {
+    &__container {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 70px 10px 60px;
+    };
+    %__blockCommon {
+      display: block;
+    }
+    &__leftSide {
+      width: 100%;
+      margin-right: 0;
+    };
+    &__rightSide {
+      width: 100%;
+    };
+  }
+}
 
 /* Block layer02 */
 .adShow-leftSide {
@@ -46,6 +65,14 @@
     margin: 15px 0 60px;
   };
 };
+@media screen and (max-width: 414px) {
+  .adShow-leftSide {
+    &__commentArea {
+      margin: 15px 0;
+    };
+  };
+}
+
 .adShow-rightSide {
   &__thumbnail {
     @include _defaultThumbnail(300px, 225px, 22px, 100px);
@@ -57,6 +84,13 @@
     margin-top: 20px;
   };
 };
+@media screen and (max-width: 414px) {
+  .adShow-rightSide {
+    &__thumbnail {
+      display: none;
+    };
+  };
+}
 
 /* Block layer03 */
 .adShow-leftSide-detailArea {
@@ -110,6 +144,20 @@
     }//
   }
 }
+@media screen and (max-width: 414px) {
+  .adShow-leftSide-commentArea {
+    &__input {
+      textarea {
+        margin-bottom: 15px;
+      }
+      input {
+        @include _btn(100%, 40px, 3px, colors(white), colors(mainRed));
+        font-size: 16px;
+      }
+    }
+  }
+}
+
 .adShow-rightSide-userInfo {
   @include _userInfo;
 
@@ -236,5 +284,31 @@
     font-size: 20px;
     color: colors(black);
     margin-bottom: 5px;
+  }
+}
+@media screen and (max-width: 414px) {
+  .adShow-leftSide-detailArea-wrap {
+    &__title {
+      width: 100%;
+    }
+    &__state {
+      position: static;
+      display: inline-block;
+      font-size: 14px;
+      margin-bottom: 15px;
+      &_type_active {
+        padding: 0 6px 0 10px;
+        width: 200px;
+      }
+      &_type_passive {
+        padding: 0 10px;
+        width: 200px;
+      }
+    }
+    &__adCountBox {
+      margin-left: 15px;
+      position: static;
+      display: inline-block;
+    }
   }
 }

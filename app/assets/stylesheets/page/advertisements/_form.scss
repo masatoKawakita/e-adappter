@@ -27,6 +27,21 @@
     margin-bottom: 20px;
   }
 }
+@media screen and (max-width: 414px) {
+  .form {
+    width: 100%;
+    padding: 15px 15px 60px;
+    &__leftSide {
+      width: 100%;
+      display: block;
+      margin-right: 0;
+    }
+    &__rightSide {
+      width: 100%;
+      display: block;
+    }
+  }
+}
 
 /* Block layer02 */
 .form-rightSide {
@@ -111,6 +126,38 @@
     height: 130px;
   }
 }
+@media screen and (max-width: 414px) {
+  .form-field {
+    &_type_thumbnail {
+      div {
+        @include _defaultThumbnail(100%, auto, 15px, 100px);
+        min-height: 250px;
+        margin-top: 5px;
+        border: solid 1px colors(gray, more-light);
+        position: relative;
+        cursor: pointer;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-color: colors(mainBg);
+        transition: 0.3s ease-out;
+        i {
+          color: colors(gray, more-light);
+          transition: 0.3s ease-out;
+        }
+        &:hover {
+          background-color: colors(mainRed);
+          border: solid 1px colors(mainRed);
+          opacity: 0.9;
+        }
+        &:hover i {
+          display: block;
+          color: colors(white);
+        }
+      }
+    }
+  }
+}
 
 /* Block layer03:last */
 .form-rightSide-btnArea {
@@ -134,4 +181,13 @@
     letter-spacing: 0.2em;
     margin-top: 33px;
   };
+}
+@media screen and (max-width: 414px) {
+  .form-rightSide-btnArea {
+    &__submitBtn,
+    &__backBtn,
+    &__deleteBtn {
+      width: 100%;
+    }
+  }
 }
