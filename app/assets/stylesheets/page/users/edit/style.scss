@@ -12,6 +12,14 @@
     padding: 80px 20px 60px;
   }
 }
+@media screen and (max-width: 414px) {
+  .userEdit {
+    &__container {
+      width: 100%;
+      padding: 60px 0 0;
+    }
+  }
+}
 
 /* Block layer02 */
 .userEdit-container {
@@ -24,6 +32,14 @@
     padding: 29px;
     box-sizing: border-box;
     font-size: 0;
+  }
+}
+@media screen and (max-width: 414px) {
+  .userEdit-container {
+    &__form {
+      width: 100%;
+      padding: 15px;
+    }
   }
 }
 
@@ -113,6 +129,41 @@
     }
   }
 }
+@media screen and (max-width: 414px) {
+  .userEdit-container-form {
+    &__leftSide {
+      width: 100%;
+      display: block;
+    }
+    &__rightSide {
+      width: 100%;
+      display: block;
+      margin-top: 15px;
+    }
+    %__field {
+      &_type_text {
+        input[type="text"] {
+          width: 100%;
+        }
+      }
+      &_type_email {
+        input[type="email"] {
+          width: 100%;
+        }
+      }
+      &_type_textArea {
+        textarea {
+          width: 100%;
+        }
+      }
+      &_type_icon {
+        div {
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}
 
 /* Block layer04 */
 .userEdit-container-form-leftSide {
@@ -155,6 +206,7 @@
     margin-bottom: 0 !important;
   }
 }
+
 .userEdit-container-form-rightSide {
   &__field_type_icon {
     @extend %__field_type_common;
@@ -163,6 +215,13 @@
   &__btnArea {
     margin-top: 20px;
     text-align: right;
+  }
+}
+@media screen and (max-width: 414px) {
+  .userEdit-container-form-rightSide {
+    &__btnArea {
+      margin-top: 30px;
+    }
   }
 }
 
@@ -194,6 +253,17 @@
     }
   }
 }
+@media screen and (max-width: 414px) {
+  .userEdit-container-form-rightSide-btnArea {
+    &__submitBtn {
+      width: 100%;
+    }
+    &__backBtn {
+      width: 100%;
+    }
+  }
+}
+
 .overlay {
   @include _overlay;
 }
