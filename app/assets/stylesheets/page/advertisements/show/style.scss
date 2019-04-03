@@ -46,7 +46,10 @@
     };
     &__rightSide {
       width: 100%;
-      display: none !important;
+      background: colors(white);
+      margin-top: 15px;
+      padding: 15px;
+      box-sizing: border-box;
     };
   }
 }
@@ -86,6 +89,19 @@
     margin-top: 20px;
   };
 };
+@media screen and (max-width: 414px) {
+  .adShow-rightSide {
+    &__thumbnail {
+      display: none !important;
+    };
+    &__userInfo {
+      display: none !important;
+    };
+    &__btnArea {
+      margin: 0;
+    };
+  };
+}
 
 
 /* Block layer03 */
