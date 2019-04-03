@@ -56,7 +56,7 @@
 @media screen and (max-width: 414px) {
   .homeRoot-container {
     &__topArea {
-      height: 820px;
+      height: 100vh;
     }
   }
 }
@@ -264,7 +264,7 @@
     }
     &__title {
       font-size: 30px;
-      margin: 150px auto 0;
+      margin: 100px auto 0;
     }
     &__subTitle {
       position: static !important;
@@ -278,6 +278,7 @@
       padding: 0 30px;
       position: static;
       font-size: 13px;
+      margin: 25px auto 0;
       a {
         width: 100%;
         font-size: 17px;
@@ -290,7 +291,7 @@
     }
     &__mainImg {
       width: 400px;
-      top: 300px;
+      top: 270px;
       left: -10px;
     }
     &__slantLine {
@@ -298,6 +299,23 @@
     }
     &__arwBtn {
       display: none;
+    }
+  }
+}
+@media screen and (max-width: 320px) {
+  .homeRoot-container-topArea-wrap {
+    &__title {
+      font-size: 26px;
+      margin: 100px auto 0;
+    }
+    &__subTitle {
+      font-size: 12px;
+      margin: 10px auto 0;
+    }
+    &__mainImg {
+      width: 300px;
+      top: 260px;
+      left: 10px;
     }
   }
 }
