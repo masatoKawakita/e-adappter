@@ -12,6 +12,14 @@
     padding: 80px 20px 60px;
   }
 }
+@media screen and (max-width: 414px) {
+  .msgIndex {
+    &__container {
+      width: 100%;
+      padding: 60px 0 0;
+    }
+  }
+}
 
 /* Block layer02 */
 .msgIndex-container {
@@ -22,6 +30,13 @@
     box-sizing: border-box;
     border-radius: 3px;
     border: solid 1px colors(gray, more-light);
+  }
+}
+@media screen and (max-width: 414px) {
+  .msgIndex-container {
+    &__bg {
+      padding: 20px;
+    }
   }
 }
 
@@ -59,7 +74,26 @@
     }//
   }
 }
-
+@media screen and (max-width: 414px) {
+  .msgIndex-container-bg {
+    &__mainArea {
+      text-align: left;
+    }
+    &__msgArea {
+      text-align: left;
+      // パーシャル汎用のためElement内クラス対応
+      .msgBox {
+        &_type_i {
+          width: 100%;
+          margin-left: 0;
+        }
+        &_type_you {
+          width: 100%;
+        }
+      }//
+    }
+  }
+}
 /* Block layer04 */
 .msgIndex-container-bg-mainArea {
   &__title {
@@ -80,6 +114,25 @@
     color: colors(gray, dark);
   }
 }
+@media screen and (max-width: 414px) {
+  .msgIndex-container-bg-mainArea {
+    &__title {
+      p {
+        font-size: 22px;
+      }
+    }
+    &__imgBox {
+      width: 100%;
+      text-align: center;
+    }
+    &__comment {
+      margin: 10px 0;
+      text-align: left;
+      color: colors(gray, dark);
+    }
+  }
+}
+
 .msgIndex-container-bg-conversionArea {
   &__firstConfirmBtn {
     &_type_in {
@@ -154,6 +207,15 @@
     color: colors(mainRed);
   }
 }
+@media screen and (max-width: 414px) {
+  .msgIndex-container-bg-conversionArea {
+    &__conversionMsg {
+      font-size: 18px;
+      text-align: left;
+    }
+  }
+}
+
 .msgIndex-container-bg-msgArea {
   &__form {
     margin: 20px auto 0;
@@ -166,7 +228,6 @@
     margin-top: 80px;
   }
 }
-
 
 /* Block layer05:last */
 .msgIndex-container-bg-mainArea-imgBox {
@@ -214,6 +275,17 @@
     &:hover {
       color: colors(white);
       background-color: colors(mainRed);
+    }
+  }
+}
+@media screen and (max-width: 414px) {
+  .msgIndex-container-bg-msgArea-form {
+    &__input {
+      margin-bottom: 20px;
+    }
+    &__button {
+      width: 100%;
+      height: 40px;
     }
   }
 }
