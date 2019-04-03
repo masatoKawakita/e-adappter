@@ -8,6 +8,12 @@
       <i class="fas fa-search"></i>
       <%= link_to 'アプリを探す', advertisements_path %>
     </li>
+    <% if current_user.want_to_be_advertised == true %>
+      <li>
+        <i class="far fa-plus-square"></i>
+        <%= link_to 'アプリを投稿する', new_advertisement_path %>
+      </li>
+    <% end %>
     <li>
       <i class="fas fa-users"></i>
       <%= link_to 'ユーザー検索', users_path %>
