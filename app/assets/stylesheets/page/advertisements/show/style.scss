@@ -155,6 +155,20 @@
         font-size: 16px;
       }
     }
+    &__content {
+      margin: 0 0 15px;
+      .commentBox {
+        &_type_i {
+          width: 100%;
+          margin-left: 0;
+          transform-origin: right;
+        }
+        &_type_you {
+          width: 100%;
+          transform-origin: left;
+        }
+      }
+    }
   }
 }
 
