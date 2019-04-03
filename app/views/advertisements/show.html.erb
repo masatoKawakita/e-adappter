@@ -60,6 +60,9 @@
             <%= @advertisement.user.icon.present? ? image_tag(@advertisement.user.icon.url) : image_tag("user_default_icon.png") %>
             <p><%= @advertisement.user.name %>さんが作成</p>
           <% end %>
+          <%= link_to edit_advertisement_path(@advertisement.id), class: "adShow-leftSide-detailArea-wrap__edit" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
         </div>
         <div class="adShow-leftSide-detailArea__wrap adShow-leftSide-detailArea-wrap">
           <h3 class="adShow-leftSide-detailArea-wrap__label">

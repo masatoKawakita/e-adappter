@@ -94,6 +94,7 @@
     padding-bottom: 20px;
     border-bottom: solid 1px colors(mainRed);
     color: colors(black);
+    position: relative;
     p {
       text-align: justify;
     }
@@ -265,14 +266,14 @@
     font-size: 14px;
     &_type_active {
       top: 24px;
-      right: 20px;
+      right: 0;
       padding: 0 6px 0 10px;
       @include _btn(auto, auto, 10px, colors(white), colors(mainRed));
       cursor: auto;
     }
     &_type_passive {
       top: 30px;
-      right: 20px;
+      right: 0;
       padding: 0 10px;
       @include _btn(auto, auto, 10px, colors(white), colors(gray, dark));
       cursor: auto;
@@ -281,11 +282,20 @@
   &__adCountBox {
     position: absolute;
     top: 55px;
-    right: 20px;
+    right: 0;
     @include _adCountBox;
   }
   &__developer {
     display: none;
+  }
+  &__edit {
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    i {
+      font-size: 20px;
+      color: colors(gray);
+    }
   }
   &__hash {
     @include _hash(12px, colors(mainOrange));
