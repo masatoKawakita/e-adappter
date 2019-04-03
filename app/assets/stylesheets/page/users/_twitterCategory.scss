@@ -12,11 +12,21 @@
     position: relative;
   }
 }
+@media screen and (max-width: 414px) {
+  .categoryEdit {
+    &__title {
+      font-size: 14px;
+      padding-left: 0;
+    }
+  }
+}
 
 /* Block layer02 */
 .categoryEdit-form {
   &__inputArea {
     margin-top: 4px;
+    margin-left: 10px;
+    width: 100%;
   }
   &__addFormBtn {
     display: block;
@@ -52,11 +62,18 @@
     }
   }
 }
-
+@media screen and (max-width: 414px) {
+  .categoryEdit-form {
+    &__inputArea {
+      margin-left: 0;
+    }
+    &__submitBtn {
+      right: 0;
+    }
+  }
+}
 
 .categoryEdit-form-inputArea {
-  margin-left: 10px;
-  width: 100%;
   span {
     font-size: 14px;
     font-weight: bold;

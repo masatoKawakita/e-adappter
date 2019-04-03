@@ -22,6 +22,16 @@
     }
   }
 }
+@media screen and (max-width: 414px) {
+  %__containerCommon {
+    height: auto;
+  }
+  %__contentCommon {
+    p {
+      font-size: 14px;
+    }
+  }
+}
 
 /* Block layer03 */
 .userShow-rightSide-twitterInfo {
@@ -36,6 +46,13 @@
     padding: 20px;
     font-size: 0;
     position: relative;
+  }
+}
+@media screen and (max-width: 414px) {
+  .userShow-rightSide-twitterInfo {
+    &__container {
+      padding: 10px 15px;
+    }
   }
 }
 
@@ -111,6 +128,50 @@
     }
   }
 }
+@media screen and (max-width: 414px) {
+  .userShow-rightSide-twitterInfo-container {
+    &__title {
+      font-size: 16px;
+      i {
+        font-size: 18px;
+      }
+    }
+    &__date {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+    }
+    &__leftSide {
+      width: 100%;
+      height: auto;
+      border-right: none;
+      margin-right: 0;
+    }
+    &__rightSide {
+      width: 100%;
+    }
+    &__text {
+      top: 20px;
+      width: 100%;
+      height: auto;
+      font-size: 10px;
+      line-height: 30px;
+    }
+    &__button {
+      width: calc(100% - 30px);
+      height: 40px;
+      top: 180px;
+    }
+  }
+}
+@media screen and (max-width: 414px) {
+  .userShow-rightSide-twitterInfo-container {
+    &__date {
+      top: 50px;
+      font-size: 11px;
+    }
+  }
+}
 
 /* Block layer05 */
 .userShow-rightSide-twitterInfo-container-leftSide {
@@ -155,6 +216,14 @@
     }
   }
 }
+@media screen and (max-width: 414px) {
+  .userShow-rightSide-twitterInfo-container-rightSide-category {
+    &__title {
+      font-size: 14px;
+      padding-left: 0;
+    }
+  }
+}
 
 .userShow-rightSide-twitterInfo-container-bottomSide-detailData {
   &__title {
@@ -186,6 +255,25 @@
     p:last-child {
       font-size: 26px;
       color: colors(mainRed);
+    }
+  }
+}
+@media screen and (max-width: 414px) {
+  .userShow-rightSide-twitterInfo-container-bottomSide-detailData {
+    &__title {
+      font-size: 16px;
+      &:before {
+        display: none;
+      }
+    }
+    &__content {
+      p {
+        font-weight: normal;
+        font-size: 14px;
+      }
+      p:last-child {
+        font-size: 16px;
+      }
     }
   }
 }

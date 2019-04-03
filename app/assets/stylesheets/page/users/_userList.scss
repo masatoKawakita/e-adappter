@@ -99,3 +99,13 @@
     }//
   }
 }
+@media screen and (max-width: 414px) {
+  .userList-container-content {
+    &__type {
+      display: none;
+    }
+    &__userCountBox {
+      display: none;
+    }
+  }
+}

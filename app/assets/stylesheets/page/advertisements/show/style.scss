@@ -34,7 +34,7 @@
     &__container {
       width: 100%;
       box-sizing: border-box;
-      padding: 70px 10px 60px;
+      padding: 60px 0 60px;
     };
     %__blockCommon {
       display: block;
@@ -320,9 +320,22 @@
       }
     }
     &__adCountBox {
+      width: 100px;
       margin-left: 15px;
       position: static;
       display: inline-block;
+    }
+  }
+}
+@media screen and (max-width: 320px) {
+  .adShow-leftSide-detailArea-wrap {
+    &__state {
+      &_type_active {
+        width: 160px;
+      }
+      &_type_passive {
+        width: 160px;
+      }
     }
   }
 }
