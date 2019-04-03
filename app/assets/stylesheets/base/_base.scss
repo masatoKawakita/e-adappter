@@ -15,7 +15,13 @@ input[type="number"]{
   height: 30px;
   padding: 5px 8px;
 }
+input[type="submit"] {
+  appearance: none;
+  -webkit-appearance: none;
+}
 input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
   display: none;
   & + label {
     display: inline-block;
@@ -34,6 +40,8 @@ input[type="radio"] {
   }
 }
 input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
   display: none;
   & + label {
     display: inline-block;
@@ -53,6 +61,8 @@ input[type="checkbox"] {
   }
 }
 textarea {
+  appearance: none;
+  -webkit-appearance: none;
   resize: none;
 	border: solid 1px colors(gray, more-light);
   border-radius: 3px;
