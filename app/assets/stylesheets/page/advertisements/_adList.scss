@@ -138,6 +138,17 @@
 }
 @media screen and (max-width: 414px) {
   .adList-rightSide {
+    &__fee {
+      margin-bottom: 10px;
+    }
+    &__icon {
+      position: static;
+      display: inline-block;
+    }
+    &__count {
+      position: static;
+      display: inline-block;
+    }
     &__button {
       @include _btn(100%, 35px, 3px, colors(mainRed), colors(mainRed));
       color: colors(white);
