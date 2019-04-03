@@ -34,7 +34,7 @@
     &__container {
       width: 100%;
       box-sizing: border-box;
-      padding: 60px 0 60px;
+      padding: 60px 0 0;
     };
     %__blockCommon {
       display: block;
@@ -45,6 +45,7 @@
     };
     &__rightSide {
       width: 100%;
+      display: none !important;
     };
   }
 }
@@ -68,7 +69,7 @@
 @media screen and (max-width: 414px) {
   .adShow-leftSide {
     &__commentArea {
-      margin: 15px 0;
+      margin: 15px 0 0;
     };
   };
 }
@@ -84,13 +85,7 @@
     margin-top: 20px;
   };
 };
-@media screen and (max-width: 414px) {
-  .adShow-rightSide {
-    &__thumbnail {
-      display: none;
-    };
-  };
-}
+
 
 /* Block layer03 */
 .adShow-leftSide-detailArea {
@@ -99,6 +94,9 @@
     padding-bottom: 20px;
     border-bottom: solid 1px colors(mainRed);
     color: colors(black);
+    p {
+      text-align: justify;
+    }
   };
 }
 .adShow-leftSide-commentArea {
@@ -250,6 +248,9 @@
   &:first-child {
     margin-top: 0;
   }
+  &__thumbnail {
+    display: none;
+  }
   &__title {
     width: 600px;
     font-size: 30px;
@@ -283,6 +284,9 @@
     right: 20px;
     @include _adCountBox;
   }
+  &__developer {
+    display: none;
+  }
   &__hash {
     @include _hash(12px, colors(mainOrange));
   }
@@ -302,6 +306,11 @@
 }
 @media screen and (max-width: 414px) {
   .adShow-leftSide-detailArea-wrap {
+    &__thumbnail {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+    }
     &__title {
       width: 100%;
     }
@@ -324,6 +333,24 @@
       margin-left: 15px;
       position: static;
       display: inline-block;
+    }
+    &__developer {
+      display: block;
+      margin-top: 10px;
+      cursor: pointer;
+      img {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+      p {
+        display: inline-block;
+        line-height: 40px;
+        margin-left: 5px;
+        color: colors(black);
+        font-size: 14px;
+      }
     }
   }
 }
