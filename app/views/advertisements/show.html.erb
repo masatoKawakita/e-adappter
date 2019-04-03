@@ -57,11 +57,13 @@
           <div class="adShow-leftSide-detailArea-wrap__appUrl">
             <%= link_to "#{@advertisement.app_url}" %></div>
           <%= link_to user_path(@advertisement.user.id), class: "adShow-leftSide-detailArea-wrap__developer" do %>
-            <%= @advertisement.user.icon.present? ? image_tag(@advertisement.user.icon.url) : image_tag("user_default_icon.png") %>
+            <%= @advertisement.user.icon.present? ? image_tag(@advertisement.user.icon.url) : image_tag("user_default_icon.jpg") %>
             <p><%= @advertisement.user.name %>さんが作成</p>
           <% end %>
-          <%= link_to edit_advertisement_path(@advertisement.id), class: "adShow-leftSide-detailArea-wrap__edit" do %>
-            <i class="fas fa-edit"></i>
+          <% if current_user == @advertisement.user %>
+            <%= link_to edit_advertisement_path(@advertisement.id), class: "adShow-leftSide-detailArea-wrap__edit" do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
           <% end %>
         </div>
         <div class="adShow-leftSide-detailArea__wrap adShow-leftSide-detailArea-wrap">

@@ -33,6 +33,7 @@
   .adShow {
     &__container {
       width: 100%;
+      min-height: auto;
       box-sizing: border-box;
       padding: 60px 0 0;
     };
