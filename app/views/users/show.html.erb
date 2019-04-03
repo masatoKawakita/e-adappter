@@ -20,7 +20,7 @@
             <% end %>
           </div>
           <% if @user.twitter.present? %>
-            <%= link_to @user.twitter, class: 'userShow-leftSide-userProfile-content__twitter' do %>
+            <%= link_to "https://twitter.com/#{@user.twitter}", class: 'userShow-leftSide-userProfile-content__twitter' do %>
               <i class="fab fa-twitter"></i>
             <% end %>
           <% end %>
@@ -51,7 +51,7 @@
       </div>
     </div>
     <div class="userShow__rightSide userShow-rightSide">
-      
+
       <div class="userShow-rightSide__twitterInfo userShow-rightSide-twitterInfo" id="twitterInfo">
         <%= render 'twitter_informations/format', user: @user %>
       </div>
