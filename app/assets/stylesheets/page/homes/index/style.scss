@@ -361,7 +361,8 @@
       transform-origin: center;
     }
     &__button {
-      @include _btn(100%, 40px, 3px, colors(mainRed), colors(mainRed));
+      @include _btn(100%, 46px, 3px, colors(mainRed), colors(mainRed));
+      box-shadow: 0 1px 2px colors(black, clear);
       color: colors(white);
       margin: 50px auto 0;
     }
