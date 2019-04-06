@@ -58,8 +58,10 @@
       <% end %>
       <div class="adIndex-leftSide__sort" id="adIndexSort">
         <%= link_to '新着順', sort_advertisements_path(type: "sort_new", advertisements: @advertisements.pluck(:id)), id: "sortNew", class: "new clicked", remote: true %>
-        <%= link_to '人気順', sort_advertisements_path(type: "sort_popular", advertisements: @advertisements.pluck(:id)), id: "sortPopular", class: "popular", remote: true %>
-        <%= link_to 'コメント数順', sort_advertisements_path(type: "sort_comNum", advertisements: @advertisements.pluck(:id)), id: "sortComNum", class: "popular", remote: true %>
+        <% if user_signed_in? %>
+          <%= link_to '人気順', sort_advertisements_path(type: "sort_popular", advertisements: @advertisements.pluck(:id)), id: "sortPopular", class: "popular", remote: true %>
+          <%= link_to 'コメント数順', sort_advertisements_path(type: "sort_comNum", advertisements: @advertisements.pluck(:id)), id: "sortComNum", class: "popular", remote: true %>
+        <% end %>
         <p><%= @advertisements.count %>件表示</p>
       </div>
       <div class="adIndex-leftSide__listArea" id="adListArea">
