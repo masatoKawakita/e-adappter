@@ -150,7 +150,7 @@
       display: inline-block;
     }
     &__button {
-      @include _btn(100%, 35px, 3px, colors(mainRed), colors(mainRed));
+      @include _btn(100%, 40px, 3px, colors(mainRed), colors(mainRed));
       color: colors(white);
       position: static;
       margin-top: 15px;
@@ -224,6 +224,7 @@
       font-size: 10px;
     }
     &__adCountBox {
+      top: 40px;
       right: 10px;
     }
   }
