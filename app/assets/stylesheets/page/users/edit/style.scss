@@ -267,3 +267,36 @@
 .overlay {
   @include _overlay;
 }
+@media screen and (max-width: 414px) {
+  .overlay {
+    .crop_modal {
+      width: 360px;
+      height: 360px;
+    }
+    .select_btn {
+      top: 480px;
+    }
+  }
+}
+@media screen and (max-width: 360px) {
+  .overlay {
+    .crop_modal {
+      width: 345px;
+      height: 345px;
+    }
+    .select_btn {
+      top: 460px;
+    }
+  }
+}
+@media screen and (max-width: 320px) {
+  .overlay {
+    .crop_modal {
+      width: 310px;
+      height: 310px;
+    }
+    .select_btn {
+      top: 440px;
+    }
+  }
+}
