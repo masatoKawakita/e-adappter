@@ -196,9 +196,9 @@
   &__slantLine {
     position: absolute;
     left: 50%;
-    bottom: 5px;
-    width: 150%;
-    height: 140px;
+    bottom: 10px;
+    width: 250%;
+    height: 190px;
     background-color: colors(mainBg);
     transform: rotate(-5deg) translateX(-50%);
   }
